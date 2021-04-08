@@ -26,8 +26,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    ../../Desktop/julita-materiały/rys.1.PNG
+RC_ICONS = icon2.ico
 
 RESOURCES += \
     resource.qrc
