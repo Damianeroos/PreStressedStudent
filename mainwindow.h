@@ -24,7 +24,6 @@ private:
     double formula1();
     bool checkThatTypedArgumentsAreValid();
     QMessageBox msg;
-    const QSize lineEditSize;
     void clearResults();
     bool checkThatResultsAreNumbers(double arg);
     void test();

@@ -12,7 +12,6 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , lineEditSize(QSize(50,22))
 {
     ui->setupUi(this);
     init();
@@ -27,24 +26,6 @@ void MainWindow::init(){
     QPixmap pix(":/resources/img/rys.1.PNG");
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio));
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
-
-    ui->labelB1->setText(QString("B<sub>1</sub> :"));
-    ui->labelB2->setText(QString("B<sub>2</sub> :"));
-    ui->labelB3->setText(QString("B<sub>3</sub> :"));
-    ui->labelH1->setText(QString("H<sub>1</sub> :"));
-    ui->labelH2->setText(QString("H<sub>2</sub> :"));
-    ui->labelH3->setText(QString("H<sub>3</sub> :"));
-    ui->labelH4->setText(QString("H<sub>4</sub> :"));
-    ui->labelH5->setText(QString("H<sub>5</sub> :"));
-
-    ui->lineEditB1->setMaximumSize(lineEditSize);
-    ui->lineEditB2->setMaximumSize(lineEditSize);
-    ui->lineEditB3->setMaximumSize(lineEditSize);
-    ui->lineEditH1->setMaximumSize(lineEditSize);
-    ui->lineEditH2->setMaximumSize(lineEditSize);
-    ui->lineEditH3->setMaximumSize(lineEditSize);
-    ui->lineEditH4->setMaximumSize(lineEditSize);
-    ui->lineEditH5->setMaximumSize(lineEditSize);
 
     QDoubleValidator* figureParamsValidator = new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this);
     ui->lineEditB1->setValidator(figureParamsValidator);
@@ -99,19 +80,6 @@ void MainWindow::init(){
     ui->comboBoxExposition->addItem("XD1/XS1");
     ui->comboBoxExposition->addItem("XD2/XS2");
     ui->comboBoxExposition->addItem("XD3/XS3");
-    ui->comboBoxConstructionSS->addItem("S1");
-    ui->comboBoxConstructionSS->addItem("S2");
-    ui->comboBoxConstructionSS->addItem("S3");
-    ui->comboBoxConstructionSS->addItem("S4");
-    ui->comboBoxConstructionSS->addItem("S5");
-    ui->comboBoxConstructionSS->addItem("S6");
-    ui->comboBoxExpositionSS->addItem("X0");
-    ui->comboBoxExpositionSS->addItem("XC1");
-    ui->comboBoxExpositionSS->addItem("XC2/XC3");
-    ui->comboBoxExpositionSS->addItem("XC4");
-    ui->comboBoxExpositionSS->addItem("XD1/XS1");
-    ui->comboBoxExpositionSS->addItem("XD2/XS2");
-    ui->comboBoxExpositionSS->addItem("XD3/XS3");
     ui->comboBoxSteelType->addItem("pręt");
     ui->comboBoxSteelType->addItem("drut");
     ui->comboBoxSteelType->addItem("splot");
@@ -136,9 +104,9 @@ void MainWindow::init(){
     QObject::connect(ui->lineEditCDev, SIGNAL(textEdited(QString)),
                      this, SLOT(computeC()));
 
-    QObject::connect(ui->comboBoxConstructionSS, SIGNAL(currentIndexChanged(int)),
+    QObject::connect(ui->comboBoxConstruction, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(computeCSS()));
-    QObject::connect(ui->comboBoxExpositionSS, SIGNAL(currentIndexChanged(int)),
+    QObject::connect(ui->comboBoxExposition, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(computeCSS()));
     QObject::connect(ui->lineEditPhiSSS, SIGNAL(textEdited(QString)),
                      this, SLOT(computeCSS()));
@@ -332,7 +300,7 @@ int MainWindow::getCMinDur(){
 }
 
 int MainWindow::getCMinDurSS(){
-    return arrayB[ui->comboBoxConstructionSS->currentIndex()][ui->comboBoxExpositionSS->currentIndex()];
+    return arrayB[ui->comboBoxConstruction->currentIndex()][ui->comboBoxExposition->currentIndex()];
 }
 
 void MainWindow::computeC(){
