@@ -46,14 +46,15 @@ void MainWindow::init(){
     ui->lineEditH4->setMaximumSize(lineEditSize);
     ui->lineEditH5->setMaximumSize(lineEditSize);
 
-    ui->lineEditB1->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditB2->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditB3->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditH1->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditH2->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditH3->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditH4->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
-    ui->lineEditH5->setValidator(new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this));
+    QDoubleValidator* figureParamsValidator = new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this);
+    ui->lineEditB1->setValidator(figureParamsValidator);
+    ui->lineEditB2->setValidator(figureParamsValidator);
+    ui->lineEditB3->setValidator(figureParamsValidator);
+    ui->lineEditH1->setValidator(figureParamsValidator);
+    ui->lineEditH2->setValidator(figureParamsValidator);
+    ui->lineEditH3->setValidator(figureParamsValidator);
+    ui->lineEditH4->setValidator(figureParamsValidator);
+    ui->lineEditH5->setValidator(figureParamsValidator);
 
     QDoubleValidator* cParamsValidator = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
     ui->lineEditPhiS->setValidator(cParamsValidator);
@@ -69,22 +70,22 @@ void MainWindow::init(){
     ui->lineEditPhiStr->setValidator(cParamsValidator);
     ui->lineEditA->setValidator(cParamsValidator);
 
-
-    ui->lineEditAc->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditBeta->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditSc->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditKappa->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditIc->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditRho->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCmin->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNZbr->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditPhiSOO->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNZbrOO->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNSprOO->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNZbrSS->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCminSS->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCZrbFinal->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCSprFinal->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
+    QString lineEditBackgroundColor("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
+    ui->lineEditAc->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditBeta->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditSc->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditKappa->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditIc->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditRho->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCmin->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditPhiSOO->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCminSS->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCZrbFinal->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditCSprFinal->setStyleSheet(lineEditBackgroundColor);
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
