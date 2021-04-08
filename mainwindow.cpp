@@ -70,22 +70,21 @@ void MainWindow::init(){
     ui->lineEditPhiStr->setValidator(cParamsValidator);
     ui->lineEditA->setValidator(cParamsValidator);
 
-    QString lineEditBackgroundColor("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditAc->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditBeta->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditSc->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditKappa->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditIc->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditRho->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCmin->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditPhiSOO->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCminSS->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCZrbFinal->setStyleSheet(lineEditBackgroundColor);
-    ui->lineEditCSprFinal->setStyleSheet(lineEditBackgroundColor);
+    ui->lineEditAc->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBeta->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSc->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditKappa->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditIc->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditRho->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCmin->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPhiSOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCminSS->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCZrbFinal->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCSprFinal->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
@@ -309,10 +308,10 @@ void MainWindow::clearResults(){
     ui->lineEditCZrbFinal->setText("");
     ui->lineEditCSprFinal->setText("");
 
-    ui->lineEditCNZbrOO->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNSprOO->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNZbrSS->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
-    ui->lineEditCNZbr->setStyleSheet("QLineEdit { background: rgb(240, 240, 240); selection-background-color: rgb(0, 120, 215); }");
+    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
 }
 
 bool MainWindow::checkThatResultsAreNumbers(double arg){
@@ -389,19 +388,19 @@ void MainWindow::setFinalCValue(){
 
     if(locale.toInt(ui->lineEditCNZbr->text()) > locale.toInt(ui->lineEditCNZbrOO->text())){
         ui->lineEditCZrbFinal->setText(ui->lineEditCNZbr->text());
-        ui->lineEditCNZbr->setStyleSheet("QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }");
+        ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGreen);
     }
     else{
         ui->lineEditCZrbFinal->setText(ui->lineEditCNZbrOO->text());
-        ui->lineEditCNZbrOO->setStyleSheet("QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }");
+        ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGreen);
     }
 
     if(locale.toInt(ui->lineEditCNZbrSS->text()) > locale.toInt(ui->lineEditCNSprOO->text())){
         ui->lineEditCSprFinal->setText(ui->lineEditCNZbrSS->text());
-        ui->lineEditCNZbrSS->setStyleSheet("QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }");
+        ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGreen);
     }
     else{
         ui->lineEditCSprFinal->setText(ui->lineEditCNSprOO->text());
-        ui->lineEditCNSprOO->setStyleSheet("QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }");
+        ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGreen);
     }
 }

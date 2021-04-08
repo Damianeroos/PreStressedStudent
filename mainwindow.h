@@ -33,6 +33,8 @@ private:
     int getIncrementValueFromSteelType();
     void setFinalCValue();
     QPixmap pix;
+    const QString lineEditBackgroundColorGrey =  "QLineEdit { background: rgb(225, 225, 225); selection-background-color: rgb(0, 120, 215); }";
+    const QString lineEditBackgroundColorGreen = "QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }";
 
 public slots:
     void startComputations();
