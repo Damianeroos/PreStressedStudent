@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::init(){
-    QPixmap pix("C:/Users/drakowsk/Desktop/julita-materiały/rys.1.PNG");
+    QPixmap pix(":/resources/img/rys.1.PNG");
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio));
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
 

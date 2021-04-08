@@ -28,3 +28,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     ../../Desktop/julita-materiały/rys.1.PNG
+
+RESOURCES += \
+    resource.qrc
