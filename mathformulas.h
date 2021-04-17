@@ -13,7 +13,19 @@ public:
                  double h2,
                  double h3,
                  double h4,
-                 double h5):
+                 double h5,
+                 double fck,
+                 double gammaFcd,
+                 double fpk,
+                 double gammaFpd,
+                 int Hp,
+                 double Med,
+                 double Apc0,
+                 int Npovg,
+                 double Ep,
+                 double Ecm,
+                 double k ) :
+
         paramB1(b1),
         paramB2(b2),
         paramB3(b3),
@@ -21,7 +33,18 @@ public:
         paramH2(h2),
         paramH3(h3),
         paramH4(h4),
-        paramH5(h5) {};
+        paramH5(h5),
+        paramFck(fck),
+        paramGammaFcd(gammaFcd),
+        paramFpk(fpk),
+        paramGammaFpd(gammaFpd),
+        paramHp(Hp),
+        paramMed(Med),
+        paramApc0(Apc0),
+        paramNpovg(Npovg),
+        paramEp(Ep),
+        paramEcm(Ecm),
+        paramK(k) {};
 
     double calculateAreaAc();
     double calculateBeta();
@@ -29,6 +52,15 @@ public:
     double calculateKappa();
     double calculateSecondMomentOfArea();
     double calculatePerformanceLimitIndicator();
+    double calculateFcd();
+    double calculateFpd();
+    double calculateZ();
+    int calculateNpov();
+    double calculateAcc();
+    double calculateAlphaE();
+    double calculateAcs();
+
+    const double& getA1() {return areaA1;}
 
 private:
     double paramB1;
@@ -57,6 +89,28 @@ private:
     double paramSc;
     double paramIc;
     double paramRho;
+
+    double paramFck;
+    double paramGammaFcd;
+    double paramFpk;
+    double paramGammaFpd;
+    int paramHp;
+    double paramMed;
+    double paramApc0;
+    int paramNpovg;
+
+    double paramFcd;
+    double paramFpd;
+    double paramZ;
+    int paramNpov;
+    double areaAcc;
+    double areaApc;
+
+    double paramEp;
+    double paramEcm;
+    double paramK;
+    double paramAlphaE;
+    double areaAcs;
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

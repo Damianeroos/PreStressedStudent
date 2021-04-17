@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <vector>
+#include <QDebug>
 
 mathFormulas::mathFormulas()
 {
@@ -62,4 +63,40 @@ double mathFormulas::calculatePerformanceLimitIndicator(){
 int calculateCmin(double cMinB, int cMinDur, double cDurY, double cDurSt, double cDurAdd){
     std::vector<double> vec{cMinB, static_cast<double>(cMinDur) - cDurY - cDurSt - cDurAdd, 10.0};
     return static_cast<int>(ceil(*std::max_element(vec.begin(), vec.end())));
+}
+
+double mathFormulas::calculateFcd(){
+    paramFcd = paramFck / paramGammaFcd;
+    return paramFcd;
+}
+
+double mathFormulas::calculateFpd(){
+    paramFpd = paramFpk / paramGammaFpd;
+    return paramFpd;
+}
+
+double mathFormulas::calculateZ(){
+    paramZ = (paramHp * paramH) / 100;
+    return paramZ;
+}
+
+int mathFormulas::calculateNpov(){
+    paramNpov = static_cast<int>(std::ceil(paramMed / (paramZ * paramApc0 * paramFpd * 1000)));
+    return paramNpov;
+}
+
+double mathFormulas::calculateAcc(){
+    areaApc = (paramNpov  + paramNpovg) * paramApc0;
+    areaAcc = areaApc * (paramFpd/paramFcd);
+    return areaAcc;
+}
+
+double mathFormulas::calculateAlphaE(){
+    paramAlphaE = paramEp / (paramEcm * paramK);
+    return paramAlphaE;
+}
+
+double mathFormulas::calculateAcs(){
+    areaAcs = areaAc - areaApc + paramAlphaE * areaApc;
+    return areaAcs;
 }

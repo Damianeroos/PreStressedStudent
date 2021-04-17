@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Kalkulator dźwigara");
     init();
 }
 
@@ -27,29 +28,44 @@ void MainWindow::init(){
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio));
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
 
-    QDoubleValidator* figureParamsValidator = new QDoubleValidator(0, std::numeric_limits<double>::max(), 3, this);
-    ui->lineEditB1->setValidator(figureParamsValidator);
-    ui->lineEditB2->setValidator(figureParamsValidator);
-    ui->lineEditB3->setValidator(figureParamsValidator);
-    ui->lineEditH1->setValidator(figureParamsValidator);
-    ui->lineEditH2->setValidator(figureParamsValidator);
-    ui->lineEditH3->setValidator(figureParamsValidator);
-    ui->lineEditH4->setValidator(figureParamsValidator);
-    ui->lineEditH5->setValidator(figureParamsValidator);
+    QDoubleValidator* doubleValidator4 = new QDoubleValidator(0, std::numeric_limits<double>::max(), 4, this);
+    ui->lineEditB1->setValidator(doubleValidator4);
+    ui->lineEditB2->setValidator(doubleValidator4);
+    ui->lineEditB3->setValidator(doubleValidator4);
+    ui->lineEditH1->setValidator(doubleValidator4);
+    ui->lineEditH2->setValidator(doubleValidator4);
+    ui->lineEditH3->setValidator(doubleValidator4);
+    ui->lineEditH4->setValidator(doubleValidator4);
+    ui->lineEditH5->setValidator(doubleValidator4);
+    ui->lineEditFck->setValidator(doubleValidator4);
+    ui->lineEditGammaFcd->setValidator(doubleValidator4);
+    ui->lineEditFpk->setValidator(doubleValidator4);
+    ui->lineEditGammaFpd->setValidator(doubleValidator4);
+    ui->lineEditMed->setValidator(doubleValidator4);
+    ui->lineEditApc0->setValidator(doubleValidator4);
+    ui->lineEditEp->setValidator(doubleValidator4);
+    ui->lineEditEcm->setValidator(doubleValidator4);
+    ui->lineEditK->setValidator(doubleValidator4);
+    ui->lineEditB1S->setValidator(doubleValidator4);
+    ui->lineEditB2S->setValidator(doubleValidator4);
+    ui->lineEditB3S->setValidator(doubleValidator4);
+    ui->lineEditH1S->setValidator(doubleValidator4);
+    ui->lineEditH2S->setValidator(doubleValidator4);
+    ui->lineEditH3S->setValidator(doubleValidator4);
 
-    QDoubleValidator* cParamsValidator = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
-    ui->lineEditPhiS->setValidator(cParamsValidator);
-    ui->lineEditCDurY->setValidator(cParamsValidator);
-    ui->lineEditCDurSt->setValidator(cParamsValidator);
-    ui->lineEditCDurAdd->setValidator(cParamsValidator);
-    ui->lineEditCDev->setValidator(cParamsValidator);
-    ui->lineEditPhiSSS->setValidator(cParamsValidator);
-    ui->lineEditCDurYSS->setValidator(cParamsValidator);
-    ui->lineEditCDurStSS->setValidator(cParamsValidator);
-    ui->lineEditCDurAddSS->setValidator(cParamsValidator);
-    ui->lineEditCDevSS->setValidator(cParamsValidator);
-    ui->lineEditPhiStr->setValidator(cParamsValidator);
-    ui->lineEditA->setValidator(cParamsValidator);
+    QDoubleValidator* doubleValidator1 = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
+    ui->lineEditPhiS->setValidator(doubleValidator1);
+    ui->lineEditCDurY->setValidator(doubleValidator1);
+    ui->lineEditCDurSt->setValidator(doubleValidator1);
+    ui->lineEditCDurAdd->setValidator(doubleValidator1);
+    ui->lineEditCDev->setValidator(doubleValidator1);
+    ui->lineEditPhiSSS->setValidator(doubleValidator1);
+    ui->lineEditCDurYSS->setValidator(doubleValidator1);
+    ui->lineEditCDurStSS->setValidator(doubleValidator1);
+    ui->lineEditCDurAddSS->setValidator(doubleValidator1);
+    ui->lineEditCDevSS->setValidator(doubleValidator1);
+    ui->lineEditPhiStr->setValidator(doubleValidator1);
+    ui->lineEditA->setValidator(doubleValidator1);
 
     ui->lineEditAc->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditBeta->setStyleSheet(lineEditBackgroundColorGrey);
@@ -66,6 +82,13 @@ void MainWindow::init(){
     ui->lineEditCminSS->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCZrbFinal->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCSprFinal->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditFcd->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditFpd->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditZ->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditNpov->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAcc->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAlphaE->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAcs->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
@@ -139,7 +162,13 @@ bool MainWindow::checkThatTypedArgumentsAreValid(){
             ui->lineEditH2->text().isEmpty() ||
             ui->lineEditH3->text().isEmpty() ||
             ui->lineEditH4->text().isEmpty() ||
-            ui->lineEditH5->text().isEmpty()){
+            ui->lineEditH5->text().isEmpty() ||
+            ui->lineEditB1S->text().isEmpty() ||
+            ui->lineEditB2S->text().isEmpty() ||
+            ui->lineEditB3S->text().isEmpty() ||
+            ui->lineEditH1S->text().isEmpty() ||
+            ui->lineEditH2S->text().isEmpty() ||
+            ui->lineEditH3S->text().isEmpty()){
         return false;
     }
     else{
@@ -165,8 +194,18 @@ void MainWindow::startComputations(){
                           locale.toDouble(ui->lineEditH2->text()),
                           locale.toDouble(ui->lineEditH3->text()),
                           locale.toDouble(ui->lineEditH4->text()),
-                          locale.toDouble(ui->lineEditH5->text())
-                          );
+                          locale.toDouble(ui->lineEditH5->text()),
+                          locale.toDouble(ui->lineEditFck->text()),
+                          locale.toDouble(ui->lineEditGammaFcd->text()),
+                          locale.toDouble(ui->lineEditFpk->text()),
+                          locale.toDouble(ui->lineEditGammaFpd->text()),
+                          ui->spinBoxHp->value(),
+                          locale.toDouble(ui->lineEditMed->text()),
+                          locale.toDouble(ui->lineEditApc0->text()),
+                          ui->spinBoxNpovg->value(),
+                          locale.toDouble(ui->lineEditEp->text()),
+                          locale.toDouble(ui->lineEditEcm->text()),
+                          locale.toDouble(ui->lineEditK->text()));
 
         double areaAc = data.calculateAreaAc();
         ui->lineEditAc->setText(locale.toString(areaAc));
@@ -232,6 +271,55 @@ void MainWindow::startComputations(){
             return;
         }
 
+        double paramFcd = data.calculateFcd();
+        ui->lineEditFcd->setText(locale.toString(paramFcd));
+        if(!checkThatResultsAreNumbers(paramFcd)){
+            return;
+        }
+
+        double paramFpd = data.calculateFpd();
+        ui->lineEditFpd->setText(locale.toString(paramFpd));
+        if(!checkThatResultsAreNumbers(paramFpd)){
+            return;
+        }
+
+        double paramZ = data.calculateZ();
+        ui->lineEditZ->setText(locale.toString(paramZ));
+        if(!checkThatResultsAreNumbers(paramZ)){
+            return;
+        }
+
+        double paramNpov = data.calculateNpov();
+        ui->lineEditNpov->setText(locale.toString(paramNpov));
+        if(!checkThatResultsAreNumbers(paramNpov)){
+            return;
+        }
+
+        double paramAcc = data.calculateAcc();
+        ui->lineEditAcc->setText(locale.toString(paramAcc));
+        if(!checkThatResultsAreNumbers(paramAcc)){
+            return;
+        }
+        if(paramAcc > data.getA1()){
+            msg.setText("<p>Warunek A<sub>cc</sub> &lt; A<sub>1</sub> nie został spełniony.</p>\n"
+                        "<p>A<sub>cc</sub> = " + QString::number(paramAcc)+ " m<sup>2</sup></p>"
+                        "<p>A<sub>1</sub> = " + QString::number(data.getA1())+ " m<sup>2</sup></p>");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
+        }
+
+        double paramAlphaE = data.calculateAlphaE();
+        ui->lineEditAlphaE->setText(locale.toString(paramAlphaE));
+        if(!checkThatResultsAreNumbers(paramAlphaE)){
+            return;
+        }
+
+        double paramAcs = data.calculateAcs();
+        ui->lineEditAcs->setText(locale.toString(paramAcs));
+        if(!checkThatResultsAreNumbers(paramAcs)){
+            return;
+        }
+
         setFinalCValue();
     }
 }
@@ -261,6 +349,25 @@ void MainWindow::initParameters(){
     ui->lineEditA->setText(QString("35"));
     ui->lineEditPhiStr->setText(QString("10"));
 
+    ui->lineEditFck->setText(QString("45"));
+    ui->lineEditGammaFcd->setText(QString("1,4"));
+    ui->lineEditFpk->setText(QString("1860"));
+    ui->lineEditGammaFpd->setText(QString("1,15"));
+    ui->spinBoxHp->setValue(75);
+    ui->lineEditMed->setText("4341,925");
+    ui->lineEditApc0->setText("93e-6");
+    ui->spinBoxNpovg->setValue(4);
+
+    ui->lineEditEp->setText(QString("195"));
+    ui->lineEditEcm->setText(QString("36"));
+    ui->lineEditK->setText(QString("1,2"));
+    ui->lineEditB1S->setText(QString("0,5"));
+    ui->lineEditB2S->setText(QString("0,5"));
+    ui->lineEditB3S->setText(QString("0,125"));
+    ui->lineEditH1S->setText(QString("0,1975"));
+    ui->lineEditH2S->setText(QString("0,245"));
+    ui->lineEditH3S->setText(QString("1,207"));
+
     computeC();
     computeCSS();
     computeCForFireResitance();
@@ -275,6 +382,13 @@ void MainWindow::clearResults(){
     ui->lineEditRho->setText("");
     ui->lineEditCZrbFinal->setText("");
     ui->lineEditCSprFinal->setText("");
+    ui->lineEditFcd->setText("");
+    ui->lineEditFpd->setText("");
+    ui->lineEditZ->setText("");
+    ui->lineEditNpov->setText("");
+    ui->lineEditAcc->setText("");
+    ui->lineEditAlphaE->setText("");
+    ui->lineEditAcs->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
