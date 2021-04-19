@@ -107,6 +107,17 @@ void MainWindow::init(){
     ui->comboBoxSteelType->addItem("drut");
     ui->comboBoxSteelType->addItem("splot");
 
+    // tables
+    ui->pushButtonAddRowLower->setStyleSheet("font: bold 14px;"
+                                             "color: green");
+    ui->pushButtonSubRowLower->setStyleSheet("font: bold 14px;"
+                                             "color: red");
+    ui->tableWidgetLower->setColumnCount(3);
+    ui->tableWidgetLower->setShowGrid(true);
+    QStringList lowerTableLabes = {"rząd", "l. splotów", "h [m]"};
+    ui->tableWidgetLower->setHorizontalHeaderLabels(lowerTableLabes);
+    ui->tableWidgetLower->verticalHeader()->setVisible(false);
+
     initParameters();
 
     QObject::connect(ui->startComputationButton, SIGNAL(clicked()),
@@ -152,6 +163,81 @@ void MainWindow::init(){
                      this, SLOT(computeCForFireResitance()));
     QObject::connect(ui->comboBoxSteelType, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(computeCForFireResitance()));
+
+    QObject::connect(ui->pushButtonAddRowLower, SIGNAL(clicked()),
+                     this, SLOT(addRowLowerTable()));
+    QObject::connect(ui->pushButtonSubRowLower, SIGNAL(clicked()),
+                     this, SLOT(removeRowLowerTable()));
+}
+
+void MainWindow::addRowTable( QTableWidget* table){
+    table->insertRow(table->rowCount());
+    QTableWidgetItem* itemA = new QTableWidgetItem("a"+QString::number(table->rowCount()));
+    table->setItem(table->rowCount()-1, 0, itemA);
+    itemA->setTextAlignment(Qt::AlignHCenter);
+    itemA->setFlags(itemA->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* itemS = new QTableWidgetItem("1");
+    table->setItem(table->rowCount()-1, 1, itemS);
+    itemS->setTextAlignment(Qt::AlignHCenter);
+
+    QTableWidgetItem* itemH = new QTableWidgetItem("0,02");
+    table->setItem(table->rowCount()-1, 2, itemH);
+    itemH->setTextAlignment(Qt::AlignHCenter);
+}
+
+void MainWindow::addRowLowerTable(){
+    QTableWidget* table = ui->tableWidgetLower;
+
+    table->insertRow(table->rowCount());
+    QTableWidgetItem* itemA = new QTableWidgetItem("a"+QString::number(table->rowCount()));
+    table->setItem(table->rowCount()-1, 0, itemA);
+    itemA->setTextAlignment(Qt::AlignHCenter);
+    itemA->setFlags(itemA->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* itemS = new QTableWidgetItem("1");
+    table->setItem(table->rowCount()-1, 1, itemS);
+    itemS->setTextAlignment(Qt::AlignHCenter);
+
+    QTableWidgetItem* itemH = new QTableWidgetItem("0,02");
+    table->setItem(table->rowCount()-1, 2, itemH);
+    itemH->setTextAlignment(Qt::AlignHCenter);
+}
+void MainWindow::addRowTable(QTableWidget *table, int aCount, double hValue){
+    QLocale locale(QLocale::Polish);
+    table->insertRow(table->rowCount());
+    QTableWidgetItem* itemA = new QTableWidgetItem("a"+QString::number(table->rowCount()));
+    table->setItem(table->rowCount()-1, 0, itemA);
+    itemA->setTextAlignment(Qt::AlignHCenter);
+    itemA->setFlags(itemA->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* itemS = new QTableWidgetItem(locale.toString(aCount));
+    table->setItem(table->rowCount()-1, 1, itemS);
+    itemS->setTextAlignment(Qt::AlignHCenter);
+
+    QTableWidgetItem* itemH = new QTableWidgetItem(locale.toString(hValue));
+    table->setItem(table->rowCount()-1, 2, itemH);
+    itemH->setTextAlignment(Qt::AlignHCenter);
+}
+
+void MainWindow::removeRowTable(QTableWidget *table){
+    if(!table->rowCount()){
+        return;
+    }
+    else{
+       table->removeRow(table->rowCount()-1);
+    }
+}
+
+void MainWindow::removeRowLowerTable(){
+    QTableWidget* table = ui->tableWidgetLower;
+
+    if(!table->rowCount()){
+        return;
+    }
+    else{
+       table->removeRow(table->rowCount()-1);
+    }
 }
 
 bool MainWindow::checkThatTypedArgumentsAreValid(){
@@ -205,7 +291,13 @@ void MainWindow::startComputations(){
                           ui->spinBoxNpovg->value(),
                           locale.toDouble(ui->lineEditEp->text()),
                           locale.toDouble(ui->lineEditEcm->text()),
-                          locale.toDouble(ui->lineEditK->text()));
+                          locale.toDouble(ui->lineEditK->text()),
+                          locale.toDouble(ui->lineEditB1S->text()),
+                          locale.toDouble(ui->lineEditB2S->text()),
+                          locale.toDouble(ui->lineEditB3S->text()),
+                          locale.toDouble(ui->lineEditH1S->text()),
+                          locale.toDouble(ui->lineEditH2S->text()),
+                          locale.toDouble(ui->lineEditH3S->text()));
 
         double areaAc = data.calculateAreaAc();
         ui->lineEditAc->setText(locale.toString(areaAc));
@@ -367,6 +459,11 @@ void MainWindow::initParameters(){
     ui->lineEditH1S->setText(QString("0,1975"));
     ui->lineEditH2S->setText(QString("0,245"));
     ui->lineEditH3S->setText(QString("1,207"));
+
+    addRowTable(ui->tableWidgetLower, 6, 0.08);
+    addRowTable(ui->tableWidgetLower, 6, 0.12);
+    addRowTable(ui->tableWidgetLower, 6, 0.16);
+    addRowTable(ui->tableWidgetLower, 6, 0.20);
 
     computeC();
     computeCSS();

@@ -24,7 +24,13 @@ public:
                  int Npovg,
                  double Ep,
                  double Ecm,
-                 double k ) :
+                 double k,
+                 double b1s,
+                 double b2s,
+                 double b3s,
+                 double h1s,
+                 double h2s,
+                 double h3s) :
 
         paramB1(b1),
         paramB2(b2),
@@ -44,7 +50,13 @@ public:
         paramNpovg(Npovg),
         paramEp(Ep),
         paramEcm(Ecm),
-        paramK(k) {};
+        paramK(k),
+        paramB1S(b1s),
+        paramB2S(b2s),
+        paramB3S(b3s),
+        paramH1S(h1s),
+        paramH2S(h2s),
+        paramH3S(h3s) {};
 
     double calculateAreaAc();
     double calculateBeta();
@@ -111,6 +123,13 @@ private:
     double paramK;
     double paramAlphaE;
     double areaAcs;
+
+    double paramB1S;
+    double paramB2S;
+    double paramB3S;
+    double paramH1S;
+    double paramH2S;
+    double paramH3S;
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

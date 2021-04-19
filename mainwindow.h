@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,11 +35,16 @@ private:
     QPixmap pix;
     const QString lineEditBackgroundColorGrey =  "QLineEdit { background: rgb(225, 225, 225); selection-background-color: rgb(0, 120, 215); }";
     const QString lineEditBackgroundColorGreen = "QLineEdit { background: rgb(120, 230, 120); selection-background-color: rgb(0, 120, 215); }";
+    void addRowTable(QTableWidget* table, int aCount, double hValue);
+    void addRowTable(QTableWidget* table);
+    void removeRowTable(QTableWidget* table);
 
 public slots:
     void startComputations();
     void computeC();
     void computeCSS();
     void computeCForFireResitance();
+    void addRowLowerTable();
+    void removeRowLowerTable();
 };
 #endif // MAINWINDOW_H
