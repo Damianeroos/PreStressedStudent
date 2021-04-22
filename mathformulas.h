@@ -71,8 +71,11 @@ public:
     double calculateAcc();
     double calculateAlphaE();
     double calculateAcs();
-
+    void setApLower(double arg){ ApLower = arg;}
+    void setApUpper(double arg){ ApUpper = arg;}
     const double& getA1() {return areaA1;}
+    const double& getH() {return paramH;}
+    double calculateScs();
 
 private:
     double paramB1;
@@ -130,6 +133,10 @@ private:
     double paramH1S;
     double paramH2S;
     double paramH3S;
+
+    double ApLower; //iloczyn l. splotow i wysokosci rzedu
+    double ApUpper;
+    double paramScs;
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

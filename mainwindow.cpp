@@ -89,6 +89,7 @@ void MainWindow::init(){
     ui->lineEditAcc->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditAlphaE->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditAcs->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditScs->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
@@ -107,7 +108,7 @@ void MainWindow::init(){
     ui->comboBoxSteelType->addItem("drut");
     ui->comboBoxSteelType->addItem("splot");
 
-    // tables
+    // table lower
     ui->pushButtonAddRowLower->setStyleSheet("font: bold 14px;"
                                              "color: green");
     ui->pushButtonSubRowLower->setStyleSheet("font: bold 14px;"
@@ -116,7 +117,21 @@ void MainWindow::init(){
     ui->tableWidgetLower->setShowGrid(true);
     QStringList lowerTableLabes = {"rząd", "l. splotów", "h [m]"};
     ui->tableWidgetLower->setHorizontalHeaderLabels(lowerTableLabes);
+    ui->tableWidgetLower->horizontalHeader()->setStyleSheet("::section {background-color: lightblue;}");
     ui->tableWidgetLower->verticalHeader()->setVisible(false);
+    ui->tableWidgetLower->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //table upper
+    ui->pushButtonAddRowUpper->setStyleSheet("font: bold 14px;"
+                                             "color: green");
+    ui->pushButtonSubRowUpper->setStyleSheet("font: bold 14px;"
+                                             "color: red");
+    ui->tableWidgetUpper->setColumnCount(3);
+    ui->tableWidgetUpper->setShowGrid(true);
+    QStringList upperTableLabes = {"rząd", "l. splotów", "h [m]"};
+    ui->tableWidgetUpper->setHorizontalHeaderLabels(upperTableLabes);
+    ui->tableWidgetUpper->horizontalHeader()->setStyleSheet("::section {background-color: lightblue;}");
+    ui->tableWidgetUpper->verticalHeader()->setVisible(false);
+    ui->tableWidgetUpper->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     initParameters();
 
@@ -168,6 +183,14 @@ void MainWindow::init(){
                      this, SLOT(addRowLowerTable()));
     QObject::connect(ui->pushButtonSubRowLower, SIGNAL(clicked()),
                      this, SLOT(removeRowLowerTable()));
+    QObject::connect(ui->tableWidgetLower, SIGNAL(cellChanged(int,int)),
+                     this, SLOT(validateCellDataLowerTable(int,int)));
+    QObject::connect(ui->pushButtonAddRowUpper, SIGNAL(clicked()),
+                     this, SLOT(addRowUpperTable()));
+    QObject::connect(ui->pushButtonSubRowUpper, SIGNAL(clicked()),
+                     this, SLOT(removeRowUpperTable()));
+    QObject::connect(ui->tableWidgetUpper, SIGNAL(cellChanged(int,int)),
+                     this, SLOT(validateCellDataUpperTable(int,int)));
 }
 
 void MainWindow::addRowTable( QTableWidget* table){
@@ -203,6 +226,25 @@ void MainWindow::addRowLowerTable(){
     table->setItem(table->rowCount()-1, 2, itemH);
     itemH->setTextAlignment(Qt::AlignHCenter);
 }
+
+void MainWindow::addRowUpperTable(){
+    QTableWidget* table = ui->tableWidgetUpper;
+
+    table->insertRow(table->rowCount());
+    QTableWidgetItem* itemA = new QTableWidgetItem("a"+QString::number(table->rowCount()));
+    table->setItem(table->rowCount()-1, 0, itemA);
+    itemA->setTextAlignment(Qt::AlignHCenter);
+    itemA->setFlags(itemA->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* itemS = new QTableWidgetItem("1");
+    table->setItem(table->rowCount()-1, 1, itemS);
+    itemS->setTextAlignment(Qt::AlignHCenter);
+
+    QTableWidgetItem* itemH = new QTableWidgetItem("0,02");
+    table->setItem(table->rowCount()-1, 2, itemH);
+    itemH->setTextAlignment(Qt::AlignHCenter);
+}
+
 void MainWindow::addRowTable(QTableWidget *table, int aCount, double hValue){
     QLocale locale(QLocale::Polish);
     table->insertRow(table->rowCount());
@@ -240,6 +282,51 @@ void MainWindow::removeRowLowerTable(){
     }
 }
 
+void MainWindow::removeRowUpperTable(){
+    QTableWidget* table = ui->tableWidgetUpper;
+
+    if(!table->rowCount()){
+        return;
+    }
+    else{
+       table->removeRow(table->rowCount()-1);
+    }
+}
+
+QString MainWindow::getStringFromTable(QTableWidget *table, int row, int column){
+    return table->item(row, column)->text();
+}
+
+void MainWindow::setCellTableValue(QTableWidget *table, int row, int column, QString text){
+    table->item(row, column)->setText(text);
+}
+
+void MainWindow::validateCellDataLowerTable(int row, int column){
+    if(!column){ // cells in column 0 are not editable
+        return;
+    }
+    QTableWidget* table = ui->tableWidgetLower;
+    QString cellValue = getStringFromTable(ui->tableWidgetLower, row, column);
+    QLocale locale(QLocale::Polish);
+
+    double number = locale.toDouble(cellValue);
+
+    if(isinf(number) || isnan(number) || (number < 0)){ // number must be positive
+        setCellTableValue(table, row, column, "0");
+    }
+    else{
+       if(column == 1){
+           // value in column 1 are  integers
+            setCellTableValue(table, row, column, locale.toString(ceil(number)));
+       }
+       if(column == 2){
+           // value in column 2 are doubles
+           setCellTableValue(table, row, column, locale.toString(number));
+       }
+    }
+
+}
+
 bool MainWindow::checkThatTypedArgumentsAreValid(){
     if(ui->lineEditB1->text().isEmpty() ||
             ui->lineEditB2->text().isEmpty() ||
@@ -263,6 +350,7 @@ bool MainWindow::checkThatTypedArgumentsAreValid(){
 }
 
 void MainWindow::startComputations(){
+    QLocale locale(QLocale::Polish);
     if(!checkThatTypedArgumentsAreValid()){
         msg.setText("Please fill all parameters");
         msg.setIcon(QMessageBox::Warning);
@@ -271,7 +359,7 @@ void MainWindow::startComputations(){
     }
     else{
         clearResults();
-        QLocale locale(QLocale::Polish); //solves problem with separator ( , -> .)
+         //solves problem with separator ( , -> .)
 
         mathFormulas data(locale.toDouble(ui->lineEditB1->text()),
                           locale.toDouble(ui->lineEditB2->text()),
@@ -412,7 +500,16 @@ void MainWindow::startComputations(){
             return;
         }
 
+        data.setApLower(performFormulaFromLowerTable());
+        data.setApUpper(data.getH());
+        double paramScs = data.calculateScs();
+        ui->lineEditScs->setText(locale.toString(paramScs));
+        if(!checkThatResultsAreNumbers(paramScs)){
+            return;
+        }
+
         setFinalCValue();
+
     }
 }
 void MainWindow::initParameters(){
@@ -464,6 +561,8 @@ void MainWindow::initParameters(){
     addRowTable(ui->tableWidgetLower, 6, 0.12);
     addRowTable(ui->tableWidgetLower, 6, 0.16);
     addRowTable(ui->tableWidgetLower, 6, 0.20);
+    addRowTable(ui->tableWidgetUpper, 4, 0.06);
+
 
     computeC();
     computeCSS();
@@ -486,6 +585,7 @@ void MainWindow::clearResults(){
     ui->lineEditAcc->setText("");
     ui->lineEditAlphaE->setText("");
     ui->lineEditAcs->setText("");
+    ui->lineEditScs->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -582,4 +682,26 @@ void MainWindow::setFinalCValue(){
         ui->lineEditCSprFinal->setText(ui->lineEditCNSprOO->text());
         ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGreen);
     }
+}
+
+double MainWindow::performFormulaFromLowerTable(){
+    QTableWidget* table = ui->tableWidgetLower;
+    double temp = 0;
+    QLocale locale(QLocale::Polish);
+
+    for(int i = 0; i < table->rowCount(); ++i){
+        temp += locale.toDouble(getStringFromTable(table,i,1)) * locale.toDouble(getStringFromTable(table,i,2));
+    }
+    return temp;
+}
+
+double MainWindow::performFormulaFromUpperTable(double height){
+    QTableWidget* table = ui->tableWidgetUpper;
+    double temp = 0;
+    QLocale locale(QLocale::Polish);
+
+    for(int i = 0; i < table->rowCount(); ++i){
+        temp += locale.toDouble(getStringFromTable(table,i,1)) * (height - locale.toDouble(getStringFromTable(table,i,2)));
+    }
+    return temp;
 }

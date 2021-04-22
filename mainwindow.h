@@ -38,6 +38,10 @@ private:
     void addRowTable(QTableWidget* table, int aCount, double hValue);
     void addRowTable(QTableWidget* table);
     void removeRowTable(QTableWidget* table);
+    QString getStringFromTable(QTableWidget* table, int row, int column);
+    void setCellTableValue(QTableWidget* table, int row, int column, QString text);
+    double performFormulaFromLowerTable(); // iloczyn l.splotów i wysokości rzędu
+    double performFormulaFromUpperTable(double height);
 
 public slots:
     void startComputations();
@@ -45,6 +49,9 @@ public slots:
     void computeCSS();
     void computeCForFireResitance();
     void addRowLowerTable();
+    void addRowUpperTable();
     void removeRowLowerTable();
+    void removeRowUpperTable();
+    void validateCellDataLowerTable(int, int);
 };
 #endif // MAINWINDOW_H
