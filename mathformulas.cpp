@@ -102,8 +102,8 @@ double mathFormulas::calculateAcs(){
 }
 
 double mathFormulas::calculateScs(){
-    double temp = (paramAlphaE-1) * paramApc0;
-    temp *= ApLower + ApUpper;
+    double temp = (paramAlphaE-1) * paramApc0 * (ApLower + ApUpper);
+
     paramScs = paramH1S*(paramB1S-paramB3S)*(paramH-(paramH1S/2))+
             paramH2S*(paramB2S-paramB3S)*(paramH2S/2)+
             paramB3S*paramH*(paramH/2)+temp;

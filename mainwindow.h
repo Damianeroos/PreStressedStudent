@@ -53,5 +53,6 @@ public slots:
     void removeRowLowerTable();
     void removeRowUpperTable();
     void validateCellDataLowerTable(int, int);
+    void validateCellDataUpperTable(int, int);
 };
 #endif // MAINWINDOW_H

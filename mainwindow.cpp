@@ -119,6 +119,8 @@ void MainWindow::init(){
     ui->tableWidgetLower->setHorizontalHeaderLabels(lowerTableLabes);
     ui->tableWidgetLower->horizontalHeader()->setStyleSheet("::section {background-color: lightblue;}");
     ui->tableWidgetLower->verticalHeader()->setVisible(false);
+    ui->tableWidgetLower->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableWidgetLower->verticalHeader()->setDefaultSectionSize(24);
     ui->tableWidgetLower->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //table upper
     ui->pushButtonAddRowUpper->setStyleSheet("font: bold 14px;"
@@ -131,6 +133,8 @@ void MainWindow::init(){
     ui->tableWidgetUpper->setHorizontalHeaderLabels(upperTableLabes);
     ui->tableWidgetUpper->horizontalHeader()->setStyleSheet("::section {background-color: lightblue;}");
     ui->tableWidgetUpper->verticalHeader()->setVisible(false);
+    ui->tableWidgetUpper->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableWidgetUpper->verticalHeader()->setDefaultSectionSize(24);
     ui->tableWidgetUpper->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     initParameters();
@@ -306,7 +310,7 @@ void MainWindow::validateCellDataLowerTable(int row, int column){
         return;
     }
     QTableWidget* table = ui->tableWidgetLower;
-    QString cellValue = getStringFromTable(ui->tableWidgetLower, row, column);
+    QString cellValue = getStringFromTable(table, row, column);
     QLocale locale(QLocale::Polish);
 
     double number = locale.toDouble(cellValue);
@@ -324,7 +328,31 @@ void MainWindow::validateCellDataLowerTable(int row, int column){
            setCellTableValue(table, row, column, locale.toString(number));
        }
     }
+}
 
+void MainWindow::validateCellDataUpperTable(int row, int column){
+    if(!column){ // cells in column 0 are not editable
+        return;
+    }
+    QTableWidget* table = ui->tableWidgetUpper;
+    QString cellValue = getStringFromTable(table, row, column);
+    QLocale locale(QLocale::Polish);
+
+    double number = locale.toDouble(cellValue);
+
+    if(isinf(number) || isnan(number) || (number < 0)){ // number must be positive
+        setCellTableValue(table, row, column, "0");
+    }
+    else{
+       if(column == 1){
+           // value in column 1 are  integers
+            setCellTableValue(table, row, column, locale.toString(ceil(number)));
+       }
+       if(column == 2){
+           // value in column 2 are doubles
+           setCellTableValue(table, row, column, locale.toString(number));
+       }
+    }
 }
 
 bool MainWindow::checkThatTypedArgumentsAreValid(){
@@ -501,7 +529,7 @@ void MainWindow::startComputations(){
         }
 
         data.setApLower(performFormulaFromLowerTable());
-        data.setApUpper(data.getH());
+        data.setApUpper(performFormulaFromUpperTable(data.getH()));
         double paramScs = data.calculateScs();
         ui->lineEditScs->setText(locale.toString(paramScs));
         if(!checkThatResultsAreNumbers(paramScs)){
