@@ -40,8 +40,9 @@ private:
     void removeRowTable(QTableWidget* table);
     QString getStringFromTable(QTableWidget* table, int row, int column);
     void setCellTableValue(QTableWidget* table, int row, int column, QString text);
-    double performFormulaFromLowerTable(); // iloczyn l.splotów i wysokości rzędu
-    double performFormulaFromUpperTable(double height);
+    double performFormulaFromLowerTable(); // li * ai
+    double performFormulaFromUpperTable(double height); // li * (height - ai)
+    double performFormula2FromTable(QTableWidget* table, double z); // SUM(li*(z-ai)^2)
 
 public slots:
     void startComputations();

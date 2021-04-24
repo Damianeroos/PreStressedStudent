@@ -76,6 +76,15 @@ public:
     const double& getA1() {return areaA1;}
     const double& getH() {return paramH;}
     double calculateScs();
+    double calculateZd();
+    double calculateZg();
+    double getZd() const { return paramZd;}
+    double getZg() const { return paramZg;}
+    void setSumF2d(double arg){ sumF2d = arg;}
+    void setSumF2g(double arg){ sumF2g = arg;}
+    double calculateWdcs();
+    double calculateWgcs();
+    double calculateIcs();
 
 private:
     double paramB1;
@@ -134,9 +143,16 @@ private:
     double paramH2S;
     double paramH3S;
 
-    double ApLower; //iloczyn l. splotow i wysokosci rzedu
-    double ApUpper;
+    double ApLower; //( li * ai)
+    double ApUpper; // li * (h-ai)
     double paramScs;
+    double paramZd;
+    double paramZg;
+    double paramIcs;
+    double paramWdcs;
+    double paramWgcs;
+    double sumF2d; // SUM(li*(z-ai)^2)
+    double sumF2g; // SUM(li*(z-ai)^2)
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

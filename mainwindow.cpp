@@ -90,6 +90,11 @@ void MainWindow::init(){
     ui->lineEditAlphaE->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditAcs->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditScs->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditZd->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditZg->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditIcs->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditWdcs->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditWgcs->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
@@ -536,8 +541,39 @@ void MainWindow::startComputations(){
             return;
         }
 
-        setFinalCValue();
+        double paramZd = data.calculateZd();
+        ui->lineEditZd->setText(locale.toString(paramZd));
+        if(!checkThatResultsAreNumbers(paramZd)){
+            return;
+        }
 
+        double paramZg = data.calculateZg();
+        ui->lineEditZg->setText(locale.toString(paramZg));
+        if(!checkThatResultsAreNumbers(paramZg)){
+            return;
+        }
+
+        data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd()));
+        data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg()));
+        double paramIcs = data.calculateIcs();
+        ui->lineEditIcs->setText(locale.toString(paramIcs));
+        if(!checkThatResultsAreNumbers(paramIcs)){
+            return;
+        }
+
+        double paramWdcs = data.calculateWdcs();
+        ui->lineEditWdcs->setText(locale.toString(paramWdcs));
+        if(!checkThatResultsAreNumbers(paramWdcs)){
+            return;
+        }
+
+        double paramWgcs = data.calculateWgcs();
+        ui->lineEditWgcs->setText(locale.toString(paramWgcs));
+        if(!checkThatResultsAreNumbers(paramWgcs)){
+            return;
+        }
+
+        setFinalCValue();
     }
 }
 void MainWindow::initParameters(){
@@ -614,6 +650,11 @@ void MainWindow::clearResults(){
     ui->lineEditAlphaE->setText("");
     ui->lineEditAcs->setText("");
     ui->lineEditScs->setText("");
+    ui->lineEditZd->setText("");
+    ui->lineEditZg->setText("");
+    ui->lineEditIcs->setText("");
+    ui->lineEditWdcs->setText("");
+    ui->lineEditWgcs->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -732,4 +773,15 @@ double MainWindow::performFormulaFromUpperTable(double height){
         temp += locale.toDouble(getStringFromTable(table,i,1)) * (height - locale.toDouble(getStringFromTable(table,i,2)));
     }
     return temp;
+}
+
+double MainWindow::performFormula2FromTable(QTableWidget *table, double z)
+{
+    double result = 0;
+    QLocale locale(QLocale::Polish);
+
+    for(int i = 0; i < table->rowCount(); ++i){
+        result += locale.toDouble(getStringFromTable(table,i,1)) * pow((z - locale.toDouble(getStringFromTable(table,i,2))),2);
+    }
+    return result;
 }

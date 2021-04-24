@@ -110,3 +110,31 @@ double mathFormulas::calculateScs(){
 
     return paramScs;
 }
+
+double mathFormulas::calculateZd(){
+    paramZd = paramScs/areaAcs;
+    return paramZd;
+}
+
+double mathFormulas::calculateZg(){
+    paramZg = paramH-paramZd;
+    return paramZg;
+}
+
+double mathFormulas::calculateWdcs()
+{
+    paramWdcs = paramIcs / paramZd;
+    return paramWdcs;
+}
+
+double mathFormulas::calculateWgcs()
+{
+    paramWgcs = paramIcs / paramZg;
+    return paramWgcs;
+}
+
+double mathFormulas::calculateIcs()
+{
+    paramIcs = paramIc + areaAc*pow((paramSc - paramZd),2)+(paramAlphaE-1)*paramApc0*sumF2d+paramApc0*sumF2g;
+    return paramIcs;
+}
