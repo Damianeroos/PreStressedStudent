@@ -96,6 +96,10 @@ void MainWindow::init(){
     ui->lineEditWdcs->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditWgcs->setStyleSheet(lineEditBackgroundColorGrey);
 
+    ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
+                                 "#tab_2 {background-color: rgb(240, 240, 240);}"
+                                 "#tab_3 {background-color: rgb(240, 240, 240);}");
+
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
     ui->comboBoxConstruction->addItem("S3");
@@ -114,10 +118,8 @@ void MainWindow::init(){
     ui->comboBoxSteelType->addItem("splot");
 
     // table lower
-    ui->pushButtonAddRowLower->setStyleSheet("font: bold 14px;"
-                                             "color: green");
-    ui->pushButtonSubRowLower->setStyleSheet("font: bold 14px;"
-                                             "color: red");
+    ui->pushButtonAddRowLower->setIcon(QIcon(":/resources/img/plus.svg"));
+    ui->pushButtonSubRowLower->setIcon(QIcon(":/resources/img/minus.svg"));
     ui->tableWidgetLower->setColumnCount(3);
     ui->tableWidgetLower->setShowGrid(true);
     QStringList lowerTableLabes = {"rząd", "l. splotów", "h [m]"};
@@ -128,10 +130,8 @@ void MainWindow::init(){
     ui->tableWidgetLower->verticalHeader()->setDefaultSectionSize(24);
     ui->tableWidgetLower->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //table upper
-    ui->pushButtonAddRowUpper->setStyleSheet("font: bold 14px;"
-                                             "color: green");
-    ui->pushButtonSubRowUpper->setStyleSheet("font: bold 14px;"
-                                             "color: red");
+    ui->pushButtonAddRowUpper->setIcon(QIcon(":/resources/img/plus.svg"));
+    ui->pushButtonSubRowUpper->setIcon(QIcon(":/resources/img/minus.svg"));
     ui->tableWidgetUpper->setColumnCount(3);
     ui->tableWidgetUpper->setShowGrid(true);
     QStringList upperTableLabes = {"rząd", "l. splotów", "h [m]"};
