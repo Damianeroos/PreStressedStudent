@@ -200,6 +200,10 @@ void MainWindow::init(){
                      this, SLOT(removeRowUpperTable()));
     QObject::connect(ui->tableWidgetUpper, SIGNAL(cellChanged(int,int)),
                      this, SLOT(validateCellDataUpperTable(int,int)));
+    QObject::connect(this, SIGNAL(tableContextChanged(QTableWidget*)),
+                     this, SLOT(setLabelInfoOfTable(QTableWidget*)));
+    QObject::connect(ui->spinBoxNpovg, SIGNAL(valueChanged(int)),
+                     this, SLOT(setLabelInfoOfUpperTable(int)));
 }
 
 void MainWindow::addRowTable( QTableWidget* table){
@@ -234,6 +238,8 @@ void MainWindow::addRowLowerTable(){
     QTableWidgetItem* itemH = new QTableWidgetItem("0,02");
     table->setItem(table->rowCount()-1, 2, itemH);
     itemH->setTextAlignment(Qt::AlignHCenter);
+
+    emit tableContextChanged(table);
 }
 
 void MainWindow::addRowUpperTable(){
@@ -252,6 +258,8 @@ void MainWindow::addRowUpperTable(){
     QTableWidgetItem* itemH = new QTableWidgetItem("0,02");
     table->setItem(table->rowCount()-1, 2, itemH);
     itemH->setTextAlignment(Qt::AlignHCenter);
+
+    emit tableContextChanged(table);
 }
 
 void MainWindow::addRowTable(QTableWidget *table, int aCount, double hValue){
@@ -289,6 +297,7 @@ void MainWindow::removeRowLowerTable(){
     else{
        table->removeRow(table->rowCount()-1);
     }
+    emit tableContextChanged(table);
 }
 
 void MainWindow::removeRowUpperTable(){
@@ -300,6 +309,7 @@ void MainWindow::removeRowUpperTable(){
     else{
        table->removeRow(table->rowCount()-1);
     }
+    emit tableContextChanged(table);
 }
 
 QString MainWindow::getStringFromTable(QTableWidget *table, int row, int column){
@@ -333,6 +343,7 @@ void MainWindow::validateCellDataLowerTable(int row, int column){
            setCellTableValue(table, row, column, locale.toString(number));
        }
     }
+    emit tableContextChanged(table);
 }
 
 void MainWindow::validateCellDataUpperTable(int row, int column){
@@ -358,6 +369,7 @@ void MainWindow::validateCellDataUpperTable(int row, int column){
            setCellTableValue(table, row, column, locale.toString(number));
        }
     }
+    emit tableContextChanged(table);
 }
 
 bool MainWindow::checkThatTypedArgumentsAreValid(){
@@ -504,9 +516,11 @@ void MainWindow::startComputations(){
 
         double paramNpov = data.calculateNpov();
         ui->lineEditNpov->setText(locale.toString(paramNpov));
+        ui->labelLowerNpov->setText(QString::number(paramNpov));
         if(!checkThatResultsAreNumbers(paramNpov)){
             return;
         }
+        checkIfNumberOfTendonsAreValid(paramNpov);
 
         double paramAcc = data.calculateAcc();
         ui->lineEditAcc->setText(locale.toString(paramAcc));
@@ -627,6 +641,10 @@ void MainWindow::initParameters(){
     addRowTable(ui->tableWidgetLower, 6, 0.20);
     addRowTable(ui->tableWidgetUpper, 4, 0.06);
 
+    ui->labelSumLowerTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetLower)));
+    ui->labelSumUpperTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetUpper)));
+
+    ui->labelUpperNpov->setText(QString::number(ui->spinBoxNpovg->value()));
 
     computeC();
     computeCSS();
@@ -660,6 +678,8 @@ void MainWindow::clearResults(){
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->labelSumUpperTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
+    ui->labelSumLowerTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
 }
 
 bool MainWindow::checkThatResultsAreNumbers(double arg){
@@ -784,4 +804,47 @@ double MainWindow::performFormula2FromTable(QTableWidget *table, double z)
         result += locale.toDouble(getStringFromTable(table,i,1)) * pow((z - locale.toDouble(getStringFromTable(table,i,2))),2);
     }
     return result;
+}
+
+int MainWindow::getItemsSumOfRow1(QTableWidget *table)
+{
+    QLocale locale(QLocale::Polish);
+    int result = 0;
+    for(int i = 0; i < table->rowCount(); ++i){
+        result += locale.toInt(getStringFromTable(table,i,1));
+    }
+    return result;
+}
+
+void MainWindow::checkIfNumberOfTendonsAreValid(int computeNpovd)
+{
+    int Npovg = getItemsSumOfRow1(ui->tableWidgetUpper);
+    int Npovd = getItemsSumOfRow1(ui->tableWidgetLower);
+
+    if(Npovg != ui->spinBoxNpovg->value()){
+        ui->labelSumUpperTable->setStyleSheet("QLabel { background-color : red;}");
+    }
+    if(Npovd != computeNpovd) {
+        ui->labelSumLowerTable->setStyleSheet("QLabel { background-color : red;}");
+    }
+    if(Npovg != ui->spinBoxNpovg->value() || Npovd != computeNpovd){
+        msg.setText("Liczba splotów wpisanych do tabeli jest nieprawidłowa\n"
+                "Popraw tabelę.");
+        msg.setIcon(QMessageBox::Critical);
+        msg.exec();
+    }
+}
+
+void MainWindow::setLabelInfoOfTable(QTableWidget* table){
+    if(table == ui->tableWidgetLower){
+        ui->labelSumLowerTable->setText(QString::number(getItemsSumOfRow1(table)));
+    }
+    else if(table == ui->tableWidgetUpper){
+        ui->labelSumUpperTable->setText(QString::number(getItemsSumOfRow1(table)));
+    }
+}
+
+void MainWindow::setLabelInfoOfUpperTable(int arg)
+{
+    ui->labelUpperNpov->setText(QString::number(arg));
 }

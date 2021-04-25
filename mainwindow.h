@@ -43,6 +43,8 @@ private:
     double performFormulaFromLowerTable(); // li * ai
     double performFormulaFromUpperTable(double height); // li * (height - ai)
     double performFormula2FromTable(QTableWidget* table, double z); // SUM(li*(z-ai)^2)
+    int getItemsSumOfRow1(QTableWidget* table);
+    void checkIfNumberOfTendonsAreValid(int computeNpovd);
 
 public slots:
     void startComputations();
@@ -54,6 +56,10 @@ public slots:
     void removeRowLowerTable();
     void removeRowUpperTable();
     void validateCellDataLowerTable(int, int);
-    void validateCellDataUpperTable(int, int);
+    void validateCellDataUpperTable(int, int);    
+    void setLabelInfoOfTable(QTableWidget* table);
+    void setLabelInfoOfUpperTable(int);
+signals:
+    void tableContextChanged(QTableWidget* table);
 };
 #endif // MAINWINDOW_H
