@@ -57,6 +57,7 @@ void MainWindow::init(){
     ui->lineEditFp01k->setValidator(doubleValidator4);
     ui->lineEditK7->setValidator(doubleValidator4);
     ui->lineEditK8->setValidator(doubleValidator4);
+    ui->lineEditT->setValidator(doubleValidator4);
 
 
     QDoubleValidator* doubleValidator1 = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
@@ -105,6 +106,9 @@ void MainWindow::init(){
     ui->lineEditP0max->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPM0->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditPM0->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditP1000->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditDeltaSigma->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditDeltaP->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -126,6 +130,10 @@ void MainWindow::init(){
     ui->comboBoxSteelType->addItem("pręt");
     ui->comboBoxSteelType->addItem("drut");
     ui->comboBoxSteelType->addItem("splot");
+
+    ui->comboBoxClassRel->addItem("1");
+    ui->comboBoxClassRel->addItem("2");
+    ui->comboBoxClassRel->addItem("3");
 
     // table lower
     ui->pushButtonAddRowLower->setIcon(QIcon(":/resources/img/plus.svg"));
@@ -214,6 +222,12 @@ void MainWindow::init(){
                      this, SLOT(setLabelInfoOfTable(QTableWidget*)));
     QObject::connect(ui->spinBoxNpovg, SIGNAL(valueChanged(int)),
                      this, SLOT(setLabelInfoOfUpperTable(int)));
+
+    QObject::connect(ui->comboBoxClassRel, SIGNAL(currentIndexChanged(int)),
+                    this, SLOT(setP1000(int)));
+    QObject::connect(ui->radioButton, SIGNAL(clicked(bool)),
+                    this, SLOT(setObjectPropertiesDependsFromRadioButton(bool)));
+
 }
 
 void MainWindow::addRowTable( QTableWidget* table){
@@ -629,6 +643,26 @@ void MainWindow::startComputations(){
             return;
         }
 
+        if(ui->radioButton->isChecked()){
+
+        }
+        else{
+            data.calculateTemporaryLosses(locale.toDouble(ui->lineEditT->text()),
+                                          locale.toDouble(ui->lineEditP1000->text()),
+                                          locale.toDouble(ui->lineEditFpk->text())
+                                          );
+        }
+        double paramDeltaSigma = data.getDeltaSigma();
+        ui->lineEditDeltaSigma->setText(locale.toString(paramDeltaSigma));
+        if(!checkThatResultsAreNumbers(paramDeltaSigma)){
+            return;
+        }
+        double paramDeltaP = data.getDeltaP();
+        ui->lineEditDeltaP->setText(locale.toString(paramDeltaP));
+        if(!checkThatResultsAreNumbers(paramDeltaP)){
+            return;
+        }
+
         setFinalCValue();
     }
 }
@@ -693,6 +727,9 @@ void MainWindow::initParameters(){
     ui->lineEditFp01k->setText(QString("149"));
     ui->lineEditK7->setText(QString("0,75"));
     ui->lineEditK8->setText(QString("0,85"));
+    setP1000(ui->comboBoxClassRel->currentIndex());
+    ui->lineEditT->setText(QString("2"));
+
 
     computeC();
     computeCSS();
@@ -725,6 +762,8 @@ void MainWindow::clearResults(){
     ui->lineEditP0max->setText("");
     ui->lineEditSigmaPM0->setText("");
     ui->lineEditPM0->setText("");
+    ui->lineEditDeltaSigma->setText("");
+    ui->lineEditDeltaP->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -899,4 +938,35 @@ void MainWindow::setLabelInfoOfTable(QTableWidget* table){
 void MainWindow::setLabelInfoOfUpperTable(int arg)
 {
     ui->labelUpperNpov->setText(QString::number(arg));
+}
+
+void MainWindow::setP1000(int arg)
+{
+    switch (arg) {
+    case 0:
+        ui->lineEditP1000->setText("8");
+        break;
+    case 1:
+        ui->lineEditP1000->setText("2,5");
+        break;
+    case 2:
+        ui->lineEditP1000->setText("4");
+        break;
+    }
+}
+
+void MainWindow::setObjectPropertiesDependsFromRadioButton(bool arg)
+{
+    if(arg){
+        ui->labelT->setDisabled(true);
+        ui->labelT1->setDisabled(true);
+        ui->labelT2->setDisabled(true);
+        ui->lineEditT->setDisabled(true);
+    }
+    else{
+        ui->labelT->setEnabled(true);
+        ui->labelT1->setEnabled(true);
+        ui->labelT2->setEnabled(true);
+        ui->lineEditT->setEnabled(true);
+    }
 }

@@ -1,6 +1,7 @@
 #ifndef MATHFORMULAS_H
 #define MATHFORMULAS_H
 
+#define EULER 2.7182818284
 
 class mathFormulas
 {
@@ -89,6 +90,9 @@ public:
     double calculateP0max();
     double calculateSigma0(double k7, double k8, double fpk);
     double calculatePm0();
+    void calculateTemporaryLosses(double t, double p1000, double fpk);
+    double getDeltaSigma() const {return paramSigmapr1;}
+    double getDeltaP() const {return paramPpr1;}
 
 private:
     double paramB1;
@@ -161,6 +165,10 @@ private:
     double paramSigmapmax;
     double paramfp01k;
     double paramSigmapm0;
+
+    double paramSigmapr1;
+    double paramPpr1;
+
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

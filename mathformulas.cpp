@@ -169,3 +169,12 @@ double mathFormulas::calculatePm0()
 {
     return round(areaApc * paramSigmapm0 * 1000);
 }
+
+void mathFormulas::calculateTemporaryLosses(double t, double p1000, double fpk)
+{
+    double u = paramSigmapmax / fpk;
+    double pmod = 0.66 * p1000 * pow(EULER, 9.1*u) * pow(t / 1000, 0.75* (1- u)) * 1e-5;
+
+    paramSigmapr1 = pmod * paramSigmapmax;
+    paramPpr1 = pmod * calculateP0max();
+}

@@ -59,6 +59,8 @@ public slots:
     void validateCellDataUpperTable(int, int);    
     void setLabelInfoOfTable(QTableWidget* table);
     void setLabelInfoOfUpperTable(int);
+    void setP1000(int);
+    void setObjectPropertiesDependsFromRadioButton(bool);
 signals:
     void tableContextChanged(QTableWidget* table);
 };

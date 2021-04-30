@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>947</width>
-    <height>720</height>
+    <width>1170</width>
+    <height>787</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -49,8 +49,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>927</width>
-         <height>657</height>
+         <width>1150</width>
+         <height>724</height>
         </rect>
        </property>
        <widget class="QGroupBox" name="groupBox_2">
@@ -2436,9 +2436,9 @@
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-96</y>
+              <y>-171</y>
               <width>213</width>
-              <height>712</height>
+              <height>768</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_18">
@@ -2485,6 +2485,37 @@
              </item>
              <item row="0" column="2">
               <widget class="QLineEdit" name="lineEditAc">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="29" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaSigma">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -2833,6 +2864,13 @@
                </property>
               </widget>
              </item>
+             <item row="29" column="0">
+              <widget class="QLabel" name="label_400">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;&amp;sigma;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
              <item row="24" column="2">
               <widget class="QLineEdit" name="lineEditP0max">
                <property name="sizePolicy">
@@ -2937,6 +2975,13 @@
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="1">
+              <widget class="QLabel" name="label_381">
+               <property name="text">
+                <string>=</string>
                </property>
               </widget>
              </item>
@@ -3755,6 +3800,23 @@
                </property>
               </widget>
              </item>
+             <item row="29" column="1">
+              <widget class="QLabel" name="label_401">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="29" column="3">
+              <widget class="QLabel" name="label_402">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
              <item row="10" column="3">
               <widget class="QLabel" name="label_107">
                <property name="text">
@@ -3829,6 +3891,44 @@
              </item>
              <item row="18" column="2">
               <widget class="QLineEdit" name="lineEditIcs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="0">
+              <widget class="QLabel" name="label_380">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="2">
+              <widget class="QLineEdit" name="lineEditPM0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3945,22 +4045,8 @@
                </property>
               </widget>
              </item>
-             <item row="27" column="1">
-              <widget class="QLabel" name="label_381">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="0">
-              <widget class="QLabel" name="label_380">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="2">
-              <widget class="QLineEdit" name="lineEditPM0">
+             <item row="30" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaP">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3990,11 +4076,251 @@
                </property>
               </widget>
              </item>
+             <item row="30" column="0">
+              <widget class="QLabel" name="label_404">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="30" column="3">
+              <widget class="QLabel" name="label_403">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="30" column="1">
+              <widget class="QLabel" name="label_405">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QLabel" name="label_393">
+        <property name="geometry">
+         <rect>
+          <x>938</x>
+          <y>70</y>
+          <width>81</width>
+          <height>35</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Klasa&lt;br/&gt;relaksacji stali&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBoxClassRel">
+        <property name="geometry">
+         <rect>
+          <x>1025</x>
+          <y>76</y>
+          <width>70</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>70</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_394">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>944</x>
+          <y>112</y>
+          <width>33</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="baseSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;p&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1000&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_395">
+        <property name="geometry">
+         <rect>
+          <x>990</x>
+          <y>110</y>
+          <width>16</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEditP1000">
+        <property name="geometry">
+         <rect>
+          <x>1022</x>
+          <y>111</y>
+          <width>45</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>45</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_396">
+        <property name="geometry">
+         <rect>
+          <x>1073</x>
+          <y>111</y>
+          <width>16</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>%</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+       <widget class="QRadioButton" name="radioButton">
+        <property name="geometry">
+         <rect>
+          <x>950</x>
+          <y>150</y>
+          <width>121</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>elment poddawany
+pobróbce terminczej</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelT">
+        <property name="geometry">
+         <rect>
+          <x>950</x>
+          <y>210</y>
+          <width>36</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;t&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEditT">
+        <property name="geometry">
+         <rect>
+          <x>1006</x>
+          <y>210</y>
+          <width>84</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="readOnly">
+         <bool>false</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelT1">
+        <property name="geometry">
+         <rect>
+          <x>992</x>
+          <y>210</y>
+          <width>8</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>8</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="labelT2">
+        <property name="geometry">
+         <rect>
+          <x>1100</x>
+          <y>210</y>
+          <width>21</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>h</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -4006,7 +4332,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>947</width>
+     <width>1170</width>
      <height>21</height>
     </rect>
    </property>
