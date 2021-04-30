@@ -85,6 +85,10 @@ public:
     double calculateWdcs();
     double calculateWgcs();
     double calculateIcs();
+    double calculateSigma(double k1, double k2, double fpk, double Fp01k, double Apc0);
+    double calculateP0max();
+    double calculateSigma0(double k7, double k8, double fpk);
+    double calculatePm0();
 
 private:
     double paramB1;
@@ -153,6 +157,10 @@ private:
     double paramWgcs;
     double sumF2d; // SUM(li*(z-ai)^2)
     double sumF2g; // SUM(li*(z-ai)^2)
+
+    double paramSigmapmax;
+    double paramfp01k;
+    double paramSigmapm0;
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

@@ -52,6 +52,12 @@ void MainWindow::init(){
     ui->lineEditH1S->setValidator(doubleValidator4);
     ui->lineEditH2S->setValidator(doubleValidator4);
     ui->lineEditH3S->setValidator(doubleValidator4);
+    ui->lineEditK1->setValidator(doubleValidator4);
+    ui->lineEditK2->setValidator(doubleValidator4);
+    ui->lineEditFp01k->setValidator(doubleValidator4);
+    ui->lineEditK7->setValidator(doubleValidator4);
+    ui->lineEditK8->setValidator(doubleValidator4);
+
 
     QDoubleValidator* doubleValidator1 = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
     ui->lineEditPhiS->setValidator(doubleValidator1);
@@ -95,6 +101,10 @@ void MainWindow::init(){
     ui->lineEditIcs->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditWdcs->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditWgcs->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPMax->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditP0max->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPM0->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPM0->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -587,6 +597,38 @@ void MainWindow::startComputations(){
             return;
         }
 
+        double paramSigmapmax = data.calculateSigma(locale.toDouble(ui->lineEditK1->text()),
+                                                    locale.toDouble(ui->lineEditK2->text()),
+                                                    locale.toDouble(ui->lineEditFpk->text()),
+                                                    locale.toDouble(ui->lineEditFp01k->text()),
+                                                    locale.toDouble(ui->lineEditApc0->text())
+                                                    );
+        ui->lineEditSigmaPMax->setText(locale.toString(paramSigmapmax));
+        if(!checkThatResultsAreNumbers(paramSigmapmax)){
+            return;
+        }
+
+        double paramP0max = data.calculateP0max();
+        ui->lineEditP0max->setText(locale.toString(paramP0max));
+        if(!checkThatResultsAreNumbers(paramP0max)){
+            return;
+        }
+
+        double paramSigmapm0 = data.calculateSigma0(locale.toDouble(ui->lineEditK7->text()),
+                                                    locale.toDouble(ui->lineEditK8->text()),
+                                                    locale.toDouble(ui->lineEditFpk->text())
+                                                    );
+        ui->lineEditSigmaPM0->setText(locale.toString(paramSigmapm0));
+        if(!checkThatResultsAreNumbers(paramSigmapm0)){
+            return;
+        }
+
+        double paramPM0 = data.calculatePm0();
+        ui->lineEditPM0->setText(locale.toString(paramPM0));
+        if(!checkThatResultsAreNumbers(paramPM0)){
+            return;
+        }
+
         setFinalCValue();
     }
 }
@@ -646,6 +688,12 @@ void MainWindow::initParameters(){
 
     ui->labelUpperNpov->setText(QString::number(ui->spinBoxNpovg->value()));
 
+    ui->lineEditK1->setText(QString("0,8"));
+    ui->lineEditK2->setText(QString("0,9"));
+    ui->lineEditFp01k->setText(QString("149"));
+    ui->lineEditK7->setText(QString("0,75"));
+    ui->lineEditK8->setText(QString("0,85"));
+
     computeC();
     computeCSS();
     computeCForFireResitance();
@@ -673,6 +721,10 @@ void MainWindow::clearResults(){
     ui->lineEditIcs->setText("");
     ui->lineEditWdcs->setText("");
     ui->lineEditWgcs->setText("");
+    ui->lineEditSigmaPMax->setText("");
+    ui->lineEditP0max->setText("");
+    ui->lineEditSigmaPM0->setText("");
+    ui->lineEditPM0->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);

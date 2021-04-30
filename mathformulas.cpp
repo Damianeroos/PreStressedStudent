@@ -138,3 +138,34 @@ double mathFormulas::calculateIcs()
     paramIcs = paramIc + areaAc*pow((paramSc - paramZd),2)+(paramAlphaE-1)*paramApc0*sumF2d+paramApc0*sumF2g;
     return paramIcs;
 }
+
+double mathFormulas::calculateSigma(double k1, double k2, double fpk, double Fp01k, double Apc0)
+{
+    paramfp01k = round((Fp01k / Apc0)/1000);
+    double temp1 = k1*fpk;
+    double temp2 = k2*paramfp01k;
+
+    temp1 < temp2 ? paramSigmapmax = round(temp1) : paramSigmapmax = round(temp2);
+
+    return paramSigmapmax;
+}
+
+double mathFormulas::calculateP0max()
+{
+    return round(areaApc * paramSigmapmax * 1000);
+}
+
+double mathFormulas::calculateSigma0(double k7, double k8, double fpk)
+{
+    double temp1 = k7*fpk;
+    double temp2 = k8*paramfp01k;
+
+    temp1 < temp2 ? paramSigmapm0 = round(temp1) : paramSigmapm0 = round(temp2);
+
+    return paramSigmapm0;
+}
+
+double mathFormulas::calculatePm0()
+{
+    return round(areaApc * paramSigmapm0 * 1000);
+}
