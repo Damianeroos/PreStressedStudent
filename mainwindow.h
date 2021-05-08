@@ -45,6 +45,11 @@ private:
     double performFormula2FromTable(QTableWidget* table, double z); // SUM(li*(z-ai)^2)
     int getItemsSumOfRow1(QTableWidget* table);
     void checkIfNumberOfTendonsAreValid(int computeNpovd);
+    void initPhaseTable();
+    void addRowPhaseTable(double c, double h);
+    double computeTeq();
+    double computeDeltaT(bool withThermalTreatment, int initialT = 20);
+    double getSumT();
 
 public slots:
     void startComputations();
@@ -61,6 +66,7 @@ public slots:
     void setLabelInfoOfUpperTable(int);
     void setP1000(int);
     void setObjectPropertiesDependsFromRadioButton(bool);
+    void validateCellDataPhaseTable(int row, int column);
 signals:
     void tableContextChanged(QTableWidget* table);
 };

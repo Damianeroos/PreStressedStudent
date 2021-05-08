@@ -91,8 +91,10 @@ public:
     double calculateSigma0(double k7, double k8, double fpk);
     double calculatePm0();
     void calculateTemporaryLosses(double t, double p1000, double fpk);
+    void calculateTemporaryLosses(double t, double teq, double p1000, double fpk);
     double getDeltaSigma() const {return paramSigmapr1;}
     double getDeltaP() const {return paramPpr1;}
+    double calculateDeltaPTheta(double dT, double alphaT);
 
 private:
     double paramB1;

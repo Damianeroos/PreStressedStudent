@@ -178,3 +178,17 @@ void mathFormulas::calculateTemporaryLosses(double t, double p1000, double fpk)
     paramSigmapr1 = pmod * paramSigmapmax;
     paramPpr1 = pmod * calculateP0max();
 }
+
+void mathFormulas::calculateTemporaryLosses(double t, double teq, double p1000, double fpk)
+{
+    double u = paramSigmapmax / fpk;
+    double pmod = 0.66 * p1000 * pow(EULER, 9.1*u) * pow((t + teq) / 1000, 0.75* (1- u)) * 1e-5;
+
+    paramSigmapr1 = pmod * paramSigmapmax;
+    paramPpr1 = pmod * calculateP0max();
+}
+
+double mathFormulas::calculateDeltaPTheta(double dT, double alphaT)
+{
+    return 0.5 * dT * alphaT * paramEp * areaApc * 1e6;
+}

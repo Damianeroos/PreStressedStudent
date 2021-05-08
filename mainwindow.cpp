@@ -58,7 +58,7 @@ void MainWindow::init(){
     ui->lineEditK7->setValidator(doubleValidator4);
     ui->lineEditK8->setValidator(doubleValidator4);
     ui->lineEditT->setValidator(doubleValidator4);
-
+    ui->lineEditAlphaT->setValidator(doubleValidator4);
 
     QDoubleValidator* doubleValidator1 = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
     ui->lineEditPhiS->setValidator(doubleValidator1);
@@ -109,6 +109,7 @@ void MainWindow::init(){
     ui->lineEditP1000->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaSigma->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaP->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditDeltaPtheta->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -159,6 +160,16 @@ void MainWindow::init(){
     ui->tableWidgetUpper->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
     ui->tableWidgetUpper->verticalHeader()->setDefaultSectionSize(24);
     ui->tableWidgetUpper->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    //table phase
+    ui->tableWidgetPhase->setColumnCount(3);
+    ui->tableWidgetPhase->setShowGrid(true);
+    QStringList phaseTableLabels = {"faza", "temp. [C]", "czas [h]"};
+    ui->tableWidgetPhase->setHorizontalHeaderLabels(phaseTableLabels);
+    ui->tableWidgetPhase->horizontalHeader()->setStyleSheet("::section {background-color: lightblue;}");
+    ui->tableWidgetPhase->verticalHeader()->setVisible(false);
+    ui->tableWidgetPhase->verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+    ui->tableWidgetPhase->verticalHeader()->setDefaultSectionSize(24);
+    ui->tableWidgetPhase->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     initParameters();
 
@@ -228,6 +239,9 @@ void MainWindow::init(){
     QObject::connect(ui->radioButton, SIGNAL(clicked(bool)),
                     this, SLOT(setObjectPropertiesDependsFromRadioButton(bool)));
 
+    QObject::connect(ui->tableWidgetPhase, SIGNAL(cellChanged(int,int)),
+                     this, SLOT(validateCellDataPhaseTable(int,int)));
+
 }
 
 void MainWindow::addRowTable( QTableWidget* table){
@@ -284,6 +298,95 @@ void MainWindow::addRowUpperTable(){
     itemH->setTextAlignment(Qt::AlignHCenter);
 
     emit tableContextChanged(table);
+}
+
+void MainWindow::addRowPhaseTable(double c, double h){
+    QTableWidget *table = ui->tableWidgetPhase;
+    QLocale locale(QLocale::Polish);
+    table->insertRow(table->rowCount());
+
+    QTableWidgetItem* itemF = new QTableWidgetItem(QString::number(table->rowCount()));
+    table->setItem(table->rowCount()-1, 0, itemF);
+    itemF->setTextAlignment(Qt::AlignHCenter);
+    itemF->setFlags(itemF->flags() ^ Qt::ItemIsEditable);
+
+    QTableWidgetItem* itemC = new QTableWidgetItem(locale.toString(c));
+    table->setItem(table->rowCount()-1, 1, itemC);
+    itemC->setTextAlignment(Qt::AlignHCenter);
+
+    QTableWidgetItem* itemH = new QTableWidgetItem(locale.toString(h));
+    table->setItem(table->rowCount()-1, 2, itemH);
+    itemH->setTextAlignment(Qt::AlignHCenter);
+}
+
+double MainWindow::getSumT(){
+    QLocale locale(QLocale::Polish);
+    QTableWidget *table = ui->tableWidgetPhase;
+
+    double sumT = 0;
+    for(int i = 0; i < table->rowCount(); ++i){
+        sumT += locale.toDouble(getStringFromTable(table,i,1));
+    }
+    return sumT;
+}
+
+double MainWindow::computeDeltaT(bool withThermalTreatment, int initialT){
+    QLocale locale(QLocale::Polish);
+    if(withThermalTreatment){
+        QTableWidget *table = ui->tableWidgetPhase;
+        //finding the lowest temperature
+        double minT = locale.toDouble(getStringFromTable(table,0,1));
+        double temp;
+        for(int i = 1; i < table->rowCount(); ++i){
+            temp = locale.toDouble(getStringFromTable(table,i,1));
+            if(minT > temp){
+                minT = temp;
+            }
+        }
+        //finding the highest temperature
+        double maxT = locale.toDouble(getStringFromTable(table,0,1));
+        for(int i = 1; i < table->rowCount(); ++i){
+            temp = locale.toDouble(getStringFromTable(table,i,1));
+            if(maxT < temp){
+                maxT = temp;
+            }
+        }
+        return maxT-minT;
+    }
+    else{
+        return locale.toDouble(ui->lineEditT->text()) - initialT;
+    }
+}
+
+double MainWindow::computeTeq()
+{
+    QLocale locale(QLocale::Polish);
+    QTableWidget *table = ui->tableWidgetPhase;
+
+    double maxT = locale.toDouble(getStringFromTable(table,0,1));
+    double temp;
+    for(int i = 1; i < table->rowCount(); ++i){
+        temp = locale.toDouble(getStringFromTable(table,i,1));
+        if(maxT < temp){
+            maxT = temp;
+        }
+    }
+
+    temp = pow(1.14,maxT-20)/(maxT-20);
+    double temp1 = 0;
+    for(int i = 1; i < table->rowCount(); ++i){
+        temp1 += (locale.toDouble(getStringFromTable(table,i,1)) - 20) *
+                locale.toDouble(getStringFromTable(table,i,2));
+    }
+
+    return temp*temp1;
+}
+
+void MainWindow::initPhaseTable(){
+    addRowPhaseTable(20, 4);
+    addRowPhaseTable(45, 2);
+    addRowPhaseTable(70, 6);
+    addRowPhaseTable(45, 2);
 }
 
 void MainWindow::addRowTable(QTableWidget *table, int aCount, double hValue){
@@ -368,6 +471,31 @@ void MainWindow::validateCellDataLowerTable(int row, int column){
        }
     }
     emit tableContextChanged(table);
+}
+
+void MainWindow::validateCellDataPhaseTable(int row, int column){
+    if(!column){ // cells in column 0 are not editable
+        return;
+    }
+    QTableWidget* table = ui->tableWidgetPhase;
+    QString cellValue = getStringFromTable(table, row, column);
+    QLocale locale(QLocale::Polish);
+
+    double number = locale.toDouble(cellValue);
+
+    if(isinf(number) || isnan(number) || (number < 0)){ // number must be positive
+        setCellTableValue(table, row, column, "0");
+    }
+    else{
+       if(column == 1){
+           // value in column 1 are  integers
+            setCellTableValue(table, row, column, locale.toString(ceil(number)));
+       }
+       if(column == 2){
+           // value in column 2 are doubles
+           setCellTableValue(table, row, column, locale.toString(number));
+       }
+    }
 }
 
 void MainWindow::validateCellDataUpperTable(int row, int column){
@@ -644,7 +772,11 @@ void MainWindow::startComputations(){
         }
 
         if(ui->radioButton->isChecked()){
-
+            data.calculateTemporaryLosses(getSumT(),
+                                          computeTeq(),
+                                          locale.toDouble(ui->lineEditP1000->text()),
+                                          locale.toDouble(ui->lineEditFpk->text())
+                                          );
         }
         else{
             data.calculateTemporaryLosses(locale.toDouble(ui->lineEditT->text()),
@@ -660,6 +792,14 @@ void MainWindow::startComputations(){
         double paramDeltaP = data.getDeltaP();
         ui->lineEditDeltaP->setText(locale.toString(paramDeltaP));
         if(!checkThatResultsAreNumbers(paramDeltaP)){
+            return;
+        }
+
+        double paramDeltaPTheta = data.calculateDeltaPTheta(computeDeltaT(ui->radioButton->isChecked()),
+                                                            locale.toDouble(ui->lineEditAlphaT->text())
+                                                            );
+        ui->lineEditDeltaPtheta->setText(locale.toString(paramDeltaPTheta));
+        if(!checkThatResultsAreNumbers(paramDeltaPTheta)){
             return;
         }
 
@@ -728,8 +868,10 @@ void MainWindow::initParameters(){
     ui->lineEditK7->setText(QString("0,75"));
     ui->lineEditK8->setText(QString("0,85"));
     setP1000(ui->comboBoxClassRel->currentIndex());
-    ui->lineEditT->setText(QString("2"));
-
+    ui->lineEditT->setText(QString("70"));
+    initPhaseTable();
+    ui->tableWidgetPhase->setDisabled(true);
+    ui->lineEditAlphaT->setText("1,2e-5");
 
     computeC();
     computeCSS();
@@ -764,6 +906,7 @@ void MainWindow::clearResults(){
     ui->lineEditPM0->setText("");
     ui->lineEditDeltaSigma->setText("");
     ui->lineEditDeltaP->setText("");
+    ui->lineEditDeltaPtheta->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -962,11 +1105,15 @@ void MainWindow::setObjectPropertiesDependsFromRadioButton(bool arg)
         ui->labelT1->setDisabled(true);
         ui->labelT2->setDisabled(true);
         ui->lineEditT->setDisabled(true);
+
+        ui->tableWidgetPhase->setEnabled(true);
     }
     else{
         ui->labelT->setEnabled(true);
         ui->labelT1->setEnabled(true);
         ui->labelT2->setEnabled(true);
         ui->lineEditT->setEnabled(true);
+
+        ui->tableWidgetPhase->setDisabled(true);
     }
 }
