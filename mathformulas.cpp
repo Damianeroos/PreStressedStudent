@@ -190,5 +190,11 @@ void mathFormulas::calculateTemporaryLosses(double t, double teq, double p1000, 
 
 double mathFormulas::calculateDeltaPTheta(double dT, double alphaT)
 {
-    return 0.5 * dT * alphaT * paramEp * areaApc * 1e6;
+    paramDeltaPTheta = 0.5 * dT * alphaT * paramEp * areaApc * 1e6;
+    return paramDeltaPTheta;
+}
+
+double mathFormulas::calculatePm01()
+{
+    return calculateP0max() - paramPpr1 - paramDeltaPTheta;
 }

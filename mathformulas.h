@@ -95,6 +95,7 @@ public:
     double getDeltaSigma() const {return paramSigmapr1;}
     double getDeltaP() const {return paramPpr1;}
     double calculateDeltaPTheta(double dT, double alphaT);
+    double calculatePm01();
 
 private:
     double paramB1;
@@ -170,6 +171,8 @@ private:
 
     double paramSigmapr1;
     double paramPpr1;
+
+    double paramDeltaPTheta;
 
 };
 

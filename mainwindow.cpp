@@ -110,6 +110,7 @@ void MainWindow::init(){
     ui->lineEditDeltaSigma->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaP->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaPtheta->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPm01->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -242,6 +243,384 @@ void MainWindow::init(){
     QObject::connect(ui->tableWidgetPhase, SIGNAL(cellChanged(int,int)),
                      this, SLOT(validateCellDataPhaseTable(int,int)));
 
+}
+
+void MainWindow::initParameters(){
+    ui->lineEditB1->setText(QString("0,5"));
+    ui->lineEditB2->setText(QString("0,5"));
+    ui->lineEditB3->setText(QString("0,125"));
+    ui->lineEditH1->setText(QString("0,15"));
+    ui->lineEditH2->setText(QString("0,095"));
+    ui->lineEditH3->setText(QString("1,065"));
+    ui->lineEditH4->setText(QString("0,19"));
+    ui->lineEditH5->setText(QString("0,15"));
+
+    ui->lineEditPhiS->setText(QString("12"));
+    ui->lineEditCDurY->setText(QString("0"));
+    ui->lineEditCDurSt->setText(QString("0"));
+    ui->lineEditCDurAdd->setText(QString("0"));
+    ui->lineEditCDev->setText(QString("10"));
+
+    ui->lineEditPhiSSS->setText(QString("12,5"));
+    ui->lineEditCDurYSS->setText(QString("0"));
+    ui->lineEditCDurStSS->setText(QString("0"));
+    ui->lineEditCDurAddSS->setText(QString("0"));
+    ui->lineEditCDevSS->setText(QString("10"));
+
+    ui->lineEditPhiSOO->setText(ui->lineEditPhiS->text());
+    ui->lineEditA->setText(QString("35"));
+    ui->lineEditPhiStr->setText(QString("10"));
+
+    ui->lineEditFck->setText(QString("45"));
+    ui->lineEditGammaFcd->setText(QString("1,4"));
+    ui->lineEditFpk->setText(QString("1860"));
+    ui->lineEditGammaFpd->setText(QString("1,15"));
+    ui->spinBoxHp->setValue(75);
+    ui->lineEditMed->setText("4341,925");
+    ui->lineEditApc0->setText("93e-6");
+    ui->spinBoxNpovg->setValue(4);
+
+    ui->lineEditEp->setText(QString("195"));
+    ui->lineEditEcm->setText(QString("36"));
+    ui->lineEditK->setText(QString("1,2"));
+    ui->lineEditB1S->setText(QString("0,5"));
+    ui->lineEditB2S->setText(QString("0,5"));
+    ui->lineEditB3S->setText(QString("0,125"));
+    ui->lineEditH1S->setText(QString("0,1975"));
+    ui->lineEditH2S->setText(QString("0,245"));
+    ui->lineEditH3S->setText(QString("1,207"));
+
+    addRowTable(ui->tableWidgetLower, 6, 0.08);
+    addRowTable(ui->tableWidgetLower, 6, 0.12);
+    addRowTable(ui->tableWidgetLower, 6, 0.16);
+    addRowTable(ui->tableWidgetLower, 6, 0.20);
+    addRowTable(ui->tableWidgetUpper, 4, 0.06);
+
+    ui->labelSumLowerTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetLower)));
+    ui->labelSumUpperTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetUpper)));
+
+    ui->labelUpperNpov->setText(QString::number(ui->spinBoxNpovg->value()));
+
+    ui->lineEditK1->setText(QString("0,8"));
+    ui->lineEditK2->setText(QString("0,9"));
+    ui->lineEditFp01k->setText(QString("149"));
+    ui->lineEditK7->setText(QString("0,75"));
+    ui->lineEditK8->setText(QString("0,85"));
+    setP1000(ui->comboBoxClassRel->currentIndex());
+    ui->lineEditT->setText(QString("70"));
+    initPhaseTable();
+    ui->tableWidgetPhase->setDisabled(true);
+    ui->lineEditAlphaT->setText("1,2e-5");
+
+    computeC();
+    computeCSS();
+    computeCForFireResitance();
+}
+
+void MainWindow::clearResults(){
+    ui->lineEditAc->setText("");
+    ui->lineEditBeta->setText("");
+    ui->lineEditSc->setText("");
+    ui->lineEditKappa->setText("");
+    ui->lineEditIc->setText("");
+    ui->lineEditRho->setText("");
+    ui->lineEditCZrbFinal->setText("");
+    ui->lineEditCSprFinal->setText("");
+    ui->lineEditFcd->setText("");
+    ui->lineEditFpd->setText("");
+    ui->lineEditZ->setText("");
+    ui->lineEditNpov->setText("");
+    ui->lineEditAcc->setText("");
+    ui->lineEditAlphaE->setText("");
+    ui->lineEditAcs->setText("");
+    ui->lineEditScs->setText("");
+    ui->lineEditZd->setText("");
+    ui->lineEditZg->setText("");
+    ui->lineEditIcs->setText("");
+    ui->lineEditWdcs->setText("");
+    ui->lineEditWgcs->setText("");
+    ui->lineEditSigmaPMax->setText("");
+    ui->lineEditP0max->setText("");
+    ui->lineEditSigmaPM0->setText("");
+    ui->lineEditPM0->setText("");
+    ui->lineEditDeltaSigma->setText("");
+    ui->lineEditDeltaP->setText("");
+    ui->lineEditDeltaPtheta->setText("");
+    ui->lineEditPm01->setText("");
+
+    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->labelSumUpperTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
+    ui->labelSumLowerTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
+}
+
+void MainWindow::startComputations(){
+    QLocale locale(QLocale::Polish);
+    if(!checkThatTypedArgumentsAreValid()){
+        msg.setText("Please fill all parameters");
+        msg.setIcon(QMessageBox::Warning);
+        msg.exec();
+        return;
+    }
+    else{
+        clearResults();
+         //solves problem with separator ( , -> .)
+
+        mathFormulas data(locale.toDouble(ui->lineEditB1->text()),
+                          locale.toDouble(ui->lineEditB2->text()),
+                          locale.toDouble(ui->lineEditB3->text()),
+                          locale.toDouble(ui->lineEditH1->text()),
+                          locale.toDouble(ui->lineEditH2->text()),
+                          locale.toDouble(ui->lineEditH3->text()),
+                          locale.toDouble(ui->lineEditH4->text()),
+                          locale.toDouble(ui->lineEditH5->text()),
+                          locale.toDouble(ui->lineEditFck->text()),
+                          locale.toDouble(ui->lineEditGammaFcd->text()),
+                          locale.toDouble(ui->lineEditFpk->text()),
+                          locale.toDouble(ui->lineEditGammaFpd->text()),
+                          ui->spinBoxHp->value(),
+                          locale.toDouble(ui->lineEditMed->text()),
+                          locale.toDouble(ui->lineEditApc0->text()),
+                          ui->spinBoxNpovg->value(),
+                          locale.toDouble(ui->lineEditEp->text()),
+                          locale.toDouble(ui->lineEditEcm->text()),
+                          locale.toDouble(ui->lineEditK->text()),
+                          locale.toDouble(ui->lineEditB1S->text()),
+                          locale.toDouble(ui->lineEditB2S->text()),
+                          locale.toDouble(ui->lineEditB3S->text()),
+                          locale.toDouble(ui->lineEditH1S->text()),
+                          locale.toDouble(ui->lineEditH2S->text()),
+                          locale.toDouble(ui->lineEditH3S->text()));
+
+        double areaAc = data.calculateAreaAc();
+        ui->lineEditAc->setText(locale.toString(areaAc));
+        if(!checkThatResultsAreNumbers(areaAc)){
+            return;
+        }
+
+        if(areaAc <= 0){
+            msg.setText("Pole powierzchni nie może być równe lub mniejsze niż 0\n"
+                        "Zmień parametry");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
+            return;
+        }
+
+        double paramBeta = data.calculateBeta();
+        ui->lineEditBeta->setText(locale.toString(paramBeta));
+        if(!checkThatResultsAreNumbers(paramBeta)){
+            return;
+        }
+
+        if(paramBeta < 0.18){
+            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
+                        "Przekrój jest zbyt smukły");
+            msg.setIcon(QMessageBox::Warning);
+            msg.exec();
+        }
+        else if(paramBeta > 0.35){
+            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
+                        "Przekrój nie jest optymalnie zaprojektowany");
+            msg.setIcon(QMessageBox::Warning);
+            msg.exec();
+        }
+
+        double paramSc = data.calculateCenterOfGravity();
+        ui->lineEditSc->setText(locale.toString(paramSc));
+        if(!checkThatResultsAreNumbers(paramSc)){
+            return;
+        }
+
+        double paramKappa = data.calculateKappa();
+        ui->lineEditKappa->setText(locale.toString(paramKappa));
+        if(!checkThatResultsAreNumbers(paramKappa)){
+            return;
+        }
+
+        if(paramKappa < 0.35 || paramKappa > 0.65){
+            msg.setText("<p>Współczynnik &kappa; powinien spełniać założenie 0,35 &lt; &kappa; &lt; 0,65\n</p>\n"
+                        "Przekrój nie spełnia warunku granicznego wskaźnika asymetrii");
+            msg.setIcon(QMessageBox::Warning);
+            msg.exec();
+        }
+
+        double paramIc = data.calculateSecondMomentOfArea();
+        ui->lineEditIc->setText(locale.toString(paramIc));
+        if(!checkThatResultsAreNumbers(paramIc)){
+            return;
+        }
+
+        double paramRho = data.calculatePerformanceLimitIndicator();
+        ui->lineEditRho->setText(locale.toString(paramRho));
+        if(!checkThatResultsAreNumbers(paramRho)){
+            return;
+        }
+
+        double paramFcd = data.calculateFcd();
+        ui->lineEditFcd->setText(locale.toString(paramFcd));
+        if(!checkThatResultsAreNumbers(paramFcd)){
+            return;
+        }
+
+        double paramFpd = data.calculateFpd();
+        ui->lineEditFpd->setText(locale.toString(paramFpd));
+        if(!checkThatResultsAreNumbers(paramFpd)){
+            return;
+        }
+
+        double paramZ = data.calculateZ();
+        ui->lineEditZ->setText(locale.toString(paramZ));
+        if(!checkThatResultsAreNumbers(paramZ)){
+            return;
+        }
+
+        double paramNpov = data.calculateNpov();
+        ui->lineEditNpov->setText(locale.toString(paramNpov));
+        ui->labelLowerNpov->setText(QString::number(paramNpov));
+        if(!checkThatResultsAreNumbers(paramNpov)){
+            return;
+        }
+        checkIfNumberOfTendonsAreValid(paramNpov);
+
+        double paramAcc = data.calculateAcc();
+        ui->lineEditAcc->setText(locale.toString(paramAcc));
+        if(!checkThatResultsAreNumbers(paramAcc)){
+            return;
+        }
+        if(paramAcc > data.getA1()){
+            msg.setText("<p>Warunek A<sub>cc</sub> &lt; A<sub>1</sub> nie został spełniony.</p>\n"
+                        "<p>A<sub>cc</sub> = " + QString::number(paramAcc)+ " m<sup>2</sup></p>"
+                        "<p>A<sub>1</sub> = " + QString::number(data.getA1())+ " m<sup>2</sup></p>");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
+        }
+
+        double paramAlphaE = data.calculateAlphaE();
+        ui->lineEditAlphaE->setText(locale.toString(paramAlphaE));
+        if(!checkThatResultsAreNumbers(paramAlphaE)){
+            return;
+        }
+
+        double paramAcs = data.calculateAcs();
+        ui->lineEditAcs->setText(locale.toString(paramAcs));
+        if(!checkThatResultsAreNumbers(paramAcs)){
+            return;
+        }
+
+        data.setApLower(performFormulaFromLowerTable());
+        data.setApUpper(performFormulaFromUpperTable(data.getH()));
+        double paramScs = data.calculateScs();
+        ui->lineEditScs->setText(locale.toString(paramScs));
+        if(!checkThatResultsAreNumbers(paramScs)){
+            return;
+        }
+
+        double paramZd = data.calculateZd();
+        ui->lineEditZd->setText(locale.toString(paramZd));
+        if(!checkThatResultsAreNumbers(paramZd)){
+            return;
+        }
+
+        double paramZg = data.calculateZg();
+        ui->lineEditZg->setText(locale.toString(paramZg));
+        if(!checkThatResultsAreNumbers(paramZg)){
+            return;
+        }
+
+        data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd()));
+        data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg()));
+        double paramIcs = data.calculateIcs();
+        ui->lineEditIcs->setText(locale.toString(paramIcs));
+        if(!checkThatResultsAreNumbers(paramIcs)){
+            return;
+        }
+
+        double paramWdcs = data.calculateWdcs();
+        ui->lineEditWdcs->setText(locale.toString(paramWdcs));
+        if(!checkThatResultsAreNumbers(paramWdcs)){
+            return;
+        }
+
+        double paramWgcs = data.calculateWgcs();
+        ui->lineEditWgcs->setText(locale.toString(paramWgcs));
+        if(!checkThatResultsAreNumbers(paramWgcs)){
+            return;
+        }
+
+        double paramSigmapmax = data.calculateSigma(locale.toDouble(ui->lineEditK1->text()),
+                                                    locale.toDouble(ui->lineEditK2->text()),
+                                                    locale.toDouble(ui->lineEditFpk->text()),
+                                                    locale.toDouble(ui->lineEditFp01k->text()),
+                                                    locale.toDouble(ui->lineEditApc0->text())
+                                                    );
+        ui->lineEditSigmaPMax->setText(locale.toString(paramSigmapmax));
+        if(!checkThatResultsAreNumbers(paramSigmapmax)){
+            return;
+        }
+
+        double paramP0max = data.calculateP0max();
+        ui->lineEditP0max->setText(locale.toString(paramP0max));
+        if(!checkThatResultsAreNumbers(paramP0max)){
+            return;
+        }
+
+        double paramSigmapm0 = data.calculateSigma0(locale.toDouble(ui->lineEditK7->text()),
+                                                    locale.toDouble(ui->lineEditK8->text()),
+                                                    locale.toDouble(ui->lineEditFpk->text())
+                                                    );
+        ui->lineEditSigmaPM0->setText(locale.toString(paramSigmapm0));
+        if(!checkThatResultsAreNumbers(paramSigmapm0)){
+            return;
+        }
+
+        double paramPM0 = data.calculatePm0();
+        ui->lineEditPM0->setText(locale.toString(paramPM0));
+        if(!checkThatResultsAreNumbers(paramPM0)){
+            return;
+        }
+
+        if(ui->radioButton->isChecked()){
+            data.calculateTemporaryLosses(getSumT(),
+                                          computeTeq(),
+                                          locale.toDouble(ui->lineEditP1000->text()),
+                                          locale.toDouble(ui->lineEditFpk->text())
+                                          );
+        }
+        else{
+            data.calculateTemporaryLosses(locale.toDouble(ui->lineEditT->text()),
+                                          locale.toDouble(ui->lineEditP1000->text()),
+                                          locale.toDouble(ui->lineEditFpk->text())
+                                          );
+        }
+        double paramDeltaSigma = data.getDeltaSigma();
+        ui->lineEditDeltaSigma->setText(locale.toString(paramDeltaSigma));
+        if(!checkThatResultsAreNumbers(paramDeltaSigma)){
+            return;
+        }
+        double paramDeltaP = data.getDeltaP();
+        ui->lineEditDeltaP->setText(locale.toString(paramDeltaP));
+        if(!checkThatResultsAreNumbers(paramDeltaP)){
+            return;
+        }
+
+        double paramDeltaPTheta = data.calculateDeltaPTheta(computeDeltaT(ui->radioButton->isChecked()),
+                                                            locale.toDouble(ui->lineEditAlphaT->text())
+                                                            );
+        ui->lineEditDeltaPtheta->setText(locale.toString(paramDeltaPTheta));
+        if(!checkThatResultsAreNumbers(paramDeltaPTheta)){
+            return;
+        }
+
+        double paramPm01 = data.calculatePm01();
+        ui->lineEditPm01->setText(locale.toString(paramPm01));
+        if(!checkThatResultsAreNumbers(paramPm01)){
+            return;
+        }
+
+        setFinalCValue();
+    }
 }
 
 void MainWindow::addRowTable( QTableWidget* table){
@@ -544,376 +923,6 @@ bool MainWindow::checkThatTypedArgumentsAreValid(){
     else{
         return true;
     }
-}
-
-void MainWindow::startComputations(){
-    QLocale locale(QLocale::Polish);
-    if(!checkThatTypedArgumentsAreValid()){
-        msg.setText("Please fill all parameters");
-        msg.setIcon(QMessageBox::Warning);
-        msg.exec();
-        return;
-    }
-    else{
-        clearResults();
-         //solves problem with separator ( , -> .)
-
-        mathFormulas data(locale.toDouble(ui->lineEditB1->text()),
-                          locale.toDouble(ui->lineEditB2->text()),
-                          locale.toDouble(ui->lineEditB3->text()),
-                          locale.toDouble(ui->lineEditH1->text()),
-                          locale.toDouble(ui->lineEditH2->text()),
-                          locale.toDouble(ui->lineEditH3->text()),
-                          locale.toDouble(ui->lineEditH4->text()),
-                          locale.toDouble(ui->lineEditH5->text()),
-                          locale.toDouble(ui->lineEditFck->text()),
-                          locale.toDouble(ui->lineEditGammaFcd->text()),
-                          locale.toDouble(ui->lineEditFpk->text()),
-                          locale.toDouble(ui->lineEditGammaFpd->text()),
-                          ui->spinBoxHp->value(),
-                          locale.toDouble(ui->lineEditMed->text()),
-                          locale.toDouble(ui->lineEditApc0->text()),
-                          ui->spinBoxNpovg->value(),
-                          locale.toDouble(ui->lineEditEp->text()),
-                          locale.toDouble(ui->lineEditEcm->text()),
-                          locale.toDouble(ui->lineEditK->text()),
-                          locale.toDouble(ui->lineEditB1S->text()),
-                          locale.toDouble(ui->lineEditB2S->text()),
-                          locale.toDouble(ui->lineEditB3S->text()),
-                          locale.toDouble(ui->lineEditH1S->text()),
-                          locale.toDouble(ui->lineEditH2S->text()),
-                          locale.toDouble(ui->lineEditH3S->text()));
-
-        double areaAc = data.calculateAreaAc();
-        ui->lineEditAc->setText(locale.toString(areaAc));
-        if(!checkThatResultsAreNumbers(areaAc)){
-            return;
-        }
-
-        if(areaAc <= 0){
-            msg.setText("Pole powierzchni nie może być równe lub mniejsze niż 0\n"
-                        "Zmień parametry");
-            msg.setIcon(QMessageBox::Critical);
-            msg.exec();
-            return;
-        }
-
-        double paramBeta = data.calculateBeta();
-        ui->lineEditBeta->setText(locale.toString(paramBeta));
-        if(!checkThatResultsAreNumbers(paramBeta)){
-            return;
-        }
-
-        if(paramBeta < 0.18){
-            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
-                        "Przekrój jest zbyt smukły");
-            msg.setIcon(QMessageBox::Warning);
-            msg.exec();
-        }
-        else if(paramBeta > 0.35){
-            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
-                        "Przekrój nie jest optymalnie zaprojektowany");
-            msg.setIcon(QMessageBox::Warning);
-            msg.exec();
-        }
-
-        double paramSc = data.calculateCenterOfGravity();
-        ui->lineEditSc->setText(locale.toString(paramSc));
-        if(!checkThatResultsAreNumbers(paramSc)){
-            return;
-        }
-
-        double paramKappa = data.calculateKappa();
-        ui->lineEditKappa->setText(locale.toString(paramKappa));
-        if(!checkThatResultsAreNumbers(paramKappa)){
-            return;
-        }
-
-        if(paramKappa < 0.35 || paramKappa > 0.65){
-            msg.setText("<p>Współczynnik &kappa; powinien spełniać założenie 0,35 &lt; &kappa; &lt; 0,65\n</p>\n"
-                        "Przekrój nie spełnia warunku granicznego wskaźnika asymetrii");
-            msg.setIcon(QMessageBox::Warning);
-            msg.exec();
-        }
-
-        double paramIc = data.calculateSecondMomentOfArea();
-        ui->lineEditIc->setText(locale.toString(paramIc));
-        if(!checkThatResultsAreNumbers(paramIc)){
-            return;
-        }
-
-        double paramRho = data.calculatePerformanceLimitIndicator();
-        ui->lineEditRho->setText(locale.toString(paramRho));
-        if(!checkThatResultsAreNumbers(paramRho)){
-            return;
-        }
-
-        double paramFcd = data.calculateFcd();
-        ui->lineEditFcd->setText(locale.toString(paramFcd));
-        if(!checkThatResultsAreNumbers(paramFcd)){
-            return;
-        }
-
-        double paramFpd = data.calculateFpd();
-        ui->lineEditFpd->setText(locale.toString(paramFpd));
-        if(!checkThatResultsAreNumbers(paramFpd)){
-            return;
-        }
-
-        double paramZ = data.calculateZ();
-        ui->lineEditZ->setText(locale.toString(paramZ));
-        if(!checkThatResultsAreNumbers(paramZ)){
-            return;
-        }
-
-        double paramNpov = data.calculateNpov();
-        ui->lineEditNpov->setText(locale.toString(paramNpov));
-        ui->labelLowerNpov->setText(QString::number(paramNpov));
-        if(!checkThatResultsAreNumbers(paramNpov)){
-            return;
-        }
-        checkIfNumberOfTendonsAreValid(paramNpov);
-
-        double paramAcc = data.calculateAcc();
-        ui->lineEditAcc->setText(locale.toString(paramAcc));
-        if(!checkThatResultsAreNumbers(paramAcc)){
-            return;
-        }
-        if(paramAcc > data.getA1()){
-            msg.setText("<p>Warunek A<sub>cc</sub> &lt; A<sub>1</sub> nie został spełniony.</p>\n"
-                        "<p>A<sub>cc</sub> = " + QString::number(paramAcc)+ " m<sup>2</sup></p>"
-                        "<p>A<sub>1</sub> = " + QString::number(data.getA1())+ " m<sup>2</sup></p>");
-            msg.setIcon(QMessageBox::Critical);
-            msg.exec();
-        }
-
-        double paramAlphaE = data.calculateAlphaE();
-        ui->lineEditAlphaE->setText(locale.toString(paramAlphaE));
-        if(!checkThatResultsAreNumbers(paramAlphaE)){
-            return;
-        }
-
-        double paramAcs = data.calculateAcs();
-        ui->lineEditAcs->setText(locale.toString(paramAcs));
-        if(!checkThatResultsAreNumbers(paramAcs)){
-            return;
-        }
-
-        data.setApLower(performFormulaFromLowerTable());
-        data.setApUpper(performFormulaFromUpperTable(data.getH()));
-        double paramScs = data.calculateScs();
-        ui->lineEditScs->setText(locale.toString(paramScs));
-        if(!checkThatResultsAreNumbers(paramScs)){
-            return;
-        }
-
-        double paramZd = data.calculateZd();
-        ui->lineEditZd->setText(locale.toString(paramZd));
-        if(!checkThatResultsAreNumbers(paramZd)){
-            return;
-        }
-
-        double paramZg = data.calculateZg();
-        ui->lineEditZg->setText(locale.toString(paramZg));
-        if(!checkThatResultsAreNumbers(paramZg)){
-            return;
-        }
-
-        data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd()));
-        data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg()));
-        double paramIcs = data.calculateIcs();
-        ui->lineEditIcs->setText(locale.toString(paramIcs));
-        if(!checkThatResultsAreNumbers(paramIcs)){
-            return;
-        }
-
-        double paramWdcs = data.calculateWdcs();
-        ui->lineEditWdcs->setText(locale.toString(paramWdcs));
-        if(!checkThatResultsAreNumbers(paramWdcs)){
-            return;
-        }
-
-        double paramWgcs = data.calculateWgcs();
-        ui->lineEditWgcs->setText(locale.toString(paramWgcs));
-        if(!checkThatResultsAreNumbers(paramWgcs)){
-            return;
-        }
-
-        double paramSigmapmax = data.calculateSigma(locale.toDouble(ui->lineEditK1->text()),
-                                                    locale.toDouble(ui->lineEditK2->text()),
-                                                    locale.toDouble(ui->lineEditFpk->text()),
-                                                    locale.toDouble(ui->lineEditFp01k->text()),
-                                                    locale.toDouble(ui->lineEditApc0->text())
-                                                    );
-        ui->lineEditSigmaPMax->setText(locale.toString(paramSigmapmax));
-        if(!checkThatResultsAreNumbers(paramSigmapmax)){
-            return;
-        }
-
-        double paramP0max = data.calculateP0max();
-        ui->lineEditP0max->setText(locale.toString(paramP0max));
-        if(!checkThatResultsAreNumbers(paramP0max)){
-            return;
-        }
-
-        double paramSigmapm0 = data.calculateSigma0(locale.toDouble(ui->lineEditK7->text()),
-                                                    locale.toDouble(ui->lineEditK8->text()),
-                                                    locale.toDouble(ui->lineEditFpk->text())
-                                                    );
-        ui->lineEditSigmaPM0->setText(locale.toString(paramSigmapm0));
-        if(!checkThatResultsAreNumbers(paramSigmapm0)){
-            return;
-        }
-
-        double paramPM0 = data.calculatePm0();
-        ui->lineEditPM0->setText(locale.toString(paramPM0));
-        if(!checkThatResultsAreNumbers(paramPM0)){
-            return;
-        }
-
-        if(ui->radioButton->isChecked()){
-            data.calculateTemporaryLosses(getSumT(),
-                                          computeTeq(),
-                                          locale.toDouble(ui->lineEditP1000->text()),
-                                          locale.toDouble(ui->lineEditFpk->text())
-                                          );
-        }
-        else{
-            data.calculateTemporaryLosses(locale.toDouble(ui->lineEditT->text()),
-                                          locale.toDouble(ui->lineEditP1000->text()),
-                                          locale.toDouble(ui->lineEditFpk->text())
-                                          );
-        }
-        double paramDeltaSigma = data.getDeltaSigma();
-        ui->lineEditDeltaSigma->setText(locale.toString(paramDeltaSigma));
-        if(!checkThatResultsAreNumbers(paramDeltaSigma)){
-            return;
-        }
-        double paramDeltaP = data.getDeltaP();
-        ui->lineEditDeltaP->setText(locale.toString(paramDeltaP));
-        if(!checkThatResultsAreNumbers(paramDeltaP)){
-            return;
-        }
-
-        double paramDeltaPTheta = data.calculateDeltaPTheta(computeDeltaT(ui->radioButton->isChecked()),
-                                                            locale.toDouble(ui->lineEditAlphaT->text())
-                                                            );
-        ui->lineEditDeltaPtheta->setText(locale.toString(paramDeltaPTheta));
-        if(!checkThatResultsAreNumbers(paramDeltaPTheta)){
-            return;
-        }
-
-        setFinalCValue();
-    }
-}
-void MainWindow::initParameters(){
-    ui->lineEditB1->setText(QString("0,5"));
-    ui->lineEditB2->setText(QString("0,5"));
-    ui->lineEditB3->setText(QString("0,125"));
-    ui->lineEditH1->setText(QString("0,15"));
-    ui->lineEditH2->setText(QString("0,095"));
-    ui->lineEditH3->setText(QString("1,065"));
-    ui->lineEditH4->setText(QString("0,19"));
-    ui->lineEditH5->setText(QString("0,15"));
-
-    ui->lineEditPhiS->setText(QString("12"));
-    ui->lineEditCDurY->setText(QString("0"));
-    ui->lineEditCDurSt->setText(QString("0"));
-    ui->lineEditCDurAdd->setText(QString("0"));
-    ui->lineEditCDev->setText(QString("10"));
-
-    ui->lineEditPhiSSS->setText(QString("12,5"));
-    ui->lineEditCDurYSS->setText(QString("0"));
-    ui->lineEditCDurStSS->setText(QString("0"));
-    ui->lineEditCDurAddSS->setText(QString("0"));
-    ui->lineEditCDevSS->setText(QString("10"));
-
-    ui->lineEditPhiSOO->setText(ui->lineEditPhiS->text());
-    ui->lineEditA->setText(QString("35"));
-    ui->lineEditPhiStr->setText(QString("10"));
-
-    ui->lineEditFck->setText(QString("45"));
-    ui->lineEditGammaFcd->setText(QString("1,4"));
-    ui->lineEditFpk->setText(QString("1860"));
-    ui->lineEditGammaFpd->setText(QString("1,15"));
-    ui->spinBoxHp->setValue(75);
-    ui->lineEditMed->setText("4341,925");
-    ui->lineEditApc0->setText("93e-6");
-    ui->spinBoxNpovg->setValue(4);
-
-    ui->lineEditEp->setText(QString("195"));
-    ui->lineEditEcm->setText(QString("36"));
-    ui->lineEditK->setText(QString("1,2"));
-    ui->lineEditB1S->setText(QString("0,5"));
-    ui->lineEditB2S->setText(QString("0,5"));
-    ui->lineEditB3S->setText(QString("0,125"));
-    ui->lineEditH1S->setText(QString("0,1975"));
-    ui->lineEditH2S->setText(QString("0,245"));
-    ui->lineEditH3S->setText(QString("1,207"));
-
-    addRowTable(ui->tableWidgetLower, 6, 0.08);
-    addRowTable(ui->tableWidgetLower, 6, 0.12);
-    addRowTable(ui->tableWidgetLower, 6, 0.16);
-    addRowTable(ui->tableWidgetLower, 6, 0.20);
-    addRowTable(ui->tableWidgetUpper, 4, 0.06);
-
-    ui->labelSumLowerTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetLower)));
-    ui->labelSumUpperTable->setText(QString::number(getItemsSumOfRow1(ui->tableWidgetUpper)));
-
-    ui->labelUpperNpov->setText(QString::number(ui->spinBoxNpovg->value()));
-
-    ui->lineEditK1->setText(QString("0,8"));
-    ui->lineEditK2->setText(QString("0,9"));
-    ui->lineEditFp01k->setText(QString("149"));
-    ui->lineEditK7->setText(QString("0,75"));
-    ui->lineEditK8->setText(QString("0,85"));
-    setP1000(ui->comboBoxClassRel->currentIndex());
-    ui->lineEditT->setText(QString("70"));
-    initPhaseTable();
-    ui->tableWidgetPhase->setDisabled(true);
-    ui->lineEditAlphaT->setText("1,2e-5");
-
-    computeC();
-    computeCSS();
-    computeCForFireResitance();
-}
-
-void MainWindow::clearResults(){
-    ui->lineEditAc->setText("");
-    ui->lineEditBeta->setText("");
-    ui->lineEditSc->setText("");
-    ui->lineEditKappa->setText("");
-    ui->lineEditIc->setText("");
-    ui->lineEditRho->setText("");
-    ui->lineEditCZrbFinal->setText("");
-    ui->lineEditCSprFinal->setText("");
-    ui->lineEditFcd->setText("");
-    ui->lineEditFpd->setText("");
-    ui->lineEditZ->setText("");
-    ui->lineEditNpov->setText("");
-    ui->lineEditAcc->setText("");
-    ui->lineEditAlphaE->setText("");
-    ui->lineEditAcs->setText("");
-    ui->lineEditScs->setText("");
-    ui->lineEditZd->setText("");
-    ui->lineEditZg->setText("");
-    ui->lineEditIcs->setText("");
-    ui->lineEditWdcs->setText("");
-    ui->lineEditWgcs->setText("");
-    ui->lineEditSigmaPMax->setText("");
-    ui->lineEditP0max->setText("");
-    ui->lineEditSigmaPM0->setText("");
-    ui->lineEditPM0->setText("");
-    ui->lineEditDeltaSigma->setText("");
-    ui->lineEditDeltaP->setText("");
-    ui->lineEditDeltaPtheta->setText("");
-
-    ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
-    ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
-    ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
-    ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
-    ui->labelSumUpperTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
-    ui->labelSumLowerTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
 }
 
 bool MainWindow::checkThatResultsAreNumbers(double arg){
