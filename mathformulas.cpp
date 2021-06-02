@@ -196,5 +196,27 @@ double mathFormulas::calculateDeltaPTheta(double dT, double alphaT)
 
 double mathFormulas::calculatePm01()
 {
-    return calculateP0max() - paramPpr1 - paramDeltaPTheta;
+    paramPm01 = calculateP0max() - paramPpr1 - paramDeltaPTheta;
+    return  paramPm01;
+}
+
+double mathFormulas::calculateDeltaPel()
+{
+    double rhoRho = areaApc / areaAcs;
+    paramZpc = (paramApc0 * (sumF3d - sumF3g)) / areaApc;
+
+    paramDeltaPel = paramAlphaE * rhoRho * (1 + pow(paramZpc,2)* (areaAcs/paramIcs)) * paramPm01;
+
+    return paramDeltaPel;
+}
+
+double mathFormulas::calculatePm02()
+{
+    paramPm02 = paramPm01 - paramDeltaPel;
+    return  paramPm02;
+}
+
+double mathFormulas::calculateSigmaPm02()
+{
+    return (paramPm02 * 0.001) / areaApc;
 }

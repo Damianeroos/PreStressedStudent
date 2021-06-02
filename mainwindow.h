@@ -18,6 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
 private:
     Ui::MainWindow *ui;
     void init();
@@ -42,7 +43,8 @@ private:
     void setCellTableValue(QTableWidget* table, int row, int column, QString text);
     double performFormulaFromLowerTable(); // li * ai
     double performFormulaFromUpperTable(double height); // li * (height - ai)
-    double performFormula2FromTable(QTableWidget* table, double z); // SUM(li*(z-ai)^2)
+    double performFormula2FromTable(QTableWidget* table, double z, double height, bool isUpperTable); // SUM(li*(z-ai)^2)
+    double performFormula3FromTable(QTableWidget *table, double z, double height, bool isUpperTable); // SUM(li*(z-ai))
     int getItemsSumOfRow1(QTableWidget* table);
     void checkIfNumberOfTendonsAreValid(int computeNpovd);
     void initPhaseTable();

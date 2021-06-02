@@ -83,6 +83,8 @@ public:
     double getZg() const { return paramZg;}
     void setSumF2d(double arg){ sumF2d = arg;}
     void setSumF2g(double arg){ sumF2g = arg;}
+    void setSumF3d(double arg){ sumF3d = arg;}
+    void setSumF3g(double arg){ sumF3g = arg;}
     double calculateWdcs();
     double calculateWgcs();
     double calculateIcs();
@@ -96,6 +98,9 @@ public:
     double getDeltaP() const {return paramPpr1;}
     double calculateDeltaPTheta(double dT, double alphaT);
     double calculatePm01();
+    double calculatePm02();
+    double calculateDeltaPel();
+    double calculateSigmaPm02();
 
 private:
     double paramB1;
@@ -173,6 +178,12 @@ private:
     double paramPpr1;
 
     double paramDeltaPTheta;
+    double paramPm01;
+    double paramPm02;
+    double sumF3d; // SUM(li*(z-ai))
+    double sumF3g; // SUM(li*(z-ai))
+    double paramDeltaPel;
+    double paramZpc;
 
 };
 

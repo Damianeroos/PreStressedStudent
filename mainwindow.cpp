@@ -7,6 +7,7 @@
 #include <math.h>
 #include <QLocale>
 #include "arrays.h"
+#include "mainwindow.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -111,6 +112,9 @@ void MainWindow::init(){
     ui->lineEditDeltaP->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaPtheta->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditPm01->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPm02->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditDeltaPel->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPM02->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -312,6 +316,11 @@ void MainWindow::initParameters(){
     ui->tableWidgetPhase->setDisabled(true);
     ui->lineEditAlphaT->setText("1,2e-5");
 
+    ui->radioButton->setChecked(true);
+    setObjectPropertiesDependsFromRadioButton(true);
+    ui->comboBoxClassRel->setCurrentIndex(1);
+    ui->lineEditP1000->setText(QString("2,5"));
+
     computeC();
     computeCSS();
     computeCForFireResitance();
@@ -347,6 +356,9 @@ void MainWindow::clearResults(){
     ui->lineEditDeltaP->setText("");
     ui->lineEditDeltaPtheta->setText("");
     ui->lineEditPm01->setText("");
+    ui->lineEditPm02->setText("");
+    ui->lineEditDeltaPel->setText("");
+    ui->lineEditSigmaPM02->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -415,14 +427,14 @@ void MainWindow::startComputations(){
         }
 
         if(paramBeta < 0.18){
-            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
-                        "Przekrój jest zbyt smukły");
+            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35</p>"
+                        "<p>Przekrój jest zbyt smukły</p>");
             msg.setIcon(QMessageBox::Warning);
             msg.exec();
         }
         else if(paramBeta > 0.35){
-            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35\n</p>"
-                        "Przekrój nie jest optymalnie zaprojektowany");
+            msg.setText("<p>Współczynnik &beta; powinien spełniać założenie 0,18 &lt; &beta; &lt; 0,35</p>"
+                        "<p>Przekrój nie jest optymalnie zaprojektowany</p>");
             msg.setIcon(QMessageBox::Warning);
             msg.exec();
         }
@@ -440,8 +452,8 @@ void MainWindow::startComputations(){
         }
 
         if(paramKappa < 0.35 || paramKappa > 0.65){
-            msg.setText("<p>Współczynnik &kappa; powinien spełniać założenie 0,35 &lt; &kappa; &lt; 0,65\n</p>\n"
-                        "Przekrój nie spełnia warunku granicznego wskaźnika asymetrii");
+            msg.setText("<p>Współczynnik &kappa; powinien spełniać założenie 0,35 &lt; &kappa; &lt; 0,65\n</p>"
+                        "<p>Przekrój nie spełnia warunku granicznego wskaźnika asymetrii</p>");
             msg.setIcon(QMessageBox::Warning);
             msg.exec();
         }
@@ -490,7 +502,7 @@ void MainWindow::startComputations(){
             return;
         }
         if(paramAcc > data.getA1()){
-            msg.setText("<p>Warunek A<sub>cc</sub> &lt; A<sub>1</sub> nie został spełniony.</p>\n"
+            msg.setText("<p>Warunek A<sub>cc</sub> &lt; A<sub>1</sub> nie został spełniony.</p>"
                         "<p>A<sub>cc</sub> = " + QString::number(paramAcc)+ " m<sup>2</sup></p>"
                         "<p>A<sub>1</sub> = " + QString::number(data.getA1())+ " m<sup>2</sup></p>");
             msg.setIcon(QMessageBox::Critical);
@@ -529,8 +541,8 @@ void MainWindow::startComputations(){
             return;
         }
 
-        data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd()));
-        data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg()));
+        data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd(),data.getH(),false));
+        data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg(),data.getH(),true));
         double paramIcs = data.calculateIcs();
         ui->lineEditIcs->setText(locale.toString(paramIcs));
         if(!checkThatResultsAreNumbers(paramIcs)){
@@ -617,6 +629,33 @@ void MainWindow::startComputations(){
         ui->lineEditPm01->setText(locale.toString(paramPm01));
         if(!checkThatResultsAreNumbers(paramPm01)){
             return;
+        }
+
+        data.setSumF3d(performFormula3FromTable(ui->tableWidgetLower,data.getZd(),data.getH(),false));
+        data.setSumF3g(performFormula3FromTable(ui->tableWidgetUpper,data.getZg(),data.getH(),false)); // zamienic na true jezeli Julita się jebneła
+        double paramDeltaPel = data.calculateDeltaPel();
+        ui->lineEditDeltaPel->setText(locale.toString(paramDeltaPel));
+        if(!checkThatResultsAreNumbers(paramDeltaPel)){
+            return;
+        }
+
+        double paramPm02 = data.calculatePm02();
+        ui->lineEditPm02->setText(locale.toString(paramPm02));
+        if(!checkThatResultsAreNumbers(paramPm02)){
+            return;
+        }
+
+        double paramSigmaPm02 = data.calculateSigmaPm02();
+        ui->lineEditSigmaPM02->setText(locale.toString(paramSigmaPm02));
+        if(!checkThatResultsAreNumbers(paramSigmaPm02)){
+            return;
+        }
+        if(paramSigmaPm02 > paramSigmapm0){
+            msg.setText("<p>Warunek &sigma;<sub>pm,02</sub> &le; &sigma;<sub>pm0</sub>(x) nie został spełniony.</p>"
+                        "<p>&sigma;<sub>pm,02</sub> = " + QString::number(paramSigmaPm02)+ " MPa</p>"
+                        "<p>&sigma;<sub>pm0</sub>(x) = " + QString::number(paramSigmapm0)+ " MPa</p>");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
         }
 
         setFinalCValue();
@@ -1038,13 +1077,38 @@ double MainWindow::performFormulaFromUpperTable(double height){
     return temp;
 }
 
-double MainWindow::performFormula2FromTable(QTableWidget *table, double z)
+double MainWindow::performFormula2FromTable(QTableWidget *table, double z, double height, bool isUpperTable)
 {
     double result = 0;
     QLocale locale(QLocale::Polish);
 
-    for(int i = 0; i < table->rowCount(); ++i){
-        result += locale.toDouble(getStringFromTable(table,i,1)) * pow((z - locale.toDouble(getStringFromTable(table,i,2))),2);
+    if(!isUpperTable){
+        for(int i = 0; i < table->rowCount(); ++i){
+            result += locale.toDouble(getStringFromTable(table,i,1)) * pow((z - locale.toDouble(getStringFromTable(table,i,2))),2);
+        }
+    }
+    else{
+        for(int i = 0; i < table->rowCount(); ++i){
+            result += locale.toDouble(getStringFromTable(table,i,1)) * pow((z - (height - locale.toDouble(getStringFromTable(table,i,2)))),2);
+        }
+    }
+    return result;
+}
+
+double MainWindow::performFormula3FromTable(QTableWidget *table, double z, double height, bool isUpperTable)
+{
+    double result = 0;
+    QLocale locale(QLocale::Polish);
+
+    if(!isUpperTable){
+        for(int i = 0; i < table->rowCount(); ++i){
+            result += locale.toDouble(getStringFromTable(table,i,1)) * (z - locale.toDouble(getStringFromTable(table,i,2)));
+        }
+    }
+    else{
+        for(int i = 0; i < table->rowCount(); ++i){
+            result += locale.toDouble(getStringFromTable(table,i,1)) * (z - (height - locale.toDouble(getStringFromTable(table,i,2))));
+        }
     }
     return result;
 }
