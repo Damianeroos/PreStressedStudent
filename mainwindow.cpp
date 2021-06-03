@@ -60,6 +60,13 @@ void MainWindow::init(){
     ui->lineEditK8->setValidator(doubleValidator4);
     ui->lineEditT->setValidator(doubleValidator4);
     ui->lineEditAlphaT->setValidator(doubleValidator4);
+    ui->lineEditU->setValidator(doubleValidator4);
+    ui->lineEditFcmo->setValidator(doubleValidator4);
+    ui->lineEditKh->setValidator(doubleValidator4);
+
+    QIntValidator* intValidator = new QIntValidator(this);
+    ui->lineEditT0->setValidator(intValidator);
+    ui->lineEditTEnd->setValidator(intValidator);
 
     QDoubleValidator* doubleValidator1 = new QDoubleValidator(0,std::numeric_limits<double>::max(),1,this);
     ui->lineEditPhiS->setValidator(doubleValidator1);
@@ -115,10 +122,33 @@ void MainWindow::init(){
     ui->lineEditPm02->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditDeltaPel->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPM02->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditH0->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditFcm->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCoeffA1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCoeffA2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditCoeffA3->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaH->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaC->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaT0->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaFcm->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaRH->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditBetaAS->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPhiRH->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPhi0->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPhiT->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAlphaDS1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAlphaDS2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEpsCD->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEpsCDInf->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEpsCA->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEpsCAT->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEpsCS->setStyleSheet(lineEditBackgroundColorGrey);
+
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
-                                 "#tab_3 {background-color: rgb(240, 240, 240);}");
+                                 "#tab_3 {background-color: rgb(240, 240, 240);}"
+                                 "#tab_4 {background-color: rgb(240, 240, 240);}");
 
     ui->comboBoxConstruction->addItem("S1");
     ui->comboBoxConstruction->addItem("S2");
@@ -140,6 +170,10 @@ void MainWindow::init(){
     ui->comboBoxClassRel->addItem("1");
     ui->comboBoxClassRel->addItem("2");
     ui->comboBoxClassRel->addItem("3");
+
+    ui->comboBoxCement->addItem("S");
+    ui->comboBoxCement->addItem("N");
+    ui->comboBoxCement->addItem("R");
 
     // table lower
     ui->pushButtonAddRowLower->setIcon(QIcon(":/resources/img/plus.svg"));
@@ -247,6 +281,22 @@ void MainWindow::init(){
     QObject::connect(ui->tableWidgetPhase, SIGNAL(cellChanged(int,int)),
                      this, SLOT(validateCellDataPhaseTable(int,int)));
 
+    QObject::connect(ui->lineEditH1S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+    QObject::connect(ui->lineEditH2S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+    QObject::connect(ui->lineEditH3S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+    QObject::connect(ui->lineEditB1S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+    QObject::connect(ui->lineEditB2S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+    QObject::connect(ui->lineEditB3S, SIGNAL(textEdited(QString)),
+                     this, SLOT(calculateU()));
+
+    QObject::connect(ui->comboBoxCement, SIGNAL(currentIndexChanged(int)),
+                     this, SLOT(setAlphaCoeffCement(int)));
+
 }
 
 void MainWindow::initParameters(){
@@ -294,6 +344,12 @@ void MainWindow::initParameters(){
     ui->lineEditH2S->setText(QString("0,245"));
     ui->lineEditH3S->setText(QString("1,207"));
 
+    ui->lineEditT0->setText(QString("28"));
+    ui->lineEditTEnd->setText(QString("50"));
+    ui->spinBoxRH->setValue(50);
+    ui->lineEditFcmo->setText("10");
+    ui->lineEditKh->setText("0,883");
+
     addRowTable(ui->tableWidgetLower, 6, 0.08);
     addRowTable(ui->tableWidgetLower, 6, 0.12);
     addRowTable(ui->tableWidgetLower, 6, 0.16);
@@ -321,9 +377,14 @@ void MainWindow::initParameters(){
     ui->comboBoxClassRel->setCurrentIndex(1);
     ui->lineEditP1000->setText(QString("2,5"));
 
+    ui->comboBoxCement->setCurrentIndex(1);
+    ui->lineEditAlphaDS1->setText("4");
+    ui->lineEditAlphaDS2->setText("0,12");
+
     computeC();
     computeCSS();
     computeCForFireResitance();
+    calculateU();
 }
 
 void MainWindow::clearResults(){
@@ -359,6 +420,25 @@ void MainWindow::clearResults(){
     ui->lineEditPm02->setText("");
     ui->lineEditDeltaPel->setText("");
     ui->lineEditSigmaPM02->setText("");
+    ui->lineEditH0->setText("");
+    ui->lineEditFcm->setText("");
+    ui->lineEditCoeffA1->setText("");
+    ui->lineEditCoeffA2->setText("");
+    ui->lineEditCoeffA3->setText("");
+    ui->lineEditBetaH->setText("");
+    ui->lineEditBetaC->setText("");
+    ui->lineEditBetaT0->setText("");
+    ui->lineEditBetaFcm->setText("");
+    ui->lineEditBetaRH->setText("");
+    ui->lineEditBetaAS->setText("");
+    ui->lineEditPhiRH->setText("");
+    ui->lineEditPhi0->setText("");
+    ui->lineEditPhiT->setText("");
+    ui->lineEditEpsCD->setText("");
+    ui->lineEditEpsCDInf->setText("");
+    ui->lineEditEpsCA->setText("");
+    ui->lineEditEpsCAT->setText("");
+    ui->lineEditEpsCS->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -404,7 +484,12 @@ void MainWindow::startComputations(){
                           locale.toDouble(ui->lineEditB3S->text()),
                           locale.toDouble(ui->lineEditH1S->text()),
                           locale.toDouble(ui->lineEditH2S->text()),
-                          locale.toDouble(ui->lineEditH3S->text()));
+                          locale.toDouble(ui->lineEditH3S->text()),
+                          ui->spinBoxRH->value(),
+                          locale.toInt(ui->lineEditT0->text()),
+                          locale.toInt(ui->lineEditTEnd->text()) * 365,
+                          locale.toDouble(ui->lineEditAlphaDS1->text()),
+                          locale.toDouble(ui->lineEditAlphaDS2->text())); //casting from years to days
 
         double areaAc = data.calculateAreaAc();
         ui->lineEditAc->setText(locale.toString(areaAc));
@@ -658,6 +743,65 @@ void MainWindow::startComputations(){
             msg.exec();
         }
 
+        data.setU(locale.toDouble(ui->lineEditU->text()));
+        double paramH0 = data.calculateH0();
+        ui->lineEditH0->setText(locale.toString(paramH0));
+        if(!checkThatResultsAreNumbers(paramH0)){
+            return;
+        }
+
+        double paramFcm = data.calculateFcm();
+        ui->lineEditFcm->setText(locale.toString(paramFcm));
+        if(!checkThatResultsAreNumbers(paramFcm)){
+            return;
+        }
+
+        std::vector<double> a = data.calculateParametersA();
+        ui->lineEditCoeffA1->setText(locale.toString(a[0]));
+        ui->lineEditCoeffA2->setText(locale.toString(a[1]));
+        ui->lineEditCoeffA3->setText(locale.toString(a[2]));
+        for(double n : a){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+
+        std::vector<double> beta = data.calculateBetas();
+        ui->lineEditBetaH->setText(locale.toString(beta[0]));
+        ui->lineEditBetaC->setText(locale.toString(beta[1]));
+        ui->lineEditBetaT0->setText(locale.toString(beta[2]));
+        ui->lineEditBetaFcm->setText(locale.toString(beta[3]));
+        ui->lineEditBetaRH->setText(locale.toString(beta[4]));
+        ui->lineEditBetaAS->setText(locale.toString(beta[5]));
+        for(double n : beta){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+
+        std::vector<double> phi = data.calculatePhis();
+        ui->lineEditPhiRH->setText(locale.toString(phi[0]));
+        ui->lineEditPhi0->setText(locale.toString(phi[1]));
+        ui->lineEditPhiT->setText(locale.toString(phi[2]));
+        for(double n : phi){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+
+        std::vector<double> eps = data.calculateEpsilons(locale.toDouble(ui->lineEditFcmo->text()),
+                                                         locale.toDouble(ui->lineEditKh->text()));
+        ui->lineEditEpsCD->setText(locale.toString(eps[0]));
+        ui->lineEditEpsCDInf->setText(locale.toString(eps[1]));
+        ui->lineEditEpsCA->setText(locale.toString(eps[2]));
+        ui->lineEditEpsCAT->setText(locale.toString(eps[3]));
+        ui->lineEditEpsCS->setText(locale.toString(eps[4]));
+        for(double n : eps){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+
         setFinalCValue();
     }
 }
@@ -746,6 +890,40 @@ double MainWindow::getSumT(){
         sumT += locale.toDouble(getStringFromTable(table,i,1));
     }
     return sumT;
+}
+
+void MainWindow::calculateU()
+{
+    QLocale locale(QLocale::Polish);
+    double H1S = locale.toDouble(ui->lineEditH1S->text());
+    double H2S = locale.toDouble(ui->lineEditH2S->text());
+    double H3S = locale.toDouble(ui->lineEditH3S->text());
+    double B1S = locale.toDouble(ui->lineEditB1S->text());
+    double B2S = locale.toDouble(ui->lineEditB2S->text());
+    double B3S = locale.toDouble(ui->lineEditB3S->text());
+
+    double h = H1S + H2S + H3S;
+
+    double U = B1S + B2S + 2*h + (B1S - B3S) + (B2S - B3S);
+    ui->lineEditU->setText(locale.toString(U));
+}
+
+void MainWindow::setAlphaCoeffCement(int arg)
+{
+    switch (arg) {
+    case 0 :
+        ui->lineEditAlphaDS1->setText("3");
+        ui->lineEditAlphaDS2->setText("0,13");
+        break;
+    case 1 :
+        ui->lineEditAlphaDS1->setText("4");
+        ui->lineEditAlphaDS2->setText("0,12");
+        break;
+    case 2 :
+        ui->lineEditAlphaDS1->setText("6");
+        ui->lineEditAlphaDS2->setText("0,11");
+        break;
+    }
 }
 
 double MainWindow::computeDeltaT(bool withThermalTreatment, int initialT){

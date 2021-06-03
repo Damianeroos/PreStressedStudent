@@ -3,6 +3,8 @@
 
 #define EULER 2.7182818284
 
+#include <vector>
+
 class mathFormulas
 {
 public:
@@ -31,7 +33,12 @@ public:
                  double b3s,
                  double h1s,
                  double h2s,
-                 double h3s) :
+                 double h3s,
+                 int    rh,
+                 int    tStart,
+                 int    tEnd,
+                 double aDS1,
+                 double aDS2) :
 
         paramB1(b1),
         paramB2(b2),
@@ -57,7 +64,12 @@ public:
         paramB3S(b3s),
         paramH1S(h1s),
         paramH2S(h2s),
-        paramH3S(h3s) {};
+        paramH3S(h3s),
+        paramRH(rh),
+        paramTStart(tStart),
+        paramTEnd(tEnd),
+        paramAlphaDS1(aDS1),
+        paramAlphaDS2(aDS2){};
 
     double calculateAreaAc();
     double calculateBeta();
@@ -101,8 +113,21 @@ public:
     double calculatePm02();
     double calculateDeltaPel();
     double calculateSigmaPm02();
+    void setU(double arg){ paramU = arg;}
+    double calculateH0();
+    double calculateFcm();
+    std::vector<double> calculateParametersA();
+    double calculateBetaH();
+    std::vector<double> calculateBetas();
+    std::vector<double> calculatePhis();
+    double calculatePhiRH();
+    std::vector<double> calculateEpsilons(double fcmo, double kh);
 
 private:
+    enum a {a1, a2, a3};
+    enum beta {bH, bC, bT0, bFcm, bRH, bAS};
+    enum phi {pRH, p0, p0T};
+
     double paramB1;
     double paramB2;
     double paramB3;
@@ -184,6 +209,19 @@ private:
     double sumF3g; // SUM(li*(z-ai))
     double paramDeltaPel;
     double paramZpc;
+
+    double paramU;
+    double paramH0;
+    double paramFcm;
+    std::vector<double> paramsA;
+    std::vector<double> paramsBeta;
+    int paramRH;
+    int paramTStart;
+    int paramTEnd;
+    std::vector<double> paramsPhis;
+    double paramAlphaDS1;
+    double paramAlphaDS2;
+    std::vector<double> paramsEpsilons;
 
 };
 

@@ -69,6 +69,8 @@ public slots:
     void setP1000(int);
     void setObjectPropertiesDependsFromRadioButton(bool);
     void validateCellDataPhaseTable(int row, int column);
+    void calculateU();
+    void setAlphaCoeffCement(int);
 signals:
     void tableContextChanged(QTableWidget* table);
 };

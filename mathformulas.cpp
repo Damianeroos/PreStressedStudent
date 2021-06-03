@@ -220,3 +220,109 @@ double mathFormulas::calculateSigmaPm02()
 {
     return (paramPm02 * 0.001) / areaApc;
 }
+
+double mathFormulas::calculateH0()
+{
+    paramH0 = ((2*areaAc) / paramU) * 1000;
+    return paramH0;
+}
+
+double mathFormulas::calculateFcm()
+{
+    paramFcm = paramFck + 8;
+    return paramFcm;
+}
+
+std::vector<double> mathFormulas::calculateParametersA()
+{
+    std::vector<double> a(3, 0.0);
+
+    a[0] = pow(35/paramFcm, 0.7);
+    a[1] = pow(35/paramFcm, 0.2);
+    a[2] = pow(35/paramFcm, 0.5);
+
+    paramsA = a;
+
+    return paramsA;
+}
+
+double mathFormulas::calculateBetaH()
+{
+    double temp1, result;
+    double rh = static_cast<double>(paramRH);
+
+    if(paramFcm <= 35){
+        temp1 = 1.5 * (1 + pow(0.012 * rh, 18)) * paramH0 + 250;
+        temp1 < 1500 ? result = temp1 : result = 1500;
+    }
+    else{
+        temp1 = 1.5 * (1 + pow(0.012 * rh, 18)) * paramH0 + 250 * paramsA[a3];
+        temp1 < 1500*paramsA[a3] ? result = temp1 : result = 1500*paramsA[a3];
+    }
+
+    return result;
+}
+
+std::vector<double> mathFormulas::calculateBetas()
+{
+    std::vector<double> beta(6, 0.0);
+
+    beta[bH] = calculateBetaH();
+
+    int dT = paramTEnd - paramTStart;
+    beta[bC] = pow(dT/(beta[bH] + dT), 0.3);
+
+    beta[bT0] = 1/(0.1+pow(paramTStart, 0.2));
+
+    beta[bFcm] = 16.8/pow(paramFcm, 0.5);
+
+    beta[bRH] = 1.55*(1-pow(static_cast<double>(paramRH)/100,3));
+
+    beta[bAS] = 1 - pow(EULER, -0.2*pow(dT,0.5));
+
+    paramsBeta = beta;
+    return paramsBeta;
+}
+
+double mathFormulas::calculatePhiRH(){
+    double phiRH;
+    double rh = static_cast<double>(paramRH);
+
+    if(paramFcm <= 35){
+        phiRH = 1 + ((1 - rh/100)/(0.1*pow(paramH0,0.33333)))*paramsA[a1];
+    }
+    else{
+        phiRH = (1 + ((1 - rh/100)/(0.1*pow(paramH0,0.33333)))*paramsA[a1])*paramsA[a2];
+    }
+
+    return phiRH;
+}
+
+std::vector<double> mathFormulas::calculateEpsilons(double fcmo, double kh)
+{
+    std::vector<double> eps(5, 0.0);
+
+    eps[0] = 0.85*(220+110*paramAlphaDS1)*pow(EULER,-paramAlphaDS2*paramFcm/fcmo)*paramsBeta[bRH]*1e-6;
+    eps[1] = kh*eps[0];
+    eps[2] = 2.5*(paramFck-10)*1e-6;
+    eps[3] = paramsBeta[bAS]*eps[2];
+    eps[4] = eps[1]+eps[3];
+
+    paramsEpsilons = eps;
+    return paramsEpsilons;
+}
+
+std::vector<double> mathFormulas::calculatePhis()
+{
+    std::vector<double> phi(3, 0.0);
+
+    phi[pRH] = calculatePhiRH();
+    phi[p0] = phi[pRH]*paramsBeta[bFcm]*paramsBeta[bT0];
+    phi[p0T] = phi[p0]*paramsBeta[bC];
+
+    paramsPhis = phi;
+    return paramsPhis;
+}
+
+
+
