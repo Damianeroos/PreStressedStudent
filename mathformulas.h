@@ -122,6 +122,7 @@ public:
     std::vector<double> calculatePhis();
     double calculatePhiRH();
     std::vector<double> calculateEpsilons(double fcmo, double kh);
+    std::vector<double> calculateSigmas(double Meqp, double p1000);
 
 private:
     enum a {a1, a2, a3};
@@ -222,6 +223,8 @@ private:
     double paramAlphaDS1;
     double paramAlphaDS2;
     std::vector<double> paramsEpsilons;
+
+    std::vector<double> paramsSigmas;
 
 };
 

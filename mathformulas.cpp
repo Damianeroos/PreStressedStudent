@@ -312,6 +312,23 @@ std::vector<double> mathFormulas::calculateEpsilons(double fcmo, double kh)
     return paramsEpsilons;
 }
 
+std::vector<double> mathFormulas::calculateSigmas(double Meqp, double P1000)
+{
+    std::vector<double> sigma(2, 0.0);
+
+    sigma[0] = abs(-paramPm02/areaApc - (paramAlphaE*Meqp*paramZpc)/paramIcs);
+    sigma[0] = sigma[0]/1000; //from kPa to MPa
+
+    double t = 500000;
+    double u = sigma[0]/paramFpk;
+    double pmod = 0.66 * P1000 * pow(EULER, 9.1*u) * pow(t / 1000, 0.75* (1- u)) * 1e-5;
+
+    sigma[1] = pmod*sigma[0]-paramSigmapr1;
+
+    paramsSigmas = sigma;
+    return paramsSigmas;
+}
+
 std::vector<double> mathFormulas::calculatePhis()
 {
     std::vector<double> phi(3, 0.0);

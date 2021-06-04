@@ -63,6 +63,7 @@ void MainWindow::init(){
     ui->lineEditU->setValidator(doubleValidator4);
     ui->lineEditFcmo->setValidator(doubleValidator4);
     ui->lineEditKh->setValidator(doubleValidator4);
+    ui->lineEditMeqp->setValidator(doubleValidator4);
 
     QIntValidator* intValidator = new QIntValidator(this);
     ui->lineEditT0->setValidator(intValidator);
@@ -143,7 +144,8 @@ void MainWindow::init(){
     ui->lineEditEpsCA->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditEpsCAT->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditEpsCS->setStyleSheet(lineEditBackgroundColorGrey);
-
+    ui->lineEditSigmaPR->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPR2->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -381,6 +383,8 @@ void MainWindow::initParameters(){
     ui->lineEditAlphaDS1->setText("4");
     ui->lineEditAlphaDS2->setText("0,12");
 
+    ui->lineEditMeqp->setText("2433,738");
+
     computeC();
     computeCSS();
     computeCForFireResitance();
@@ -439,6 +443,8 @@ void MainWindow::clearResults(){
     ui->lineEditEpsCA->setText("");
     ui->lineEditEpsCAT->setText("");
     ui->lineEditEpsCS->setText("");
+    ui->lineEditSigmaPR->setText("");
+    ui->lineEditSigmaPR2->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -797,6 +803,16 @@ void MainWindow::startComputations(){
         ui->lineEditEpsCAT->setText(locale.toString(eps[3]));
         ui->lineEditEpsCS->setText(locale.toString(eps[4]));
         for(double n : eps){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+
+        std::vector<double> sigma = data.calculateSigmas(locale.toDouble(ui->lineEditMeqp->text()),
+                                                         locale.toDouble(ui->lineEditP1000->text()));
+        ui->lineEditSigmaPR->setText(locale.toString(sigma[0]));
+        ui->lineEditSigmaPR2->setText(locale.toString(sigma[1]));
+        for(double n : sigma){
             if(!checkThatResultsAreNumbers(n)){
                 return;
             }

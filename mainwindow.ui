@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>948</width>
-    <height>646</height>
+    <width>1611</width>
+    <height>651</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -49,8 +49,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>928</width>
-         <height>585</height>
+         <width>1591</width>
+         <height>588</height>
         </rect>
        </property>
        <widget class="QLabel" name="labelPic">
@@ -100,7 +100,7 @@
          </size>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="tab_1">
          <attribute name="title">
@@ -3086,43 +3086,154 @@ pobróbce terminczej</string>
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-1126</y>
-              <width>215</width>
-              <height>1590</height>
+              <y>-1017</y>
+              <width>209</width>
+              <height>1496</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_18">
-             <item row="35" column="1">
-              <widget class="QLabel" name="label_427">
+             <item row="39" column="1">
+              <widget class="QLabel" name="label_429">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="1">
-              <widget class="QLabel" name="label_87">
+             <item row="24" column="0">
+              <widget class="QLabel" name="label_373">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="43" column="2">
+              <widget class="QLineEdit" name="lineEditBetaH">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="22" column="1">
+              <widget class="QLabel" name="label_176">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="24" column="3">
-              <widget class="QLabel" name="label_375">
-               <property name="text">
-                <string>kN</string>
+             <item row="41" column="2">
+              <widget class="QLineEdit" name="lineEditCoeffA2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
-             <item row="32" column="3">
-              <widget class="QLabel" name="label_419">
-               <property name="text">
-                <string>kN</string>
+             <item row="52" column="2">
+              <widget class="QLineEdit" name="lineEditEpsCD">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QLineEdit" name="lineEditIc">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -3160,27 +3271,59 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <widget class="QLabel" name="label_86">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelAc">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
-                <string>=</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="31" column="3">
-              <widget class="QLabel" name="label_408">
-               <property name="text">
-                <string>kN</string>
+             <item row="45" column="2">
+              <widget class="QLineEdit" name="lineEditBetaT0">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
                </property>
-              </widget>
-             </item>
-             <item row="34" column="1">
-              <widget class="QLabel" name="label_423">
-               <property name="text">
-                <string>=</string>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -3191,8 +3334,15 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_15">
+             <item row="30" column="1">
+              <widget class="QLabel" name="label_405">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="43" column="0">
+              <widget class="QLabel" name="label_197">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -3221,78 +3371,12 @@ pobróbce terminczej</string>
                 </size>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ρ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;H&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="24" column="1">
-              <widget class="QLabel" name="label_374">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="49" column="1">
-              <widget class="QLabel" name="label_438">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="38" column="1">
-              <widget class="QLabel" name="label_428">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="0">
-              <widget class="QLabel" name="label_380">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="2">
-              <widget class="QLineEdit" name="lineEditZ">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="0">
-              <widget class="QLabel" name="label_122">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cc&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="29" column="3">
-              <widget class="QLabel" name="label_402">
+             <item row="26" column="3">
+              <widget class="QLabel" name="label_378">
                <property name="text">
                 <string>MPa</string>
                </property>
@@ -3301,15 +3385,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="18" column="0">
-              <widget class="QLabel" name="label_163">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="11" column="2">
-              <widget class="QLineEdit" name="lineEditNpov">
+             <item row="39" column="2">
+              <widget class="QLineEdit" name="lineEditFcm">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3339,383 +3416,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="34" column="2">
-              <widget class="QLineEdit" name="lineEditDeltaPel">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="label_61">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;C&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;n,zbr&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="2">
-              <widget class="QLineEdit" name="lineEditKappa">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="15" column="2">
-              <widget class="QLineEdit" name="lineEditScs">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="45" column="1">
-              <widget class="QLabel" name="label_435">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="18" column="2">
-              <widget class="QLineEdit" name="lineEditIcs">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="38" column="0">
-              <widget class="QLabel" name="label_410">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;h&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="47" column="2">
-              <widget class="QLineEdit" name="lineEditBetaRH">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="30" column="3">
-              <widget class="QLabel" name="label_403">
-               <property name="text">
-                <string>kN</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="40" column="1">
-              <widget class="QLabel" name="label_430">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="32" column="2">
-              <widget class="QLineEdit" name="lineEditPm01">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_12">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="29" column="2">
-              <widget class="QLineEdit" name="lineEditDeltaSigma">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="35" column="0">
-              <widget class="QLabel" name="label_398">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pm,02&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="1">
-              <widget class="QLabel" name="label_381">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="47" column="1">
-              <widget class="QLabel" name="label_437">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="51" column="2">
-              <widget class="QLineEdit" name="lineEditPhiT">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="32" column="0">
-              <widget class="QLabel" name="label_382">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;01&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="46" column="1">
-              <widget class="QLabel" name="label_436">
+             <item row="16" column="1">
+              <widget class="QLabel" name="label_157">
                <property name="text">
                 <string>=</string>
                </property>
@@ -3728,8 +3430,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="30" column="2">
-              <widget class="QLineEdit" name="lineEditDeltaP">
+             <item row="54" column="2">
+              <widget class="QLineEdit" name="lineEditEpsCA">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3759,50 +3461,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="label_80">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="15" column="1">
-              <widget class="QLabel" name="label_155">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="31" column="0">
-              <widget class="QLabel" name="label_406">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ΔP&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;&amp;theta;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="20" column="1">
-              <widget class="QLabel" name="label_169">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="49" column="0">
-              <widget class="QLabel" name="label_202">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;RH&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="34" column="0">
-              <widget class="QLabel" name="label_422">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ΔP&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;el&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="31" column="2">
-              <widget class="QLineEdit" name="lineEditDeltaPtheta">
+             <item row="48" column="2">
+              <widget class="QLineEdit" name="lineEditBetaAS">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -3832,47 +3492,47 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="45" column="0">
-              <widget class="QLabel" name="label_199">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
+             <item row="10" column="3">
+              <widget class="QLabel" name="label_107">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β(t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="35" column="3">
-              <widget class="QLabel" name="label_399">
-               <property name="text">
-                <string>MPa</string>
+                <string>m</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="42" column="1">
+              <widget class="QLabel" name="label_432">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="3">
+              <widget class="QLabel" name="label_121">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="32" column="3">
+              <widget class="QLabel" name="label_419">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="1">
+              <widget class="QLabel" name="label_120">
+               <property name="text">
+                <string>=</string>
                </property>
               </widget>
              </item>
@@ -3907,147 +3567,6 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="22" column="0">
-              <widget class="QLabel" name="label_175">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;sigma;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;p,max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="2">
-              <widget class="QLineEdit" name="lineEditRho">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="3">
-              <widget class="QLabel" name="label_96">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="2">
-              <widget class="QLineEdit" name="lineEditCZrbFinal">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="44" column="1">
-              <widget class="QLabel" name="label_434">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="46" column="2">
-              <widget class="QLineEdit" name="lineEditBetaFcm">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="24" column="0">
-              <widget class="QLabel" name="label_373">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="39" column="3">
-              <widget class="QLabel" name="label_411">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="42" column="0">
-              <widget class="QLabel" name="label_415">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
              <item row="18" column="3">
               <widget class="QLabel" name="label_165">
                <property name="text">
@@ -4058,15 +3577,11 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="14" column="3">
-              <widget class="QLabel" name="label_135">
-               <property name="text">
-                <string>m&lt;sup&gt;2&lt;/sup&gt;</string>
+             <item row="46" column="0">
+              <widget class="QLabel" name="label_200">
+               <property name="enabled">
+                <bool>true</bool>
                </property>
-              </widget>
-             </item>
-             <item row="17" column="2">
-              <widget class="QLineEdit" name="lineEditZg">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4075,135 +3590,45 @@ pobróbce terminczej</string>
                </property>
                <property name="minimumSize">
                 <size>
-                 <width>91</width>
+                 <width>28</width>
                  <height>22</height>
                 </size>
                </property>
                <property name="maximumSize">
                 <size>
-                 <width>91</width>
-                 <height>22</height>
+                 <width>16777215</width>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="baseSize">
                 <size>
-                 <width>91</width>
+                 <width>28</width>
                  <height>22</height>
                 </size>
                </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QLineEdit" name="lineEditBeta">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="label_109">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β(f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cm&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="12" column="3">
-              <widget class="QLabel" name="label_121">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="16" column="0">
-              <widget class="QLabel" name="label_158">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;d&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="label_95">
+             <item row="32" column="1">
+              <widget class="QLabel" name="label_418">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="53" column="0">
-              <widget class="QLabel" name="label_214">
+             <item row="18" column="1">
+              <widget class="QLabel" name="label_164">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cd,&amp;infin;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="16" column="3">
-              <widget class="QLabel" name="label_159">
+             <item row="8" column="3">
+              <widget class="QLabel" name="label_96">
                <property name="text">
-                <string>m</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="14" column="0">
-              <widget class="QLabel" name="labelAcs">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="17" column="3">
-              <widget class="QLabel" name="label_162">
-               <property name="text">
-                <string>m</string>
+                <string>MPa</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>
@@ -4244,84 +3669,18 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="18" column="1">
-              <widget class="QLabel" name="label_164">
+             <item row="6" column="3">
+              <widget class="QLabel" name="label_59">
                <property name="text">
-                <string>=</string>
+                <string>mm</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
                </property>
               </widget>
              </item>
-             <item row="46" column="0">
-              <widget class="QLabel" name="label_200">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β(f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cm&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="50" column="1">
-              <widget class="QLabel" name="label_439">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="33" column="0">
-              <widget class="QLabel" name="label_397">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m,02&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="13" column="0">
-              <widget class="QLabel" name="label_133">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;alpha;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;e&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="39" column="0">
-              <widget class="QLabel" name="label_412">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cm&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="14" column="1">
-              <widget class="QLabel" name="label_134">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="2">
-              <widget class="QLineEdit" name="lineEditAcc">
+             <item row="38" column="2">
+              <widget class="QLineEdit" name="lineEditH0">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4348,16 +3707,6 @@ pobróbce terminczej</string>
                </property>
                <property name="readOnly">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="22" column="3">
-              <widget class="QLabel" name="label_183">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
                </property>
               </widget>
              </item>
@@ -4392,23 +3741,6 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="3">
-              <widget class="QLabel" name="label_60">
-               <property name="text">
-                <string>mm</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="30" column="0">
-              <widget class="QLabel" name="label_404">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="2">
               <widget class="QLineEdit" name="lineEditAc">
                <property name="sizePolicy">
@@ -4440,42 +3772,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="15" column="0">
-              <widget class="QLabel" name="label_156">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="22" column="2">
-              <widget class="QLineEdit" name="lineEditSigmaPMax">
+             <item row="32" column="2">
+              <widget class="QLineEdit" name="lineEditPm01">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4505,75 +3803,10 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="52" column="0">
-              <widget class="QLabel" name="label_213">
+             <item row="16" column="0">
+              <widget class="QLabel" name="label_158">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cd0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QLabel" name="label_85">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="17" column="1">
-              <widget class="QLabel" name="label_160">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="26" column="3">
-              <widget class="QLabel" name="label_378">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="11" column="0">
-              <widget class="QLabel" name="label_118">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pov&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;κ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;d&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -4584,8 +3817,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="13" column="2">
-              <widget class="QLineEdit" name="lineEditAlphaE">
+             <item row="53" column="2">
+              <widget class="QLineEdit" name="lineEditEpsCDInf">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4615,200 +3848,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="44" column="0">
-              <widget class="QLabel" name="label_198">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t,t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="12" column="1">
-              <widget class="QLabel" name="label_120">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="22" column="1">
-              <widget class="QLabel" name="label_176">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="label_81">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="30" column="1">
-              <widget class="QLabel" name="label_405">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="label_108">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="47" column="0">
-              <widget class="QLabel" name="label_201">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>16777215</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;RH&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="3">
-              <widget class="QLabel" name="label_14">
-               <property name="text">
-                <string>m&lt;sup&gt;4&lt;/sup&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="54" column="0">
-              <widget class="QLabel" name="label_215">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;ca&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(&amp;infin;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="19" column="1">
-              <widget class="QLabel" name="label_166">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="43" column="0">
-              <widget class="QLabel" name="label_197">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>28</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;H&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="3">
-              <widget class="QLabel" name="label_379">
+             <item row="31" column="3">
+              <widget class="QLabel" name="label_408">
                <property name="text">
                 <string>kN</string>
                </property>
@@ -4817,15 +3858,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="48" column="1">
-              <widget class="QLabel" name="label_441">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="2">
-              <widget class="QLineEdit" name="lineEditSc">
+             <item row="57" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaPR">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4855,46 +3889,42 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="42" column="1">
-              <widget class="QLabel" name="label_432">
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
                <property name="text">
-                <string>=</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ρ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
-              <widget class="QLabel" name="label_102">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pd&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="20" column="3">
-              <widget class="QLabel" name="label_170">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="19" column="0">
-              <widget class="QLabel" name="label_168">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:super;&quot;&gt;d&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="40" column="0">
-              <widget class="QLabel" name="label_413">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="43" column="2">
-              <widget class="QLineEdit" name="lineEditBetaH">
+             <item row="51" column="2">
+              <widget class="QLineEdit" name="lineEditPhiT">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4924,31 +3954,41 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="50" column="0">
-              <widget class="QLabel" name="label_203">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="1">
-              <widget class="QLabel" name="label_101">
+             <item row="50" column="1">
+              <widget class="QLabel" name="label_439">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="51" column="1">
-              <widget class="QLabel" name="label_440">
-               <property name="text">
-                <string>=</string>
+             <item row="14" column="2">
+              <widget class="QLineEdit" name="lineEditAcs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-              </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="label_83">
-               <property name="text">
-                <string>=</string>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -4959,8 +3999,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="2">
-              <widget class="QLineEdit" name="lineEditFpd">
+             <item row="33" column="2">
+              <widget class="QLineEdit" name="lineEditPm02">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -4990,128 +4030,29 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="38" column="3">
-              <widget class="QLabel" name="label_409">
+             <item row="3" column="1">
+              <widget class="QLabel" name="label_83">
                <property name="text">
-                <string>mm</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
+                <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="44" column="2">
-              <widget class="QLineEdit" name="lineEditBetaC">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="3">
-              <widget class="QLabel" name="label_107">
+             <item row="35" column="1">
+              <widget class="QLabel" name="label_427">
                <property name="text">
-                <string>m</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
+                <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="19" column="2">
-              <widget class="QLineEdit" name="lineEditWdcs">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="35" column="2">
-              <widget class="QLineEdit" name="lineEditSigmaPM02">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="20" column="0">
-              <widget class="QLabel" name="label_171">
+             <item row="19" column="1">
+              <widget class="QLabel" name="label_166">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:super;&quot;&gt;g&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="2">
-              <widget class="QLineEdit" name="lineEditIc">
+             <item row="17" column="2">
+              <widget class="QLineEdit" name="lineEditZg">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5141,8 +4082,39 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="14" column="2">
-              <widget class="QLineEdit" name="lineEditAcs">
+             <item row="11" column="2">
+              <widget class="QLineEdit" name="lineEditNpov">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="55" column="2">
+              <widget class="QLineEdit" name="lineEditEpsCAT">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5206,57 +4178,39 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="26" column="1">
-              <widget class="QLabel" name="label_377">
+             <item row="32" column="0">
+              <widget class="QLabel" name="label_382">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;01&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QLabel" name="label_84">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="41" column="0">
-              <widget class="QLabel" name="label_414">
+             <item row="7" column="3">
+              <widget class="QLabel" name="label_60">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>mm</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
                </property>
               </widget>
              </item>
-             <item row="55" column="0">
-              <widget class="QLabel" name="label_216">
+             <item row="56" column="0">
+              <widget class="QLabel" name="label_217">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;ca&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="17" column="0">
-              <widget class="QLabel" name="label_161">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;g&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="43" column="1">
-              <widget class="QLabel" name="label_433">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="41" column="1">
-              <widget class="QLabel" name="label_431">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="51" column="0">
-              <widget class="QLabel" name="label_204">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t,t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="20" column="2">
-              <widget class="QLineEdit" name="lineEditWgcs">
+             <item row="35" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaPM02">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5286,18 +4240,41 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="labelAc">
+             <item row="17" column="1">
+              <widget class="QLabel" name="label_160">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="35" column="0">
+              <widget class="QLabel" name="label_398">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pm,02&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="45" column="0">
+              <widget class="QLabel" name="label_199">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
-               <property name="maximumSize">
+               <property name="minimumSize">
                 <size>
                  <width>28</width>
                  <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
                 </size>
                </property>
                <property name="baseSize">
@@ -5307,21 +4284,7 @@ pobróbce terminczej</string>
                 </size>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="31" column="1">
-              <widget class="QLabel" name="label_407">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="29" column="0">
-              <widget class="QLabel" name="label_400">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;&amp;sigma;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β(t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -5356,13 +4319,265 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="33" column="3">
-              <widget class="QLabel" name="label_426">
+             <item row="54" column="1">
+              <widget class="QLabel" name="label_444">
                <property name="text">
-                <string>kN</string>
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="19" column="3">
+              <widget class="QLabel" name="label_167">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="29" column="0">
+              <widget class="QLabel" name="label_400">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;&amp;sigma;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLabel" name="label_86">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="0">
+              <widget class="QLabel" name="label_122">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cc&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="33" column="0">
+              <widget class="QLabel" name="label_397">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m,02&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="56" column="1">
+              <widget class="QLabel" name="label_447">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="3">
+              <widget class="QLabel" name="label_14">
+               <property name="text">
+                <string>m&lt;sup&gt;4&lt;/sup&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QLineEdit" name="lineEditRho">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="41" column="0">
+              <widget class="QLabel" name="label_414">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="19" column="2">
+              <widget class="QLineEdit" name="lineEditWdcs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="24" column="1">
+              <widget class="QLabel" name="label_374">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="53" column="1">
+              <widget class="QLabel" name="label_443">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="35" column="3">
+              <widget class="QLabel" name="label_399">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="17" column="0">
+              <widget class="QLabel" name="label_161">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;g&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="29" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaSigma">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="38" column="0">
+              <widget class="QLabel" name="label_410">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;h&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="46" column="1">
+              <widget class="QLabel" name="label_436">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QLabel" name="label_102">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pd&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="22" column="3">
+              <widget class="QLabel" name="label_183">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="57" column="1">
+              <widget class="QLabel" name="label_446">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -5397,44 +4612,6 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="8" column="2">
-              <widget class="QLineEdit" name="lineEditFcd">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QLabel" name="label_82">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
              <item row="50" column="2">
               <widget class="QLineEdit" name="lineEditPhi0">
                <property name="sizePolicy">
@@ -5466,338 +4643,15 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="16" column="1">
-              <widget class="QLabel" name="label_157">
+             <item row="20" column="0">
+              <widget class="QLabel" name="label_171">
                <property name="text">
-                <string>=</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:super;&quot;&gt;g&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="label_13">
-               <property name="text">
-                <string>m&lt;sup&gt;2&lt;/sup&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="48" column="2">
-              <widget class="QLineEdit" name="lineEditBetaAS">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="39" column="2">
-              <widget class="QLineEdit" name="lineEditFcm">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="41" column="2">
-              <widget class="QLineEdit" name="lineEditCoeffA2">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="3">
-              <widget class="QLabel" name="label_59">
-               <property name="text">
-                <string>mm</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="27" column="2">
-              <widget class="QLineEdit" name="lineEditPM0">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="32" column="1">
-              <widget class="QLabel" name="label_418">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="3">
-              <widget class="QLabel" name="label_100">
-               <property name="text">
-                <string>MPa</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="39" column="1">
-              <widget class="QLabel" name="label_429">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="33" column="2">
-              <widget class="QLineEdit" name="lineEditPm02">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="34" column="3">
-              <widget class="QLabel" name="label_424">
-               <property name="text">
-                <string>kN</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="19" column="3">
-              <widget class="QLabel" name="label_167">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="textFormat">
-                <enum>Qt::AutoText</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="1">
-              <widget class="QLabel" name="label_84">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="45" column="2">
-              <widget class="QLineEdit" name="lineEditBetaT0">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="38" column="2">
-              <widget class="QLineEdit" name="lineEditH0">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="13" column="1">
-              <widget class="QLabel" name="label_132">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="24" column="2">
-              <widget class="QLineEdit" name="lineEditP0max">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="baseSize">
-                <size>
-                 <width>91</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="readOnly">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="16" column="2">
-              <widget class="QLineEdit" name="lineEditZd">
+             <item row="47" column="2">
+              <widget class="QLineEdit" name="lineEditBetaRH">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5858,57 +4712,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="26" column="0">
-              <widget class="QLabel" name="label_376">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pm0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="56" column="0">
-              <widget class="QLabel" name="label_217">
-               <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-              </widget>
-             </item>
-             <item row="52" column="1">
-              <widget class="QLabel" name="label_442">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="53" column="1">
-              <widget class="QLabel" name="label_443">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="54" column="1">
-              <widget class="QLabel" name="label_444">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="55" column="1">
-              <widget class="QLabel" name="label_445">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="56" column="1">
-              <widget class="QLabel" name="label_446">
-               <property name="text">
-                <string>=</string>
-               </property>
-              </widget>
-             </item>
-             <item row="52" column="2">
-              <widget class="QLineEdit" name="lineEditEpsCD">
+             <item row="9" column="2">
+              <widget class="QLineEdit" name="lineEditFpd">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5938,8 +4743,8 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="53" column="2">
-              <widget class="QLineEdit" name="lineEditEpsCDInf">
+             <item row="3" column="2">
+              <widget class="QLineEdit" name="lineEditKappa">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -5969,8 +4774,35 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="54" column="2">
-              <widget class="QLineEdit" name="lineEditEpsCA">
+             <item row="30" column="3">
+              <widget class="QLabel" name="label_403">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="38" column="3">
+              <widget class="QLabel" name="label_409">
+               <property name="text">
+                <string>mm</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="48" column="1">
+              <widget class="QLabel" name="label_441">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="lineEditBeta">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6000,8 +4832,516 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="55" column="2">
-              <widget class="QLineEdit" name="lineEditEpsCAT">
+             <item row="7" column="1">
+              <widget class="QLabel" name="label_87">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="18" column="0">
+              <widget class="QLabel" name="label_163">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="39" column="0">
+              <widget class="QLabel" name="label_412">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;f&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cm&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="34" column="3">
+              <widget class="QLabel" name="label_424">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="2">
+              <widget class="QLineEdit" name="lineEditPM0">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="1">
+              <widget class="QLabel" name="label_381">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="34" column="1">
+              <widget class="QLabel" name="label_423">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="51" column="1">
+              <widget class="QLabel" name="label_440">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_81">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="47" column="0">
+              <widget class="QLabel" name="label_201">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;RH&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="33" column="3">
+              <widget class="QLabel" name="label_426">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="1">
+              <widget class="QLabel" name="label_134">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_12">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;I&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="31" column="1">
+              <widget class="QLabel" name="label_407">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="16" column="3">
+              <widget class="QLabel" name="label_159">
+               <property name="text">
+                <string>m</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="52" column="0">
+              <widget class="QLabel" name="label_213">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cd0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="24" column="3">
+              <widget class="QLabel" name="label_375">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="0">
+              <widget class="QLabel" name="label_156">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="29" column="3">
+              <widget class="QLabel" name="label_402">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="39" column="3">
+              <widget class="QLabel" name="label_411">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="lineEditSc">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="19" column="0">
+              <widget class="QLabel" name="label_168">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;w&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:super;&quot;&gt;d&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="0">
+              <widget class="QLabel" name="label_118">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;n&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pov&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="24" column="2">
+              <widget class="QLineEdit" name="lineEditP0max">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="31" column="0">
+              <widget class="QLabel" name="label_406">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ΔP&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;&amp;theta;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="54" column="0">
+              <widget class="QLabel" name="label_215">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;ca&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(&amp;infin;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="20" column="3">
+              <widget class="QLabel" name="label_170">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m&lt;span style=&quot; vertical-align:super;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="2">
+              <widget class="QLineEdit" name="lineEditScs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="16" column="2">
+              <widget class="QLineEdit" name="lineEditZd">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="38" column="1">
+              <widget class="QLabel" name="label_428">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="53" column="0">
+              <widget class="QLabel" name="label_214">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cd,&amp;infin;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="22" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaPMax">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="45" column="1">
+              <widget class="QLabel" name="label_435">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="43" column="1">
+              <widget class="QLabel" name="label_433">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="40" column="0">
+              <widget class="QLabel" name="label_413">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="3">
+              <widget class="QLabel" name="label_100">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="label_95">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="20" column="2">
+              <widget class="QLineEdit" name="lineEditWgcs">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6062,11 +5402,825 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
+             <item row="27" column="0">
+              <widget class="QLabel" name="label_380">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="15" column="1">
+              <widget class="QLabel" name="label_155">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="2">
+              <widget class="QLineEdit" name="lineEditAlphaE">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="44" column="1">
+              <widget class="QLabel" name="label_434">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="49" column="1">
+              <widget class="QLabel" name="label_438">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="44" column="2">
+              <widget class="QLineEdit" name="lineEditBetaC">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="2">
+              <widget class="QLineEdit" name="lineEditCZrbFinal">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="55" column="0">
+              <widget class="QLabel" name="label_216">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ε&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;ca&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="52" column="1">
+              <widget class="QLabel" name="label_442">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="1">
+              <widget class="QLabel" name="label_132">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="30" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0">
+              <widget class="QLabel" name="label_109">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;z&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QLabel" name="label_101">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="2">
+              <widget class="QLineEdit" name="lineEditFcd">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QLabel" name="label_108">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="41" column="1">
+              <widget class="QLabel" name="label_431">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="34" column="0">
+              <widget class="QLabel" name="label_422">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ΔP&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;el&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="57" column="0">
+              <widget class="QLabel" name="label_220">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,qp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="40" column="1">
+              <widget class="QLabel" name="label_430">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="55" column="1">
+              <widget class="QLabel" name="label_445">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="46" column="2">
+              <widget class="QLineEdit" name="lineEditBetaFcm">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="31" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaPtheta">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QLabel" name="label_85">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="0">
+              <widget class="QLabel" name="label_133">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;alpha;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;e&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="3">
+              <widget class="QLabel" name="label_135">
+               <property name="text">
+                <string>m&lt;sup&gt;2&lt;/sup&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="26" column="1">
+              <widget class="QLabel" name="label_377">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3">
+              <widget class="QLabel" name="label_13">
+               <property name="text">
+                <string>m&lt;sup&gt;2&lt;/sup&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_80">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="27" column="3">
+              <widget class="QLabel" name="label_379">
+               <property name="text">
+                <string>kN</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="47" column="1">
+              <widget class="QLabel" name="label_437">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="42" column="0">
+              <widget class="QLabel" name="label_415">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;a&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;κ&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="34" column="2">
+              <widget class="QLineEdit" name="lineEditDeltaPel">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="50" column="0">
+              <widget class="QLabel" name="label_203">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="22" column="0">
+              <widget class="QLabel" name="label_175">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;sigma;&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;p,max&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="12" column="2">
+              <widget class="QLineEdit" name="lineEditAcc">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="26" column="0">
+              <widget class="QLabel" name="label_376">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pm0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(x)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="20" column="1">
+              <widget class="QLabel" name="label_169">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="2">
+              <widget class="QLineEdit" name="lineEditZ">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="30" column="0">
+              <widget class="QLabel" name="label_404">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;&amp;Delta;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="17" column="3">
+              <widget class="QLabel" name="label_162">
+               <property name="text">
+                <string>m</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_61">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>0</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;C&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;n,zbr&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="44" column="0">
+              <widget class="QLabel" name="label_198">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;β&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t,t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_82">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="51" column="0">
+              <widget class="QLabel" name="label_204">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;(t,t&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="18" column="2">
+              <widget class="QLineEdit" name="lineEditIcs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="49" column="0">
+              <widget class="QLabel" name="label_202">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Φ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;RH&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="0">
+              <widget class="QLabel" name="labelAcs">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>28</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;A&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;cs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="58" column="0">
+              <widget class="QLabel" name="label_221">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Δσ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;pr,2&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="58" column="1">
+              <widget class="QLabel" name="label_448">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="58" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaPR2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QLineEdit" name="lineEditMeqp">
+        <property name="geometry">
+         <rect>
+          <x>1100</x>
+          <y>100</y>
+          <width>74</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_218">
+        <property name="geometry">
+         <rect>
+          <x>1010</x>
+          <y>100</y>
+          <width>51</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;M&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;Eqp,qp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_219">
+        <property name="geometry">
+         <rect>
+          <x>1080</x>
+          <y>100</y>
+          <width>8</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_383">
+        <property name="geometry">
+         <rect>
+          <x>1180</x>
+          <y>100</y>
+          <width>31</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>kNm</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
        </widget>
       </widget>
      </widget>
@@ -6078,7 +6232,7 @@ pobróbce terminczej</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>948</width>
+     <width>1611</width>
      <height>21</height>
     </rect>
    </property>
