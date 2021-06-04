@@ -3059,7 +3059,7 @@ pobróbce terminczej</string>
          <rect>
           <x>640</x>
           <y>10</y>
-          <width>227</width>
+          <width>242</width>
           <height>501</height>
          </rect>
         </property>
@@ -3075,7 +3075,7 @@ pobróbce terminczej</string>
           <widget class="QScrollArea" name="scrollArea_2">
            <property name="minimumSize">
             <size>
-             <width>225</width>
+             <width>240</width>
              <height>0</height>
             </size>
            </property>
@@ -3086,9 +3086,9 @@ pobróbce terminczej</string>
             <property name="geometry">
              <rect>
               <x>0</x>
-              <y>-1045</y>
-              <width>209</width>
-              <height>1524</height>
+              <y>-1103</y>
+              <width>224</width>
+              <height>1580</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_18">
@@ -3392,6 +3392,37 @@ pobróbce terminczej</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="60" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaPCSR">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -3858,6 +3889,13 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
+             <item row="60" column="1">
+              <widget class="QLabel" name="label_453">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
              <item row="31" column="3">
               <widget class="QLabel" name="label_408">
                <property name="text">
@@ -4188,10 +4226,48 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
+             <item row="59" column="2">
+              <widget class="QLineEdit" name="lineEditSigmaCQP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="baseSize">
+                <size>
+                 <width>91</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
              <item row="32" column="0">
               <widget class="QLabel" name="label_382">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;P&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;m,&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;01&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
+             <item row="59" column="0">
+              <widget class="QLabel" name="label_222">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;C,qp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
@@ -4549,6 +4625,16 @@ pobróbce terminczej</string>
              </item>
              <item row="22" column="3">
               <widget class="QLabel" name="label_183">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="60" column="3">
+              <widget class="QLabel" name="label_454">
                <property name="text">
                 <string>MPa</string>
                </property>
@@ -4967,6 +5053,16 @@ pobróbce terminczej</string>
               <widget class="QLabel" name="label_81">
                <property name="text">
                 <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="59" column="3">
+              <widget class="QLabel" name="label_452">
+               <property name="text">
+                <string>MPa</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
                </property>
               </widget>
              </item>
@@ -5467,6 +5563,13 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
+             <item row="60" column="0">
+              <widget class="QLabel" name="label_223">
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Δσ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;p,c+s+r&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+              </widget>
+             </item>
              <item row="27" column="0">
               <widget class="QLabel" name="label_380">
                <property name="text">
@@ -5604,6 +5707,13 @@ pobróbce terminczej</string>
              </item>
              <item row="13" column="1">
               <widget class="QLabel" name="label_132">
+               <property name="text">
+                <string>=</string>
+               </property>
+              </widget>
+             </item>
+             <item row="59" column="1">
+              <widget class="QLabel" name="label_451">
                <property name="text">
                 <string>=</string>
                </property>
@@ -6172,22 +6282,22 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="59" column="0">
-              <widget class="QLabel" name="label_222">
+             <item row="61" column="0">
+              <widget class="QLabel" name="label_224">
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;σ&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;C,qp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;ΔP&lt;/span&gt;&lt;span style=&quot; font-size:12pt; vertical-align:sub;&quot;&gt;c+s+r&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
               </widget>
              </item>
-             <item row="59" column="1">
-              <widget class="QLabel" name="label_451">
+             <item row="61" column="1">
+              <widget class="QLabel" name="label_455">
                <property name="text">
                 <string>=</string>
                </property>
               </widget>
              </item>
-             <item row="59" column="2">
-              <widget class="QLineEdit" name="lineEditSigmaCQP">
+             <item row="61" column="2">
+              <widget class="QLineEdit" name="lineEditPcsr">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6217,10 +6327,10 @@ pobróbce terminczej</string>
                </property>
               </widget>
              </item>
-             <item row="59" column="3">
-              <widget class="QLabel" name="label_452">
+             <item row="61" column="3">
+              <widget class="QLabel" name="label_456">
                <property name="text">
-                <string>MPa</string>
+                <string>kN</string>
                </property>
                <property name="textFormat">
                 <enum>Qt::AutoText</enum>

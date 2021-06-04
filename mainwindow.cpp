@@ -147,6 +147,8 @@ void MainWindow::init(){
     ui->lineEditSigmaPR->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPR2->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaCQP->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPCSR->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPcsr->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -447,6 +449,8 @@ void MainWindow::clearResults(){
     ui->lineEditSigmaPR->setText("");
     ui->lineEditSigmaPR2->setText("");
     ui->lineEditSigmaCQP->setText("");
+    ui->lineEditSigmaPCSR->setText("");
+    ui->lineEditPcsr->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -815,10 +819,17 @@ void MainWindow::startComputations(){
         ui->lineEditSigmaPR->setText(locale.toString(sigma[0]));
         ui->lineEditSigmaPR2->setText(locale.toString(sigma[1]));
         ui->lineEditSigmaCQP->setText(locale.toString(sigma[2]));
+        ui->lineEditSigmaPCSR->setText(locale.toString(sigma[3]));
         for(double n : sigma){
             if(!checkThatResultsAreNumbers(n)){
                 return;
             }
+        }
+
+        double paramPcsr = data.calculatePcsr();
+        ui->lineEditPcsr->setText(locale.toString(paramPcsr));
+        if(!checkThatResultsAreNumbers(paramPcsr)){
+            return;
         }
 
         setFinalCValue();
