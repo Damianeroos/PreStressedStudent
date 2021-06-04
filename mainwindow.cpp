@@ -146,6 +146,7 @@ void MainWindow::init(){
     ui->lineEditEpsCS->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPR->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPR2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaCQP->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -445,6 +446,7 @@ void MainWindow::clearResults(){
     ui->lineEditEpsCS->setText("");
     ui->lineEditSigmaPR->setText("");
     ui->lineEditSigmaPR2->setText("");
+    ui->lineEditSigmaCQP->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -812,6 +814,7 @@ void MainWindow::startComputations(){
                                                          locale.toDouble(ui->lineEditP1000->text()));
         ui->lineEditSigmaPR->setText(locale.toString(sigma[0]));
         ui->lineEditSigmaPR2->setText(locale.toString(sigma[1]));
+        ui->lineEditSigmaCQP->setText(locale.toString(sigma[2]));
         for(double n : sigma){
             if(!checkThatResultsAreNumbers(n)){
                 return;
