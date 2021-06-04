@@ -124,6 +124,8 @@ public:
     std::vector<double> calculateEpsilons(double fcmo, double kh);
     std::vector<double> calculateSigmas(double Meqp, double p1000);
     double calculatePcsr();
+    double calculatePcsr(double sigmaPCSR);
+    double calculatePmt();
 
 private:
     enum a {a1, a2, a3};
@@ -225,8 +227,9 @@ private:
     double paramAlphaDS2;
     std::vector<double> paramsEpsilons; //{epsCD, epsCDInf, epsCA, epsCAT, epsCS}
 
-    std::vector<double> paramsSigmas; //{sigmaPRQP, sigmaPR2, sigmaCQP, sigmaPCSR}
+    std::vector<double> paramsSigmas; //{sigmaPRQP, sigmaPR2, sigmaCQP, sigmaPCSR, sigmaPMT}
     double paramPcsr;
+    double paramPmt;
 
 };
 

@@ -149,6 +149,8 @@ void MainWindow::init(){
     ui->lineEditSigmaCQP->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPCSR->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditPcsr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPmt->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaPMT->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -451,6 +453,8 @@ void MainWindow::clearResults(){
     ui->lineEditSigmaCQP->setText("");
     ui->lineEditSigmaPCSR->setText("");
     ui->lineEditPcsr->setText("");
+    ui->lineEditPmt->setText("");
+    ui->lineEditSigmaPMT->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -820,6 +824,7 @@ void MainWindow::startComputations(){
         ui->lineEditSigmaPR2->setText(locale.toString(sigma[1]));
         ui->lineEditSigmaCQP->setText(locale.toString(sigma[2]));
         ui->lineEditSigmaPCSR->setText(locale.toString(sigma[3]));
+        ui->lineEditSigmaPMT->setText(locale.toString(sigma[4]));
         for(double n : sigma){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -830,6 +835,19 @@ void MainWindow::startComputations(){
         ui->lineEditPcsr->setText(locale.toString(paramPcsr));
         if(!checkThatResultsAreNumbers(paramPcsr)){
             return;
+        }
+
+        double paramPmt = data.calculatePmt();
+        ui->lineEditPmt->setText(locale.toString(paramPmt));
+        if(!checkThatResultsAreNumbers(paramPmt)){
+            return;
+        }
+        if(sigma[4] > 0.65*locale.toDouble(ui->lineEditFpk->text())){
+            msg.setText("<p>Warunek &sigma;<sub>pmt</sub> &le; 0.65*f<sub>pk</sub> nie został spełniony.</p>"
+                        "<p>&sigma;<sub>pmt</sub> = " + QString::number(sigma[4])+ " MPa</p>"
+                        "<p>0.65*f<sub>pk</sub> = " + QString::number(0.65*locale.toDouble(ui->lineEditFpk->text()))+ " MPa</p>");
+            msg.setIcon(QMessageBox::Critical);
+            msg.exec();
         }
 
         setFinalCValue();
