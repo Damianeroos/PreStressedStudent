@@ -126,6 +126,14 @@ public:
     double calculatePcsr();
     double calculatePcsr(double sigmaPCSR);
     double calculatePmt();
+    std::vector<double> calculateXs(double Xi, double ad, double ag, double areaApLower, double areaApUpper);
+    double getMrd() const {return paramMrd;}
+    std::pair<double, double> calculatePk(double rSup, double rInf);
+    double calculateEceff();
+    double calculateB();
+    std::pair<double, double> calculateA(double Meqp_2, double leff);
+    double calculateSigmaCpinf();
+    double calculateMcr(double fctm);
 
 private:
     enum a {a1, a2, a3};
@@ -230,7 +238,13 @@ private:
     std::vector<double> paramsSigmas; //{sigmaPRQP, sigmaPR2, sigmaCQP, sigmaPCSR, sigmaPMT}
     double paramPcsr;
     double paramPmt;
-
+    double paramSigmaPM02;
+    std::vector<double> paramsXs; //{xSPR, xEFF, xlim}
+    double paramMrd;
+    std::pair<double, double> paramsPk;
+    double paramEceff;
+    double paramB;
+    double paramSigmaCpinf;
 };
 
 int calculateCmin(double cMinB,int cMinDur, double cDurY, double cDurSt, double cDurAdd);

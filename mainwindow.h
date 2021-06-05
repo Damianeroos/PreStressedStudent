@@ -52,6 +52,8 @@ private:
     double computeTeq();
     double computeDeltaT(bool withThermalTreatment, int initialT = 20);
     double getSumT();
+    double getAreaApLower();
+    double getAreaApUpper();
 
 public slots:
     void startComputations();

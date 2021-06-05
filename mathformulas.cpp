@@ -218,7 +218,8 @@ double mathFormulas::calculatePm02()
 
 double mathFormulas::calculateSigmaPm02()
 {
-    return (paramPm02 * 0.001) / areaApc;
+    paramSigmaPM02 = (paramPm02 * 0.001) / areaApc;
+    return  paramSigmaPM02;
 }
 
 double mathFormulas::calculateH0()
@@ -358,6 +359,79 @@ double mathFormulas::calculatePmt()
 {
     paramPmt = paramPm02 - paramPcsr;
     return paramPmt;
+}
+
+std::vector<double> mathFormulas::calculateXs(double Xi, double ad, double ag, double areaApLower, double areaApUpper)
+{
+    std::vector<double> x(3, 0.0);
+
+    x[0] = (paramFpd*areaApc)/(paramFcd*paramB1S);
+
+    if(x[0] <= paramH1S){
+        x[1] = x[0];
+    }
+    else{
+        double l = paramFpd*areaApLower-paramFcd*paramH1S*(paramB1S-paramB3S)-areaApUpper*(400-paramSigmaPM02);
+        x[1] = l / (paramB3S*paramFcd);
+    }
+
+    double d = paramH1S+paramH2S+paramH3S-(ad+ag);
+
+    x[2] = d*Xi;
+
+    paramMrd = (paramB1S-paramB3S)*paramH1S*paramFcd*(d-0.5*paramH1S)+paramB3S*x[1]*paramFcd*(d-0.5*x[1])+
+            areaApUpper*(400-paramSigmaPM02)*(d-ag);
+
+    paramMrd *= 1000;
+
+    paramsXs = x;
+    return paramsXs;
+}
+
+std::pair<double, double> mathFormulas::calculatePk(double rSup, double rInf)
+{
+    std::pair<double, double> p;
+
+    p.first = rSup*paramPmt;
+    p.second = rInf*paramPmt;
+
+    paramsPk = p;
+    return paramsPk;
+}
+
+double mathFormulas::calculateEceff()
+{
+    paramEceff = paramEcm/(1+paramsPhis[p0T]);
+    return paramEceff;
+}
+
+double mathFormulas::calculateB()
+{
+    paramB = paramEceff*paramIcs*1000;
+    return paramB;
+}
+
+std::pair<double, double> mathFormulas::calculateA(double Meqp_2, double leff)
+{
+    std::pair<double, double> a;
+    a.first = (5.0/48.0)*Meqp_2*pow(leff,2)*(1/paramB)-(1.0/8.0)*paramsPk.second*paramZpc*pow(leff,2)*(1/paramB);
+    a.first *= 1000;
+    a.second = pow(leff,2)/250;
+    a.second *= 1000;
+
+    return a;
+}
+
+double mathFormulas::calculateSigmaCpinf()
+{
+    paramSigmaCpinf = paramsPk.second/areaAcs + (paramsPk.second*paramZpc*paramZd)/paramIcs;
+    paramSigmaCpinf /= 1000;
+    return paramSigmaCpinf;
+}
+
+double mathFormulas::calculateMcr(double fctm)
+{
+    return ((paramIcs/paramZd)*(paramSigmaCpinf+fctm))*1000;
 }
 
 std::vector<double> mathFormulas::calculatePhis()

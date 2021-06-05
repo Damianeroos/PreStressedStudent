@@ -63,7 +63,12 @@ void MainWindow::init(){
     ui->lineEditU->setValidator(doubleValidator4);
     ui->lineEditFcmo->setValidator(doubleValidator4);
     ui->lineEditKh->setValidator(doubleValidator4);
-    ui->lineEditMeqp->setValidator(doubleValidator4);
+    ui->lineEditXi->setValidator(doubleValidator4);
+    ui->lineEditRsup->setValidator(doubleValidator4);
+    ui->lineEditRinf->setValidator(doubleValidator4);
+    ui->lineEditMeqp_2->setValidator(doubleValidator4);
+    ui->lineEditLeff->setValidator(doubleValidator4);
+    ui->lineEditFctm->setValidator(doubleValidator4);
 
     QIntValidator* intValidator = new QIntValidator(this);
     ui->lineEditT0->setValidator(intValidator);
@@ -151,6 +156,18 @@ void MainWindow::init(){
     ui->lineEditPcsr->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditPmt->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaPMT->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditXeffspr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditXeff->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditXefflim->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditMrd->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPksup->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditPkinf->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditEceff->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditB->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditA_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditAlim->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmacpinf->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditMcr->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -357,6 +374,9 @@ void MainWindow::initParameters(){
     ui->lineEditFcmo->setText("10");
     ui->lineEditKh->setText("0,883");
 
+    ui->lineEditRsup->setText("1,05");
+    ui->lineEditRinf->setText("0,95");
+
     addRowTable(ui->tableWidgetLower, 6, 0.08);
     addRowTable(ui->tableWidgetLower, 6, 0.12);
     addRowTable(ui->tableWidgetLower, 6, 0.16);
@@ -389,6 +409,11 @@ void MainWindow::initParameters(){
     ui->lineEditAlphaDS2->setText("0,12");
 
     ui->lineEditMeqp->setText("2433,738");
+
+    ui->lineEditXi->setText("0,433");
+    ui->lineEditMeqp_2->setText("2936,8");
+    ui->lineEditLeff->setText("11,78");
+    ui->lineEditFctm->setText("3,2");
 
     computeC();
     computeCSS();
@@ -455,6 +480,19 @@ void MainWindow::clearResults(){
     ui->lineEditPcsr->setText("");
     ui->lineEditPmt->setText("");
     ui->lineEditSigmaPMT->setText("");
+    ui->lineEditXeffspr->setText("");
+    ui->lineEditXeff->setText("");
+    ui->lineEditXefflim->setText("");
+    ui->labelProfile->setText("");
+    ui->lineEditMrd->setText("");
+    ui->lineEditPksup->setText("");
+    ui->lineEditPkinf->setText("");
+    ui->lineEditEceff->setText("");
+    ui->lineEditB->setText("");
+    ui->lineEditA_2->setText("");
+    ui->lineEditAlim->setText("");
+    ui->lineEditSigmacpinf->setText("");
+    ui->lineEditMcr->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
@@ -850,6 +888,74 @@ void MainWindow::startComputations(){
             msg.exec();
         }
 
+        std::vector<double> x = data.calculateXs(locale.toDouble(ui->lineEditXi->text()),
+                                                 locale.toDouble(getStringFromTable(ui->tableWidgetLower,0,2)),
+                                                 locale.toDouble(getStringFromTable(ui->tableWidgetUpper,0,2)),
+                                                 getAreaApLower(),
+                                                 getAreaApUpper());
+        ui->lineEditXeffspr->setText(locale.toString(x[0]));
+        ui->lineEditXeff->setText(locale.toString(x[1]));
+        ui->lineEditXefflim->setText(locale.toString(x[2]));
+        for(double n : x){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+        if(x[0]<=locale.toDouble(ui->lineEditH1S->text())){
+            ui->labelProfile->setText("PRZEKRÓJ POZORNIE TEOWY");
+        }
+        else{
+            ui->labelProfile->setText("PRZEKRÓJ RZECZYWIŚCIE TEOWY");
+        }
+
+        double paramMrd = data.getMrd();
+        ui->lineEditMrd->setText(locale.toString(paramMrd));
+        if(!checkThatResultsAreNumbers(paramMrd)){
+            return;
+        }
+
+        std::pair<double, double> pk = data.calculatePk(locale.toDouble(ui->lineEditRsup->text()),
+                                                        locale.toDouble(ui->lineEditRinf->text())
+                                                        );
+        ui->lineEditPksup->setText(locale.toString(pk.first));
+        ui->lineEditPkinf->setText(locale.toString(pk.second));
+        if(!(checkThatResultsAreNumbers(pk.first) || checkThatResultsAreNumbers(pk.second))){
+            return;
+        }
+
+        double Eceff = data.calculateEceff();
+        ui->lineEditEceff->setText(locale.toString(Eceff));
+        if(!checkThatResultsAreNumbers(Eceff)){
+            return;
+        }
+
+        double B = data.calculateB();
+        ui->lineEditB->setText(locale.toString(B));
+        if(!checkThatResultsAreNumbers(B)){
+            return;
+        }
+
+        std::pair<double, double> aa = data.calculateA(locale.toDouble(ui->lineEditMeqp_2->text()),
+                                                        locale.toDouble(ui->lineEditLeff->text())
+                                                        );
+        ui->lineEditA_2->setText(locale.toString(aa.first));
+        ui->lineEditAlim->setText(locale.toString(aa.second));
+        if(!(checkThatResultsAreNumbers(aa.first) || checkThatResultsAreNumbers(aa.second))){
+            return;
+        }
+
+        double sigmaCpinf = data.calculateSigmaCpinf();
+        ui->lineEditSigmacpinf->setText(locale.toString(sigmaCpinf));
+        if(!checkThatResultsAreNumbers(sigmaCpinf)){
+            return;
+        }
+
+        double mcr = data.calculateMcr(locale.toDouble(ui->lineEditFctm->text()));
+        ui->lineEditMcr->setText(locale.toString(mcr));
+        if(!checkThatResultsAreNumbers(mcr)){
+            return;
+        }
+
         setFinalCValue();
     }
 }
@@ -938,6 +1044,18 @@ double MainWindow::getSumT(){
         sumT += locale.toDouble(getStringFromTable(table,i,1));
     }
     return sumT;
+}
+
+double MainWindow::getAreaApLower()
+{
+    QLocale locale(QLocale::Polish);
+    return QString(ui->labelSumLowerTable->text()).toInt()*locale.toDouble(ui->lineEditApc0->text());
+}
+
+double MainWindow::getAreaApUpper()
+{
+    QLocale locale(QLocale::Polish);
+    return QString(ui->labelSumUpperTable->text()).toInt()*locale.toDouble(ui->lineEditApc0->text());
 }
 
 void MainWindow::calculateU()
@@ -1084,6 +1202,9 @@ void MainWindow::removeRowUpperTable(){
 }
 
 QString MainWindow::getStringFromTable(QTableWidget *table, int row, int column){
+    if(!table->rowCount()){
+        return QString("");
+    }
     return table->item(row, column)->text();
 }
 
