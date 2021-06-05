@@ -134,6 +134,9 @@ public:
     std::pair<double, double> calculateA(double Meqp_2, double leff);
     double calculateSigmaCpinf();
     double calculateMcr(double fctm);
+    std::vector<double> calculateStressesInSection_1(double Meqp);
+    std::vector<double> calculateStressesInSection_2(double Meqp, double fctm);
+    std::vector<double> calculateStressesInSection_3(double Meqp);
 
 private:
     enum a {a1, a2, a3};

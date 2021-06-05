@@ -434,6 +434,45 @@ double mathFormulas::calculateMcr(double fctm)
     return ((paramIcs/paramZd)*(paramSigmaCpinf+fctm))*1000;
 }
 
+std::vector<double> mathFormulas::calculateStressesInSection_1(double Meqp)
+{
+    std::vector<double> css(3, 0.0);
+
+    css[0] = 0.7*0.8*paramFck;
+    css[1] = paramsPk.first/areaAcs+(paramsPk.first*paramZpc*paramZd)/paramIcs;
+    css[1] /= 1000;
+    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*9.8)/paramIcs;
+    css[2] /= 1000;
+
+    return css;
+}
+
+std::vector<double> mathFormulas::calculateStressesInSection_2(double Meqp, double fctm)
+{
+    std::vector<double> css(3, 0.0);
+
+    css[0] = 0.7*0.8*fctm;
+    css[1] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs;
+    css[1] /= 1000;
+    css[2] = paramsPk.first/areaAcs+(paramsPk.first*paramZpc*paramZd)/paramIcs-(Meqp*paramZd)/paramIcs;
+    css[2] /= 1000;
+
+    return css;
+}
+
+std::vector<double> mathFormulas::calculateStressesInSection_3(double Meqp)
+{
+    std::vector<double> css(3, 0.0);
+
+    css[0] = 0.45*paramFck;
+    css[1] = paramsPk.first/areaAcs+(paramsPk.first*pow(paramZpc,2))/paramIcs;
+    css[1] /= 1000;
+    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*9.8)/paramIcs;
+    css[2] /= 1000;
+
+    return css;
+}
+
 std::vector<double> mathFormulas::calculatePhis()
 {
     std::vector<double> phi(3, 0.0);

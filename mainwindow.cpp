@@ -168,6 +168,15 @@ void MainWindow::init(){
     ui->lineEditAlim->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmacpinf->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditMcr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditF_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaDC_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaDC_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditF_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaGC_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaGC_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditF_3->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaCP_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaCP_2->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -493,11 +502,26 @@ void MainWindow::clearResults(){
     ui->lineEditAlim->setText("");
     ui->lineEditSigmacpinf->setText("");
     ui->lineEditMcr->setText("");
+    ui->lineEditF_1->setText("");
+    ui->lineEditSigmaDC_1->setText("");
+    ui->lineEditSigmaDC_2->setText("");
+    ui->lineEditF_2->setText("");
+    ui->lineEditSigmaGC_1->setText("");
+    ui->lineEditSigmaGC_2->setText("");
+    ui->lineEditF_3->setText("");
+    ui->lineEditSigmaCP_1->setText("");
+    ui->lineEditSigmaCP_2->setText("");
 
     ui->lineEditCNZbrOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNSprOO->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNZbrSS->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditCNZbr->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaDC_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaDC_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaGC_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaGC_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaCP_1->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditSigmaCP_2->setStyleSheet(lineEditBackgroundColorGrey);
     ui->labelSumUpperTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
     ui->labelSumLowerTable->setStyleSheet("QLabel { background-color : rgb(240, 240, 240);}");
 }
@@ -954,6 +978,73 @@ void MainWindow::startComputations(){
         ui->lineEditMcr->setText(locale.toString(mcr));
         if(!checkThatResultsAreNumbers(mcr)){
             return;
+        }
+
+        std::vector<double> css1 = data.calculateStressesInSection_1(locale.toDouble(ui->lineEditMeqp->text()));
+        ui->lineEditF_1->setText(locale.toString(css1[0]));
+        ui->lineEditSigmaDC_1->setText(locale.toString(css1[1]));
+        ui->lineEditSigmaDC_2->setText(locale.toString(css1[2]));
+        for(double n : css1){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+        if(css1[0]>css1[1]){
+           ui->lineEditSigmaDC_1->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaDC_1->setStyleSheet(lineEditBackgroundColorRed);
+        }
+        if(css1[0]>css1[2]){
+           ui->lineEditSigmaDC_2->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaDC_2->setStyleSheet(lineEditBackgroundColorRed);
+        }
+
+        std::vector<double> css2 = data.calculateStressesInSection_2(locale.toDouble(ui->lineEditMeqp->text()),
+                                                                     locale.toDouble(ui->lineEditFctm->text()));
+        ui->lineEditF_2->setText(locale.toString(css2[0]));
+        ui->lineEditSigmaGC_1->setText(locale.toString(css2[1]));
+        ui->lineEditSigmaGC_2->setText(locale.toString(css2[2]));
+        for(double n : css2){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+        if(css2[0]>css2[1]){
+           ui->lineEditSigmaGC_1->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaGC_1->setStyleSheet(lineEditBackgroundColorRed);
+        }
+        if(css2[0]>css2[2]){
+           ui->lineEditSigmaGC_2->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaGC_2->setStyleSheet(lineEditBackgroundColorRed);
+        }
+
+        std::vector<double> css3 = data.calculateStressesInSection_3(locale.toDouble(ui->lineEditMeqp->text()));
+        ui->lineEditF_3->setText(locale.toString(css3[0]));
+        ui->lineEditSigmaCP_1->setText(locale.toString(css3[1]));
+        ui->lineEditSigmaCP_2->setText(locale.toString(css3[2]));
+        for(double n : css3){
+            if(!checkThatResultsAreNumbers(n)){
+                return;
+            }
+        }
+        if(css3[0]>css3[1]){
+           ui->lineEditSigmaCP_1->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaCP_1->setStyleSheet(lineEditBackgroundColorRed);
+        }
+        if(css3[0]>css3[2]){
+           ui->lineEditSigmaCP_2->setStyleSheet(lineEditBackgroundColorGreen);
+        }
+        else{
+            ui->lineEditSigmaCP_2->setStyleSheet(lineEditBackgroundColorRed);
         }
 
         setFinalCValue();
