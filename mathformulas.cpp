@@ -414,9 +414,10 @@ double mathFormulas::calculateB()
 std::pair<double, double> mathFormulas::calculateA(double Meqp_2, double leff)
 {
     std::pair<double, double> a;
-    a.first = (5.0/48.0)*Meqp_2*pow(leff,2)*(1/paramB)-(1.0/8.0)*paramsPk.second*paramZpc*pow(leff,2)*(1/paramB);
+
+    a.first = (5.0/48.0)*(Meqp_2/1000)*pow(leff,2)*(1.0/paramB)-(1.0/8.0)*(paramsPk.second/1000)*paramZpc*pow(leff,2)*(1.0/paramB);
     a.first *= 1000;
-    a.second = pow(leff,2)/250;
+    a.second = leff/250;
     a.second *= 1000;
 
     return a;
@@ -441,7 +442,7 @@ std::vector<double> mathFormulas::calculateStressesInSection_1(double Meqp)
     css[0] = 0.7*0.8*paramFck;
     css[1] = paramsPk.first/areaAcs+(paramsPk.first*paramZpc*paramZd)/paramIcs;
     css[1] /= 1000;
-    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*9.8)/paramIcs;
+    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*paramZg)/paramIcs;
     css[2] /= 1000;
 
     return css;
@@ -467,7 +468,7 @@ std::vector<double> mathFormulas::calculateStressesInSection_3(double Meqp)
     css[0] = 0.45*paramFck;
     css[1] = paramsPk.first/areaAcs+(paramsPk.first*pow(paramZpc,2))/paramIcs;
     css[1] /= 1000;
-    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*9.8)/paramIcs;
+    css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*paramZg)/paramIcs;
     css[2] /= 1000;
 
     return css;
