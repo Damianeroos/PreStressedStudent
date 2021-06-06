@@ -9,7 +9,6 @@
 #include "arrays.h"
 #include "mainwindow.h"
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -329,6 +328,8 @@ void MainWindow::init(){
 
     QObject::connect(ui->comboBoxCement, SIGNAL(currentIndexChanged(int)),
                      this, SLOT(setAlphaCoeffCement(int)));
+    QObject::connect(ui->radioButtonPrec, SIGNAL(clicked(bool)),
+                     this, SLOT(setVisibilityOfPrecSpinBox(bool)));
 
 }
 
@@ -528,6 +529,8 @@ void MainWindow::clearResults(){
 
 void MainWindow::startComputations(){
     QLocale locale(QLocale::Polish);
+    locale.setNumberOptions(QLocale::IncludeTrailingZeroesAfterDot);
+
     if(!checkThatTypedArgumentsAreValid()){
         msg.setText("Please fill all parameters");
         msg.setIcon(QMessageBox::Warning);
@@ -569,8 +572,21 @@ void MainWindow::startComputations(){
                           locale.toDouble(ui->lineEditAlphaDS1->text()),
                           locale.toDouble(ui->lineEditAlphaDS2->text())); //casting from years to days
 
+        //setting precision
+        int prec;
+        if(ui->radioButtonPrec->isChecked()){
+            prec = ui->spinBoxPrec->value();
+            data.setPrecision(prec);
+        }
+        else{
+            prec = 6;
+            data.setPrecision(0);
+        }
+
+
+
         double areaAc = data.calculateAreaAc();
-        ui->lineEditAc->setText(locale.toString(areaAc));
+        ui->lineEditAc->setText(locale.toString(areaAc,'g',prec+data.count_digit(areaAc)));
         if(!checkThatResultsAreNumbers(areaAc)){
             return;
         }
@@ -584,7 +600,7 @@ void MainWindow::startComputations(){
         }
 
         double paramBeta = data.calculateBeta();
-        ui->lineEditBeta->setText(locale.toString(paramBeta));
+        ui->lineEditBeta->setText(locale.toString(paramBeta,'g',prec+data.count_digit(paramBeta)));
         if(!checkThatResultsAreNumbers(paramBeta)){
             return;
         }
@@ -603,13 +619,13 @@ void MainWindow::startComputations(){
         }
 
         double paramSc = data.calculateCenterOfGravity();
-        ui->lineEditSc->setText(locale.toString(paramSc));
+        ui->lineEditSc->setText(locale.toString(paramSc,'g',prec+data.count_digit(paramSc)));
         if(!checkThatResultsAreNumbers(paramSc)){
             return;
         }
 
         double paramKappa = data.calculateKappa();
-        ui->lineEditKappa->setText(locale.toString(paramKappa));
+        ui->lineEditKappa->setText(locale.toString(paramKappa,'g',prec+data.count_digit(paramKappa)));
         if(!checkThatResultsAreNumbers(paramKappa)){
             return;
         }
@@ -622,36 +638,36 @@ void MainWindow::startComputations(){
         }
 
         double paramIc = data.calculateSecondMomentOfArea();
-        ui->lineEditIc->setText(locale.toString(paramIc));
+        ui->lineEditIc->setText(locale.toString(paramIc,'g',prec+data.count_digit(paramIc)));
         if(!checkThatResultsAreNumbers(paramIc)){
             return;
         }
 
         double paramRho = data.calculatePerformanceLimitIndicator();
-        ui->lineEditRho->setText(locale.toString(paramRho));
+        ui->lineEditRho->setText(locale.toString(paramRho,'g',prec+data.count_digit(paramRho)));
         if(!checkThatResultsAreNumbers(paramRho)){
             return;
         }
 
         double paramFcd = data.calculateFcd();
-        ui->lineEditFcd->setText(locale.toString(paramFcd));
+        ui->lineEditFcd->setText(locale.toString(paramFcd,'g',prec+data.count_digit(paramFcd)));
         if(!checkThatResultsAreNumbers(paramFcd)){
             return;
         }
 
         double paramFpd = data.calculateFpd();
-        ui->lineEditFpd->setText(locale.toString(paramFpd));
+        ui->lineEditFpd->setText(locale.toString(paramFpd,'g',prec+data.count_digit(paramFpd)));
         if(!checkThatResultsAreNumbers(paramFpd)){
             return;
         }
 
         double paramZ = data.calculateZ();
-        ui->lineEditZ->setText(locale.toString(paramZ));
+        ui->lineEditZ->setText(locale.toString(paramZ,'g',prec+data.count_digit(paramZ)));
         if(!checkThatResultsAreNumbers(paramZ)){
             return;
         }
 
-        double paramNpov = data.calculateNpov();
+        int paramNpov = data.calculateNpov();
         ui->lineEditNpov->setText(locale.toString(paramNpov));
         ui->labelLowerNpov->setText(QString::number(paramNpov));
         if(!checkThatResultsAreNumbers(paramNpov)){
@@ -660,7 +676,7 @@ void MainWindow::startComputations(){
         checkIfNumberOfTendonsAreValid(paramNpov);
 
         double paramAcc = data.calculateAcc();
-        ui->lineEditAcc->setText(locale.toString(paramAcc));
+        ui->lineEditAcc->setText(locale.toString(paramAcc,'g',prec+data.count_digit(paramAcc)));
         if(!checkThatResultsAreNumbers(paramAcc)){
             return;
         }
@@ -673,13 +689,13 @@ void MainWindow::startComputations(){
         }
 
         double paramAlphaE = data.calculateAlphaE();
-        ui->lineEditAlphaE->setText(locale.toString(paramAlphaE));
+        ui->lineEditAlphaE->setText(locale.toString(paramAlphaE,'g',prec+data.count_digit(paramAlphaE)));
         if(!checkThatResultsAreNumbers(paramAlphaE)){
             return;
         }
 
         double paramAcs = data.calculateAcs();
-        ui->lineEditAcs->setText(locale.toString(paramAcs));
+        ui->lineEditAcs->setText(locale.toString(paramAcs,'g',prec+data.count_digit(paramAcs)));
         if(!checkThatResultsAreNumbers(paramAcs)){
             return;
         }
@@ -687,19 +703,19 @@ void MainWindow::startComputations(){
         data.setApLower(performFormulaFromLowerTable());
         data.setApUpper(performFormulaFromUpperTable(data.getH()));
         double paramScs = data.calculateScs();
-        ui->lineEditScs->setText(locale.toString(paramScs));
+        ui->lineEditScs->setText(locale.toString(paramScs,'g',prec+data.count_digit(paramScs)));
         if(!checkThatResultsAreNumbers(paramScs)){
             return;
         }
 
         double paramZd = data.calculateZd();
-        ui->lineEditZd->setText(locale.toString(paramZd));
+        ui->lineEditZd->setText(locale.toString(paramZd,'g',prec+data.count_digit(paramZd)));
         if(!checkThatResultsAreNumbers(paramZd)){
             return;
         }
 
         double paramZg = data.calculateZg();
-        ui->lineEditZg->setText(locale.toString(paramZg));
+        ui->lineEditZg->setText(locale.toString(paramZg,'g',prec+data.count_digit(paramZg)));
         if(!checkThatResultsAreNumbers(paramZg)){
             return;
         }
@@ -707,19 +723,19 @@ void MainWindow::startComputations(){
         data.setSumF2d(performFormula2FromTable(ui->tableWidgetLower,data.getZd(),data.getH(),false));
         data.setSumF2g(performFormula2FromTable(ui->tableWidgetUpper,data.getZg(),data.getH(),true));
         double paramIcs = data.calculateIcs();
-        ui->lineEditIcs->setText(locale.toString(paramIcs));
+        ui->lineEditIcs->setText(locale.toString(paramIcs,'g',prec+data.count_digit(paramIcs)));
         if(!checkThatResultsAreNumbers(paramIcs)){
             return;
         }
 
         double paramWdcs = data.calculateWdcs();
-        ui->lineEditWdcs->setText(locale.toString(paramWdcs));
+        ui->lineEditWdcs->setText(locale.toString(paramWdcs,'g',prec+data.count_digit(paramWdcs)));
         if(!checkThatResultsAreNumbers(paramWdcs)){
             return;
         }
 
         double paramWgcs = data.calculateWgcs();
-        ui->lineEditWgcs->setText(locale.toString(paramWgcs));
+        ui->lineEditWgcs->setText(locale.toString(paramWgcs,'g',prec+data.count_digit(paramWgcs)));
         if(!checkThatResultsAreNumbers(paramWgcs)){
             return;
         }
@@ -730,13 +746,13 @@ void MainWindow::startComputations(){
                                                     locale.toDouble(ui->lineEditFp01k->text()),
                                                     locale.toDouble(ui->lineEditApc0->text())
                                                     );
-        ui->lineEditSigmaPMax->setText(locale.toString(paramSigmapmax));
+        ui->lineEditSigmaPMax->setText(locale.toString(paramSigmapmax,'g',prec+data.count_digit(paramSigmapmax)));
         if(!checkThatResultsAreNumbers(paramSigmapmax)){
             return;
         }
 
         double paramP0max = data.calculateP0max();
-        ui->lineEditP0max->setText(locale.toString(paramP0max));
+        ui->lineEditP0max->setText(locale.toString(paramP0max,'g',prec+data.count_digit(paramP0max)));
         if(!checkThatResultsAreNumbers(paramP0max)){
             return;
         }
@@ -745,13 +761,13 @@ void MainWindow::startComputations(){
                                                     locale.toDouble(ui->lineEditK8->text()),
                                                     locale.toDouble(ui->lineEditFpk->text())
                                                     );
-        ui->lineEditSigmaPM0->setText(locale.toString(paramSigmapm0));
+        ui->lineEditSigmaPM0->setText(locale.toString(paramSigmapm0,'g',prec+data.count_digit(paramSigmapm0)));
         if(!checkThatResultsAreNumbers(paramSigmapm0)){
             return;
         }
 
         double paramPM0 = data.calculatePm0();
-        ui->lineEditPM0->setText(locale.toString(paramPM0));
+        ui->lineEditPM0->setText(locale.toString(paramPM0,'g',prec+data.count_digit(paramPM0)));
         if(!checkThatResultsAreNumbers(paramPM0)){
             return;
         }
@@ -770,12 +786,12 @@ void MainWindow::startComputations(){
                                           );
         }
         double paramDeltaSigma = data.getDeltaSigma();
-        ui->lineEditDeltaSigma->setText(locale.toString(paramDeltaSigma));
+        ui->lineEditDeltaSigma->setText(locale.toString(paramDeltaSigma,'g',prec+data.count_digit(paramDeltaSigma)));
         if(!checkThatResultsAreNumbers(paramDeltaSigma)){
             return;
         }
         double paramDeltaP = data.getDeltaP();
-        ui->lineEditDeltaP->setText(locale.toString(paramDeltaP));
+        ui->lineEditDeltaP->setText(locale.toString(paramDeltaP,'g',prec+data.count_digit(paramDeltaP)));
         if(!checkThatResultsAreNumbers(paramDeltaP)){
             return;
         }
@@ -783,13 +799,13 @@ void MainWindow::startComputations(){
         double paramDeltaPTheta = data.calculateDeltaPTheta(computeDeltaT(ui->radioButton->isChecked()),
                                                             locale.toDouble(ui->lineEditAlphaT->text())
                                                             );
-        ui->lineEditDeltaPtheta->setText(locale.toString(paramDeltaPTheta));
+        ui->lineEditDeltaPtheta->setText(locale.toString(paramDeltaPTheta,'g',prec+data.count_digit(paramDeltaPTheta)));
         if(!checkThatResultsAreNumbers(paramDeltaPTheta)){
             return;
         }
 
         double paramPm01 = data.calculatePm01();
-        ui->lineEditPm01->setText(locale.toString(paramPm01));
+        ui->lineEditPm01->setText(locale.toString(paramPm01,'g',prec+data.count_digit(paramPm01)));
         if(!checkThatResultsAreNumbers(paramPm01)){
             return;
         }
@@ -797,19 +813,19 @@ void MainWindow::startComputations(){
         data.setSumF3d(performFormula3FromTable(ui->tableWidgetLower,data.getZd(),data.getH(),false));
         data.setSumF3g(performFormula3FromTable(ui->tableWidgetUpper,data.getZg(),data.getH(),false)); // zamienic na true jezeli Julita się jebneła
         double paramDeltaPel = data.calculateDeltaPel();
-        ui->lineEditDeltaPel->setText(locale.toString(paramDeltaPel));
+        ui->lineEditDeltaPel->setText(locale.toString(paramDeltaPel,'g',prec+data.count_digit(paramDeltaPel)));
         if(!checkThatResultsAreNumbers(paramDeltaPel)){
             return;
         }
 
         double paramPm02 = data.calculatePm02();
-        ui->lineEditPm02->setText(locale.toString(paramPm02));
+        ui->lineEditPm02->setText(locale.toString(paramPm02,'g',prec+data.count_digit(paramPm02)));
         if(!checkThatResultsAreNumbers(paramPm02)){
             return;
         }
 
         double paramSigmaPm02 = data.calculateSigmaPm02();
-        ui->lineEditSigmaPM02->setText(locale.toString(paramSigmaPm02));
+        ui->lineEditSigmaPM02->setText(locale.toString(paramSigmaPm02,'g',prec+data.count_digit(paramSigmaPm02)));
         if(!checkThatResultsAreNumbers(paramSigmaPm02)){
             return;
         }
@@ -823,21 +839,21 @@ void MainWindow::startComputations(){
 
         data.setU(locale.toDouble(ui->lineEditU->text()));
         double paramH0 = data.calculateH0();
-        ui->lineEditH0->setText(locale.toString(paramH0));
+        ui->lineEditH0->setText(locale.toString(paramH0,'g',prec+data.count_digit(paramH0)));
         if(!checkThatResultsAreNumbers(paramH0)){
             return;
         }
 
         double paramFcm = data.calculateFcm();
-        ui->lineEditFcm->setText(locale.toString(paramFcm));
+        ui->lineEditFcm->setText(locale.toString(paramFcm,'g',prec+data.count_digit(paramFcm)));
         if(!checkThatResultsAreNumbers(paramFcm)){
             return;
         }
 
         std::vector<double> a = data.calculateParametersA();
-        ui->lineEditCoeffA1->setText(locale.toString(a[0]));
-        ui->lineEditCoeffA2->setText(locale.toString(a[1]));
-        ui->lineEditCoeffA3->setText(locale.toString(a[2]));
+        ui->lineEditCoeffA1->setText(locale.toString(a[0],'g',prec+data.count_digit(a[0])));
+        ui->lineEditCoeffA2->setText(locale.toString(a[1],'g',prec+data.count_digit(a[1])));
+        ui->lineEditCoeffA3->setText(locale.toString(a[2],'g',prec+data.count_digit(a[2])));
         for(double n : a){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -845,12 +861,12 @@ void MainWindow::startComputations(){
         }
 
         std::vector<double> beta = data.calculateBetas();
-        ui->lineEditBetaH->setText(locale.toString(beta[0]));
-        ui->lineEditBetaC->setText(locale.toString(beta[1]));
-        ui->lineEditBetaT0->setText(locale.toString(beta[2]));
-        ui->lineEditBetaFcm->setText(locale.toString(beta[3]));
-        ui->lineEditBetaRH->setText(locale.toString(beta[4]));
-        ui->lineEditBetaAS->setText(locale.toString(beta[5]));
+        ui->lineEditBetaH->setText(locale.toString(beta[0],'g',prec+data.count_digit(beta[0])));
+        ui->lineEditBetaC->setText(locale.toString(beta[1],'g',prec+data.count_digit(beta[1])));
+        ui->lineEditBetaT0->setText(locale.toString(beta[2],'g',prec+data.count_digit(beta[2])));
+        ui->lineEditBetaFcm->setText(locale.toString(beta[3],'g',prec+data.count_digit(beta[3])));
+        ui->lineEditBetaRH->setText(locale.toString(beta[4],'g',prec+data.count_digit(beta[4])));
+        ui->lineEditBetaAS->setText(locale.toString(beta[5],'g',prec+data.count_digit(beta[5])));
         for(double n : beta){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -858,9 +874,9 @@ void MainWindow::startComputations(){
         }
 
         std::vector<double> phi = data.calculatePhis();
-        ui->lineEditPhiRH->setText(locale.toString(phi[0]));
-        ui->lineEditPhi0->setText(locale.toString(phi[1]));
-        ui->lineEditPhiT->setText(locale.toString(phi[2]));
+        ui->lineEditPhiRH->setText(locale.toString(phi[0],'g',prec+data.count_digit(phi[0])));
+        ui->lineEditPhi0->setText(locale.toString(phi[1],'g',prec+data.count_digit(phi[1])));
+        ui->lineEditPhiT->setText(locale.toString(phi[2],'g',prec+data.count_digit(phi[2])));
         for(double n : phi){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -869,6 +885,11 @@ void MainWindow::startComputations(){
 
         std::vector<double> eps = data.calculateEpsilons(locale.toDouble(ui->lineEditFcmo->text()),
                                                          locale.toDouble(ui->lineEditKh->text()));
+//        ui->lineEditEpsCD->setText(locale.toString(eps[0],'g',prec));
+//        ui->lineEditEpsCDInf->setText(locale.toString(eps[1],'g',prec));
+//        ui->lineEditEpsCA->setText(locale.toString(eps[2],'g',prec));
+//        ui->lineEditEpsCAT->setText(locale.toString(eps[3],'g',prec));
+//        ui->lineEditEpsCS->setText(locale.toString(eps[4],'g',prec));
         ui->lineEditEpsCD->setText(locale.toString(eps[0]));
         ui->lineEditEpsCDInf->setText(locale.toString(eps[1]));
         ui->lineEditEpsCA->setText(locale.toString(eps[2]));
@@ -882,11 +903,11 @@ void MainWindow::startComputations(){
 
         std::vector<double> sigma = data.calculateSigmas(locale.toDouble(ui->lineEditMeqp->text()),
                                                          locale.toDouble(ui->lineEditP1000->text()));
-        ui->lineEditSigmaPR->setText(locale.toString(sigma[0]));
-        ui->lineEditSigmaPR2->setText(locale.toString(sigma[1]));
-        ui->lineEditSigmaCQP->setText(locale.toString(sigma[2]));
-        ui->lineEditSigmaPCSR->setText(locale.toString(sigma[3]));
-        ui->lineEditSigmaPMT->setText(locale.toString(sigma[4]));
+        ui->lineEditSigmaPR->setText(locale.toString(sigma[0],'g',prec+data.count_digit(sigma[0])));
+        ui->lineEditSigmaPR2->setText(locale.toString(sigma[1],'g',prec+data.count_digit(sigma[1])));
+        ui->lineEditSigmaCQP->setText(locale.toString(sigma[2],'g',prec+data.count_digit(sigma[2])));
+        ui->lineEditSigmaPCSR->setText(locale.toString(sigma[3],'g',prec+data.count_digit(sigma[3])));
+        ui->lineEditSigmaPMT->setText(locale.toString(sigma[4],'g',prec+data.count_digit(sigma[4])));
         for(double n : sigma){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -894,13 +915,13 @@ void MainWindow::startComputations(){
         }
 
         double paramPcsr = data.calculatePcsr();
-        ui->lineEditPcsr->setText(locale.toString(paramPcsr));
+        ui->lineEditPcsr->setText(locale.toString(paramPcsr,'g',prec+data.count_digit(paramPcsr)));
         if(!checkThatResultsAreNumbers(paramPcsr)){
             return;
         }
 
         double paramPmt = data.calculatePmt();
-        ui->lineEditPmt->setText(locale.toString(paramPmt));
+        ui->lineEditPmt->setText(locale.toString(paramPmt,'g',prec+data.count_digit(paramPmt)));
         if(!checkThatResultsAreNumbers(paramPmt)){
             return;
         }
@@ -917,9 +938,9 @@ void MainWindow::startComputations(){
                                                  locale.toDouble(getStringFromTable(ui->tableWidgetUpper,0,2)),
                                                  getAreaApLower(),
                                                  getAreaApUpper());
-        ui->lineEditXeffspr->setText(locale.toString(x[0]));
-        ui->lineEditXeff->setText(locale.toString(x[1]));
-        ui->lineEditXefflim->setText(locale.toString(x[2]));
+        ui->lineEditXeffspr->setText(locale.toString(x[0],'g',prec+data.count_digit(x[0])));
+        ui->lineEditXeff->setText(locale.toString(x[1],'g',prec+data.count_digit(x[1])));
+        ui->lineEditXefflim->setText(locale.toString(x[2],'g',prec+data.count_digit(x[2])));
         for(double n : x){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -933,7 +954,7 @@ void MainWindow::startComputations(){
         }
 
         double paramMrd = data.getMrd();
-        ui->lineEditMrd->setText(locale.toString(paramMrd));
+        ui->lineEditMrd->setText(locale.toString(paramMrd,'g',prec+data.count_digit(paramMrd)));
         if(!checkThatResultsAreNumbers(paramMrd)){
             return;
         }
@@ -941,20 +962,20 @@ void MainWindow::startComputations(){
         std::pair<double, double> pk = data.calculatePk(locale.toDouble(ui->lineEditRsup->text()),
                                                         locale.toDouble(ui->lineEditRinf->text())
                                                         );
-        ui->lineEditPksup->setText(locale.toString(pk.first));
-        ui->lineEditPkinf->setText(locale.toString(pk.second));
+        ui->lineEditPksup->setText(locale.toString(pk.first,'g',prec+data.count_digit(pk.first)));
+        ui->lineEditPkinf->setText(locale.toString(pk.second,'g',prec+data.count_digit(pk.second)));
         if(!(checkThatResultsAreNumbers(pk.first) || checkThatResultsAreNumbers(pk.second))){
             return;
         }
 
         double Eceff = data.calculateEceff();
-        ui->lineEditEceff->setText(locale.toString(Eceff));
+        ui->lineEditEceff->setText(locale.toString(Eceff,'g',prec+data.count_digit(Eceff)));
         if(!checkThatResultsAreNumbers(Eceff)){
             return;
         }
 
         double B = data.calculateB();
-        ui->lineEditB->setText(locale.toString(B));
+        ui->lineEditB->setText(locale.toString(B,'g',prec+data.count_digit(B)));
         if(!checkThatResultsAreNumbers(B)){
             return;
         }
@@ -962,28 +983,28 @@ void MainWindow::startComputations(){
         std::pair<double, double> aa = data.calculateA(locale.toDouble(ui->lineEditMeqp_2->text()),
                                                         locale.toDouble(ui->lineEditLeff->text())
                                                         );
-        ui->lineEditA_2->setText(locale.toString(aa.first));
-        ui->lineEditAlim->setText(locale.toString(aa.second));
+        ui->lineEditA_2->setText(locale.toString(aa.first,'g',prec+data.count_digit(aa.first)));
+        ui->lineEditAlim->setText(locale.toString(aa.second,'g',prec+data.count_digit(aa.second)));
         if(!(checkThatResultsAreNumbers(aa.first) || checkThatResultsAreNumbers(aa.second))){
             return;
         }
 
         double sigmaCpinf = data.calculateSigmaCpinf();
-        ui->lineEditSigmacpinf->setText(locale.toString(sigmaCpinf));
+        ui->lineEditSigmacpinf->setText(locale.toString(sigmaCpinf,'g',prec+data.count_digit(sigmaCpinf)));
         if(!checkThatResultsAreNumbers(sigmaCpinf)){
             return;
         }
 
         double mcr = data.calculateMcr(locale.toDouble(ui->lineEditFctm->text()));
-        ui->lineEditMcr->setText(locale.toString(mcr));
+        ui->lineEditMcr->setText(locale.toString(mcr,'g',prec+data.count_digit(mcr)));
         if(!checkThatResultsAreNumbers(mcr)){
             return;
         }
 
         std::vector<double> css1 = data.calculateStressesInSection_1(locale.toDouble(ui->lineEditMeqp->text()));
-        ui->lineEditF_1->setText(locale.toString(css1[0]));
-        ui->lineEditSigmaDC_1->setText(locale.toString(css1[1]));
-        ui->lineEditSigmaDC_2->setText(locale.toString(css1[2]));
+        ui->lineEditF_1->setText(locale.toString(css1[0],'g',prec+data.count_digit(css1[0])));
+        ui->lineEditSigmaDC_1->setText(locale.toString(css1[1],'g',prec+data.count_digit(css1[1])));
+        ui->lineEditSigmaDC_2->setText(locale.toString(css1[2],'g',prec+data.count_digit(css1[2])));
         for(double n : css1){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -1004,9 +1025,9 @@ void MainWindow::startComputations(){
 
         std::vector<double> css2 = data.calculateStressesInSection_2(locale.toDouble(ui->lineEditMeqp->text()),
                                                                      locale.toDouble(ui->lineEditFctm->text()));
-        ui->lineEditF_2->setText(locale.toString(css2[0]));
-        ui->lineEditSigmaGC_1->setText(locale.toString(css2[1]));
-        ui->lineEditSigmaGC_2->setText(locale.toString(css2[2]));
+        ui->lineEditF_2->setText(locale.toString(css2[0],'g',prec+data.count_digit(css2[0])));
+        ui->lineEditSigmaGC_1->setText(locale.toString(css2[1],'g',prec+data.count_digit(css2[1])));
+        ui->lineEditSigmaGC_2->setText(locale.toString(css2[2],'g',prec+data.count_digit(css2[2])));
         for(double n : css2){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -1026,9 +1047,9 @@ void MainWindow::startComputations(){
         }
 
         std::vector<double> css3 = data.calculateStressesInSection_3(locale.toDouble(ui->lineEditMeqp->text()));
-        ui->lineEditF_3->setText(locale.toString(css3[0]));
-        ui->lineEditSigmaCP_1->setText(locale.toString(css3[1]));
-        ui->lineEditSigmaCP_2->setText(locale.toString(css3[2]));
+        ui->lineEditF_3->setText(locale.toString(css3[0],'g',prec+data.count_digit(css3[0])));
+        ui->lineEditSigmaCP_1->setText(locale.toString(css3[1],'g',prec+data.count_digit(css3[1])));
+        ui->lineEditSigmaCP_2->setText(locale.toString(css3[2],'g',prec+data.count_digit(css3[2])));
         for(double n : css3){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -1180,6 +1201,17 @@ void MainWindow::setAlphaCoeffCement(int arg)
         ui->lineEditAlphaDS1->setText("6");
         ui->lineEditAlphaDS2->setText("0,11");
         break;
+    }
+}
+
+void MainWindow::setVisibilityOfPrecSpinBox(bool arg)
+{
+    if(!arg){
+        ui->spinBoxPrec->setDisabled(true);
+    }
+    else{
+        ui->spinBoxPrec->setEnabled(true);
+
     }
 }
 

@@ -17,12 +17,13 @@ double mathFormulas::calculateAreaAc(){
     areaA5 = paramB2*paramH5;
 
     areaAc = areaA1+areaA2+areaA3+areaA4+areaA5;
+    areaAc = roundoff(areaAc);
     return areaAc;
 }
 
 double mathFormulas::calculateBeta(){
     paramH = paramH1+paramH2+paramH3+paramH4+paramH5;
-    return areaAc/(paramH*paramH);
+    return roundoff(areaAc/(paramH*paramH));
 }
 
 double mathFormulas::calculateCenterOfGravity(){
@@ -33,12 +34,12 @@ double mathFormulas::calculateCenterOfGravity(){
     paramS5 = paramH5/2;
 
     paramSc = (paramS1*areaA1+paramS2*areaA2+paramS3*areaA3+paramS4*areaA4+paramS5*areaA5)/areaAc;
-
+    paramSc = roundoff(paramSc);
     return paramSc;
 }
 
 double mathFormulas::calculateKappa(){
-    return paramSc/paramH;
+    return roundoff(paramSc/paramH);
 }
 
 double mathFormulas::calculateSecondMomentOfArea(){
@@ -52,11 +53,13 @@ double mathFormulas::calculateSecondMomentOfArea(){
             + Ixa3 + areaA3*pow(std::abs(paramS3-paramSc),2) + Ixa4 + areaA4*pow(std::abs(paramS4-paramSc),2)
             + Ixa5 + areaA5*pow(std::abs(paramS5-paramSc),2);
 
+    paramIc = roundoff(paramIc);
     return paramIc;
 }
 
 double mathFormulas::calculatePerformanceLimitIndicator(){
     paramRho = paramIc/(paramSc*areaAc*(paramH-paramSc));
+    paramRho = roundoff(paramRho);
     return paramRho;
 }
 
@@ -67,16 +70,19 @@ int calculateCmin(double cMinB, int cMinDur, double cDurY, double cDurSt, double
 
 double mathFormulas::calculateFcd(){
     paramFcd = paramFck / paramGammaFcd;
+    paramFcd = roundoff(paramFcd);
     return paramFcd;
 }
 
 double mathFormulas::calculateFpd(){
     paramFpd = paramFpk / paramGammaFpd;
+    paramFpd = roundoff(paramFpd);
     return paramFpd;
 }
 
 double mathFormulas::calculateZ(){
     paramZ = (paramHp * paramH) / 100;
+    paramZ = roundoff(paramZ);
     return paramZ;
 }
 
@@ -87,17 +93,21 @@ int mathFormulas::calculateNpov(){
 
 double mathFormulas::calculateAcc(){
     areaApc = (paramNpov  + paramNpovg) * paramApc0;
+    areaApc = roundoff(areaApc);
     areaAcc = areaApc * (paramFpd/paramFcd);
+    areaAcc = roundoff(areaAcc);
     return areaAcc;
 }
 
 double mathFormulas::calculateAlphaE(){
     paramAlphaE = paramEp / (paramEcm * paramK);
+    paramAlphaE = roundoff(paramAlphaE);
     return paramAlphaE;
 }
 
 double mathFormulas::calculateAcs(){
     areaAcs = areaAc - areaApc + paramAlphaE * areaApc;
+    areaAcs = roundoff(areaAcs);
     return areaAcs;
 }
 
@@ -108,34 +118,40 @@ double mathFormulas::calculateScs(){
             paramH2S*(paramB2S-paramB3S)*(paramH2S/2)+
             paramB3S*paramH*(paramH/2)+temp;
 
+    paramScs = roundoff(paramScs);
     return paramScs;
 }
 
 double mathFormulas::calculateZd(){
     paramZd = paramScs/areaAcs;
+    paramZd = roundoff(paramZd);
     return paramZd;
 }
 
 double mathFormulas::calculateZg(){
     paramZg = paramH-paramZd;
+    paramZg = roundoff(paramZg);
     return paramZg;
 }
 
 double mathFormulas::calculateWdcs()
 {
     paramWdcs = paramIcs / paramZd;
+    paramWdcs = roundoff(paramWdcs);
     return paramWdcs;
 }
 
 double mathFormulas::calculateWgcs()
 {
     paramWgcs = paramIcs / paramZg;
+    paramWgcs = roundoff(paramWgcs);
     return paramWgcs;
 }
 
 double mathFormulas::calculateIcs()
 {
     paramIcs = paramIc + areaAc*pow((paramSc - paramZd),2)+(paramAlphaE-1)*paramApc0*sumF2d+paramApc0*sumF2g;
+    paramIcs = roundoff(paramIcs);
     return paramIcs;
 }
 
@@ -146,7 +162,7 @@ double mathFormulas::calculateSigma(double k1, double k2, double fpk, double Fp0
     double temp2 = k2*paramfp01k;
 
     temp1 < temp2 ? paramSigmapmax = round(temp1) : paramSigmapmax = round(temp2);
-
+    paramSigmapmax = roundoff(paramSigmapmax);
     return paramSigmapmax;
 }
 
@@ -161,7 +177,7 @@ double mathFormulas::calculateSigma0(double k7, double k8, double fpk)
     double temp2 = k8*paramfp01k;
 
     temp1 < temp2 ? paramSigmapm0 = round(temp1) : paramSigmapm0 = round(temp2);
-
+    paramSigmapm0 = roundoff(paramSigmapm0);
     return paramSigmapm0;
 }
 
@@ -191,12 +207,14 @@ void mathFormulas::calculateTemporaryLosses(double t, double teq, double p1000, 
 double mathFormulas::calculateDeltaPTheta(double dT, double alphaT)
 {
     paramDeltaPTheta = 0.5 * dT * alphaT * paramEp * areaApc * 1e6;
+    paramDeltaPTheta = roundoff(paramDeltaPTheta);
     return paramDeltaPTheta;
 }
 
 double mathFormulas::calculatePm01()
 {
     paramPm01 = calculateP0max() - paramPpr1 - paramDeltaPTheta;
+    paramPm01 = roundoff(paramPm01);
     return  paramPm01;
 }
 
@@ -206,31 +224,35 @@ double mathFormulas::calculateDeltaPel()
     paramZpc = (paramApc0 * (sumF3d - sumF3g)) / areaApc;
 
     paramDeltaPel = paramAlphaE * rhoRho * (1 + pow(paramZpc,2)* (areaAcs/paramIcs)) * paramPm01;
-
+    paramDeltaPel = roundoff(paramDeltaPel);
     return paramDeltaPel;
 }
 
 double mathFormulas::calculatePm02()
 {
     paramPm02 = paramPm01 - paramDeltaPel;
+    paramPm02 = roundoff(paramPm02);
     return  paramPm02;
 }
 
 double mathFormulas::calculateSigmaPm02()
 {
     paramSigmaPM02 = (paramPm02 * 0.001) / areaApc;
+    paramSigmaPM02 = roundoff(paramSigmaPM02);
     return  paramSigmaPM02;
 }
 
 double mathFormulas::calculateH0()
 {
     paramH0 = ((2*areaAc) / paramU) * 1000;
+    paramH0 = roundoff(paramH0);
     return paramH0;
 }
 
 double mathFormulas::calculateFcm()
 {
     paramFcm = paramFck + 8;
+    paramFcm = roundoff(paramFcm);
     return paramFcm;
 }
 
@@ -238,12 +260,15 @@ std::vector<double> mathFormulas::calculateParametersA()
 {
     std::vector<double> a(3, 0.0);
 
-    a[0] = pow(35/paramFcm, 0.7);
-    a[1] = pow(35/paramFcm, 0.2);
-    a[2] = pow(35/paramFcm, 0.5);
+    a[0] = pow(35.0/paramFcm, 0.7);
+    a[1] = pow(35.0/paramFcm, 0.2);
+    a[2] = pow(35.0/paramFcm, 0.5);
+
+    for(auto it = a.begin(); it != a.end(); ++it) {
+        *it = roundoff(*it);
+    }
 
     paramsA = a;
-
     return paramsA;
 }
 
@@ -261,6 +286,7 @@ double mathFormulas::calculateBetaH()
         temp1 < 1500*paramsA[a3] ? result = temp1 : result = 1500*paramsA[a3];
     }
 
+    result = roundoff(result);
     return result;
 }
 
@@ -270,10 +296,10 @@ std::vector<double> mathFormulas::calculateBetas()
 
     beta[bH] = calculateBetaH();
 
-    int dT = paramTEnd - paramTStart;
+    double dT = (paramTEnd - paramTStart)*1.0;
     beta[bC] = pow(dT/(beta[bH] + dT), 0.3);
 
-    beta[bT0] = 1/(0.1+pow(paramTStart, 0.2));
+    beta[bT0] = 1.0/(0.1+pow(paramTStart, 0.2));
 
     beta[bFcm] = 16.8/pow(paramFcm, 0.5);
 
@@ -281,6 +307,9 @@ std::vector<double> mathFormulas::calculateBetas()
 
     beta[bAS] = 1 - pow(EULER, -0.2*pow(dT,0.5));
 
+    for(auto it = beta.begin(); it != beta.end(); ++it) {
+        *it = roundoff(*it);
+    }
     paramsBeta = beta;
     return paramsBeta;
 }
@@ -296,6 +325,7 @@ double mathFormulas::calculatePhiRH(){
         phiRH = (1 + ((1 - rh/100)/(0.1*pow(paramH0,0.33333)))*paramsA[a1])*paramsA[a2];
     }
 
+    phiRH = roundoff(phiRH);
     return phiRH;
 }
 
@@ -309,6 +339,9 @@ std::vector<double> mathFormulas::calculateEpsilons(double fcmo, double kh)
     eps[3] = paramsBeta[bAS]*eps[2];
     eps[4] = eps[1]+eps[3];
 
+//    for(auto it = eps.begin(); it != eps.end(); ++it) {
+//        *it = roundoff(*it);
+//    }
     paramsEpsilons = eps;
     return paramsEpsilons;
 }
@@ -339,6 +372,9 @@ std::vector<double> mathFormulas::calculateSigmas(double Meqp, double P1000)
 
     sigma[4] = paramPmt/areaApc/1000;
 
+    for(auto it = sigma.begin(); it != sigma.end(); ++it) {
+        *it = roundoff(*it);
+    }
     paramsSigmas = sigma;
     return paramsSigmas;
 }
@@ -346,18 +382,21 @@ std::vector<double> mathFormulas::calculateSigmas(double Meqp, double P1000)
 double mathFormulas::calculatePcsr()
 {
     paramPcsr = paramsSigmas[3]*areaApc*1000;
+    paramPcsr = roundoff(paramPcsr);
     return paramPcsr;
 }
 
 double mathFormulas::calculatePcsr(double sigmaPCSR)
 {
     paramPcsr = sigmaPCSR*areaApc*1000;
+    paramPcsr = roundoff(paramPcsr);
     return paramPcsr;
 }
 
 double mathFormulas::calculatePmt()
 {
     paramPmt = paramPm02 - paramPcsr;
+    paramPmt = roundoff(paramPmt);
     return paramPmt;
 }
 
@@ -383,7 +422,11 @@ std::vector<double> mathFormulas::calculateXs(double Xi, double ad, double ag, d
             areaApUpper*(400-paramSigmaPM02)*(d-ag);
 
     paramMrd *= 1000;
+    paramMrd = roundoff(paramMrd);
 
+    for(auto it = x.begin(); it != x.end(); ++it) {
+        *it = roundoff(*it);
+    }
     paramsXs = x;
     return paramsXs;
 }
@@ -393,7 +436,9 @@ std::pair<double, double> mathFormulas::calculatePk(double rSup, double rInf)
     std::pair<double, double> p;
 
     p.first = rSup*paramPmt;
+    p.first = roundoff(p.first);
     p.second = rInf*paramPmt;
+    p.second = roundoff(p.second);
 
     paramsPk = p;
     return paramsPk;
@@ -402,12 +447,14 @@ std::pair<double, double> mathFormulas::calculatePk(double rSup, double rInf)
 double mathFormulas::calculateEceff()
 {
     paramEceff = paramEcm/(1+paramsPhis[p0T]);
+    paramEceff = roundoff(paramEceff);
     return paramEceff;
 }
 
 double mathFormulas::calculateB()
 {
     paramB = paramEceff*paramIcs*1000;
+    paramB = roundoff(paramB);
     return paramB;
 }
 
@@ -417,8 +464,10 @@ std::pair<double, double> mathFormulas::calculateA(double Meqp_2, double leff)
 
     a.first = (5.0/48.0)*(Meqp_2/1000)*pow(leff,2)*(1.0/paramB)-(1.0/8.0)*(paramsPk.second/1000)*paramZpc*pow(leff,2)*(1.0/paramB);
     a.first *= 1000;
+    a.first = roundoff(a.first);
     a.second = leff/250;
     a.second *= 1000;
+    a.second = roundoff(a.second);
 
     return a;
 }
@@ -427,12 +476,13 @@ double mathFormulas::calculateSigmaCpinf()
 {
     paramSigmaCpinf = paramsPk.second/areaAcs + (paramsPk.second*paramZpc*paramZd)/paramIcs;
     paramSigmaCpinf /= 1000;
+    paramSigmaCpinf = roundoff(paramSigmaCpinf);
     return paramSigmaCpinf;
 }
 
 double mathFormulas::calculateMcr(double fctm)
 {
-    return ((paramIcs/paramZd)*(paramSigmaCpinf+fctm))*1000;
+    return roundoff(((paramIcs/paramZd)*(paramSigmaCpinf+fctm))*1000);
 }
 
 std::vector<double> mathFormulas::calculateStressesInSection_1(double Meqp)
@@ -445,6 +495,9 @@ std::vector<double> mathFormulas::calculateStressesInSection_1(double Meqp)
     css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*paramZg)/paramIcs;
     css[2] /= 1000;
 
+    for(auto it = css.begin(); it != css.end(); ++it) {
+        *it = roundoff(*it);
+    }
     return css;
 }
 
@@ -458,6 +511,9 @@ std::vector<double> mathFormulas::calculateStressesInSection_2(double Meqp, doub
     css[2] = paramsPk.first/areaAcs+(paramsPk.first*paramZpc*paramZd)/paramIcs-(Meqp*paramZd)/paramIcs;
     css[2] /= 1000;
 
+    for(auto it = css.begin(); it != css.end(); ++it) {
+        *it = roundoff(*it);
+    }
     return css;
 }
 
@@ -471,7 +527,25 @@ std::vector<double> mathFormulas::calculateStressesInSection_3(double Meqp)
     css[2] = paramsPk.first/areaAcs-(paramsPk.first*paramZpc*paramZg)/paramIcs+(Meqp*paramZg)/paramIcs;
     css[2] /= 1000;
 
+    for(auto it = css.begin(); it != css.end(); ++it) {
+        *it = roundoff(*it);
+    }
     return css;
+}
+
+double mathFormulas::roundoff(double value)
+{
+    if(!precision){
+        return value;
+    }
+
+    double pow_10 = pow(10.0, precision);
+    return round(value*pow_10)/pow_10;
+}
+
+int mathFormulas::count_digit(double number)
+{
+    return static_cast<int>(log10(number) + 1);
 }
 
 std::vector<double> mathFormulas::calculatePhis()
@@ -482,6 +556,9 @@ std::vector<double> mathFormulas::calculatePhis()
     phi[p0] = phi[pRH]*paramsBeta[bFcm]*paramsBeta[bT0];
     phi[p0T] = phi[p0]*paramsBeta[bC];
 
+    for(auto it = phi.begin(); it != phi.end(); ++it) {
+        *it = roundoff(*it);
+    }
     paramsPhis = phi;
     return paramsPhis;
 }

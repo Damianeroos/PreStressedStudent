@@ -74,6 +74,7 @@ public slots:
     void validateCellDataPhaseTable(int row, int column);
     void calculateU();
     void setAlphaCoeffCement(int);
+    void setVisibilityOfPrecSpinBox(bool);
 signals:
     void tableContextChanged(QTableWidget* table);
 };

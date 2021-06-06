@@ -5,6 +5,8 @@
 
 #include <vector>
 
+extern unsigned int prec;
+
 class mathFormulas
 {
 public:
@@ -137,11 +139,15 @@ public:
     std::vector<double> calculateStressesInSection_1(double Meqp);
     std::vector<double> calculateStressesInSection_2(double Meqp, double fctm);
     std::vector<double> calculateStressesInSection_3(double Meqp);
+    double roundoff(double value);
+    void setPrecision(unsigned int prec){ precision = prec;}
+    int count_digit(double number);
 
 private:
     enum a {a1, a2, a3};
     enum beta {bH, bC, bT0, bFcm, bRH, bAS};
     enum phi {pRH, p0, p0T};
+    unsigned int precision;
 
     double paramB1;
     double paramB2;
