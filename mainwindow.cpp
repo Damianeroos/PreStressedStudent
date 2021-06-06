@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("Kalkulator dźwigara");
+    setWindowTitle("PreStressedStudent");
     init();
 }
 
@@ -24,7 +24,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::init(){
-    QPixmap pix(":/resources/img/rys.1.PNG");
+    QPixmap pix(":/resources/img/section.PNG");
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio));
     ui->labelPic->setPixmap(pix.scaled(ui->labelPic->width(),ui->labelPic->height(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
 
