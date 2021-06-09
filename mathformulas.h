@@ -140,6 +140,7 @@ public:
     std::vector<double> calculateStressesInSection_2(double Meqp, double fctm);
     std::vector<double> calculateStressesInSection_3(double Meqp);
     double roundoff(double value);
+    double roundoff(double value, unsigned int prec);
     void setPrecision(unsigned int prec){ precision = prec;}
     int count_digit(double number);
 

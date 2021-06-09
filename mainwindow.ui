@@ -3184,6 +3184,9 @@ pobróbce terminczej</string>
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="readOnly">
+                      <bool>true</bool>
+                     </property>
                     </widget>
                    </item>
                    <item row="0" column="3">
@@ -4451,7 +4454,7 @@ pobróbce terminczej</string>
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>-1297</y>
+                 <y>0</y>
                  <width>224</width>
                  <height>1802</height>
                 </rect>
@@ -8188,8 +8191,38 @@ precyzję</string>
      <height>21</height>
     </rect>
    </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuInfo">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>Info</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>false</bool>
+    </property>
+    <addaction name="actionO_programie"/>
+    <addaction name="actionAutorzy"/>
+   </widget>
+   <addaction name="menuInfo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionO_programie">
+   <property name="text">
+    <string>O programie</string>
+   </property>
+  </action>
+  <action name="actionAutorzy">
+   <property name="text">
+    <string>Autorzy</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

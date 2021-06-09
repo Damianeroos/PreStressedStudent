@@ -176,6 +176,7 @@ void MainWindow::init(){
     ui->lineEditF_3->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaCP_1->setStyleSheet(lineEditBackgroundColorGrey);
     ui->lineEditSigmaCP_2->setStyleSheet(lineEditBackgroundColorGrey);
+    ui->lineEditFcmo->setStyleSheet(lineEditBackgroundColorGrey);
 
     ui->tabWidget->setStyleSheet("#tab_1 {background-color: rgb(240, 240, 240);}"
                                  "#tab_2 {background-color: rgb(240, 240, 240);}"
@@ -885,16 +886,12 @@ void MainWindow::startComputations(){
 
         std::vector<double> eps = data.calculateEpsilons(locale.toDouble(ui->lineEditFcmo->text()),
                                                          locale.toDouble(ui->lineEditKh->text()));
-//        ui->lineEditEpsCD->setText(locale.toString(eps[0],'g',prec));
-//        ui->lineEditEpsCDInf->setText(locale.toString(eps[1],'g',prec));
-//        ui->lineEditEpsCA->setText(locale.toString(eps[2],'g',prec));
-//        ui->lineEditEpsCAT->setText(locale.toString(eps[3],'g',prec));
-//        ui->lineEditEpsCS->setText(locale.toString(eps[4],'g',prec));
-        ui->lineEditEpsCD->setText(locale.toString(eps[0]));
-        ui->lineEditEpsCDInf->setText(locale.toString(eps[1]));
-        ui->lineEditEpsCA->setText(locale.toString(eps[2]));
-        ui->lineEditEpsCAT->setText(locale.toString(eps[3]));
-        ui->lineEditEpsCS->setText(locale.toString(eps[4]));
+        ui->lineEditEpsCD->setText(locale.toString(eps[0],'f',prec+data.count_digit(eps[0])));
+        ui->lineEditEpsCDInf->setText(locale.toString(eps[1],'f',prec+data.count_digit(eps[1])));
+        ui->lineEditEpsCA->setText(locale.toString(eps[2],'f',prec+data.count_digit(eps[2])));
+        ui->lineEditEpsCAT->setText(locale.toString(eps[3],'f',prec+data.count_digit(eps[3])));
+        ui->lineEditEpsCS->setText(locale.toString(eps[4],'f',prec+data.count_digit(eps[4])));
+
         for(double n : eps){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -1028,6 +1025,7 @@ void MainWindow::startComputations(){
         ui->lineEditF_2->setText(locale.toString(css2[0],'g',prec+data.count_digit(css2[0])));
         ui->lineEditSigmaGC_1->setText(locale.toString(css2[1],'g',prec+data.count_digit(css2[1])));
         ui->lineEditSigmaGC_2->setText(locale.toString(css2[2],'g',prec+data.count_digit(css2[2])));
+
         for(double n : css2){
             if(!checkThatResultsAreNumbers(n)){
                 return;
@@ -1659,4 +1657,16 @@ void MainWindow::setObjectPropertiesDependsFromRadioButton(bool arg)
 
         ui->tableWidgetPhase->setDisabled(true);
     }
+}
+
+void MainWindow::on_actionO_programie_triggered()
+{
+    DialogInfo *dialoginfo = new DialogInfo(this);
+    dialoginfo->show();
+}
+
+void MainWindow::on_actionAutorzy_triggered()
+{
+    DialogAuthorsInfo *dialogAutInfo = new DialogAuthorsInfo(this);
+    dialogAutInfo->show();
 }

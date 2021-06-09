@@ -9,16 +9,22 @@ CONFIG += c++11 static
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dialogauthorsinfo.cpp \
+    dialoginfo.cpp \
     main.cpp \
     mainwindow.cpp \
     mathformulas.cpp
 
 HEADERS += \
     arrays.h \
+    dialogauthorsinfo.h \
+    dialoginfo.h \
     mainwindow.h \
     mathformulas.h
 
 FORMS += \
+    dialogauthorsinfo.ui \
+    dialoginfo.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QPixmap>
 #include <QTableWidget>
+#include "dialoginfo.h"
+#include "dialogauthorsinfo.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -77,5 +79,8 @@ public slots:
     void setVisibilityOfPrecSpinBox(bool);
 signals:
     void tableContextChanged(QTableWidget* table);
+private slots:
+    void on_actionO_programie_triggered();
+    void on_actionAutorzy_triggered();
 };
 #endif // MAINWINDOW_H

@@ -35,6 +35,7 @@ double mathFormulas::calculateCenterOfGravity(){
 
     paramSc = (paramS1*areaA1+paramS2*areaA2+paramS3*areaA3+paramS4*areaA4+paramS5*areaA5)/areaAc;
     paramSc = roundoff(paramSc);
+
     return paramSc;
 }
 
@@ -339,9 +340,9 @@ std::vector<double> mathFormulas::calculateEpsilons(double fcmo, double kh)
     eps[3] = paramsBeta[bAS]*eps[2];
     eps[4] = eps[1]+eps[3];
 
-//    for(auto it = eps.begin(); it != eps.end(); ++it) {
-//        *it = roundoff(*it);
-//    }
+    for(auto it = eps.begin(); it != eps.end(); ++it) {
+        *it = roundoff(*it);
+    }
     paramsEpsilons = eps;
     return paramsEpsilons;
 }
@@ -543,9 +544,30 @@ double mathFormulas::roundoff(double value)
     return round(value*pow_10)/pow_10;
 }
 
+double mathFormulas::roundoff(double value, unsigned int prec)
+{
+    if(!prec){
+        return value;
+    }
+
+    double pow_10 = pow(10.0, prec);
+    return round(value*pow_10)/pow_10;
+}
+
 int mathFormulas::count_digit(double number)
 {
-    return static_cast<int>(log10(number) + 1);
+    if(number<0){
+        number = abs(number);
+    }
+
+    int temp = static_cast<int>(log10(number) + 1);
+
+    if(temp < 0){
+        return 0;
+    }
+    else{
+        return temp;
+    }
 }
 
 std::vector<double> mathFormulas::calculatePhis()
