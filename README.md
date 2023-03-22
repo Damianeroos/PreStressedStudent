@@ -1,5 +1,5 @@
 Program PreStressedStudent powstał w ramach realizacji pracy dyplomowej, w której zakresie znajduje się
-stworzenie algorytmu obliczeniowego dla dźwigarów strunobetonowych w zakresie SGN i SGU. W zamyśle autorki była
+stworzenie algorytmu obliczeniowego dla dźwigarów strunobetonowych w zakresie SGN i SGU. W zamyśle autora była
 przede wszystkim intuicyjność tego narzędzia połączona z jak najszerszym zakresem obliczeniowym programu.
 Do napisania programu posłużono się językiem programowania C++ oraz wykorzystano biblioteki QT żeby utworzyć
 interfejs graficzny (https://www.qt.io/). 
